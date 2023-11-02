@@ -30,6 +30,11 @@ rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
 RSpec.configure do |config|
+  config.before(type: :system) do
+    driven_by(:rack_test)
+  end
+  config.include Rails.application.routes.url_helpers
+  config.include Capybara::DSL
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 

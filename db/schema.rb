@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_03_175126) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_03_164513) do
   create_table "addresses", force: :cascade do |t|
     t.string "street"
     t.string "number"
@@ -46,13 +46,10 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_03_175126) do
     t.boolean "host"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "inn_id"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["inn_id"], name: "index_users_on_inn_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "inns", "addresses"
   add_foreign_key "inns", "users"
-  add_foreign_key "users", "inns"
 end

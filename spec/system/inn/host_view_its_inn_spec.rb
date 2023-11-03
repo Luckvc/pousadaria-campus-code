@@ -5,11 +5,11 @@ describe 'User view its own inn' do
     #Arrange
     host = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)
     address = Address.create!(street: 'Rua das ruas', number:'12', neighborhood:'centro', city:'São Paulo', state:'SP', cep:'15470-000')
-    inn = Inn.create!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123', phone:'556618', email:'pousadinha@email.com', address:address, user:host)
+    host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123', phone:'556618', email:'pousadinha@email.com', address:address)
     
-    host = User.create!(name: 'João', email:'joao@email.com', password:'password', host: true)
-    address = Address.create!(street: 'Rua das torres', number:'28', neighborhood:'centro', city:'São Paulo', state:'SP', cep:'15470-000')
-    inn = Inn.create!(name:'Pousadona', company_name:'Pousadona SN', cnpj:'456', phone:'223345', email:'pousadona@email.com', address:address, user:host)
+    host2 = User.create!(name: 'João', email:'joao@email.com', password:'password', host: true)
+    address2 = Address.create!(street: 'Rua das torres', number:'28', neighborhood:'centro', city:'São Paulo', state:'SP', cep:'15470-000')
+    host2.create_inn!(name:'Pousadona', company_name:'Pousadona SN', cnpj:'456', phone:'223345', email:'pousadona@email.com', address:address2)
 
     #Act
     visit root_path
@@ -29,6 +29,47 @@ describe 'User view its own inn' do
     expect(page).to have_content 'pousadona@email.com'
     expect(page).to have_content '223345'
     expect(page).to have_link 'Adicionar Quarto'
+  end
+  it 'if it is not logged in' do
+    #Arrange
+    #Act
+    visit my_inn_path
+    #Assert
+    expect(current_path).to eq new_user_session_path
+  end
+  it 'if it is not logged in as host' do
+    #Arrange
+    host = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: false)
+    
+    #Act
+    visit root_path
+    click_on 'Entrar'
+    within ('form') do
+      fill_in 'E-mail', with: 'test@email.com'
+      fill_in 'Senha', with: 'password'
+      click_on 'Entrar'
+    end
+    visit my_inn_path
+    #Assert
+    expect(current_path).to eq root_path
+    expect(page).to have_content 'Para cadastrar pousadas por favor crie uma conta como dono de pousada.'
+  end
+  it 'with no inn registered' do
+    #Arrange
+    host = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)
+    
+    #Act
+    visit root_path
+    click_on 'Entrar'
+    within ('form') do
+      fill_in 'E-mail', with: 'test@email.com'
+      fill_in 'Senha', with: 'password'
+      click_on 'Entrar'
+    end
+    click_on 'Minha Pousada'
+    #Assert
+    expect(page).to have_content 'Cadastrar Pousada'
+    expect(current_path).to eq new_inn_path
   end
 end
 

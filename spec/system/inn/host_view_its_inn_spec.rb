@@ -12,13 +12,7 @@ describe 'User view its own inn' do
     host2.create_inn!(name:'Pousadona', company_name:'Pousadona SN', cnpj:'456', phone:'223345', email:'pousadona@email.com', address:address2)
 
     #Act
-    visit root_path
-    click_on 'Entrar'
-    within ('form') do
-      fill_in 'E-mail', with: 'joao@email.com'
-      fill_in 'Senha', with: 'password'
-      click_on 'Entrar'
-    end
+    login(host2)
     click_on 'Minha Pousada'
     #Assert
     expect(page).to have_content 'Pousadona'

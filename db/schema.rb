@@ -10,7 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_02_181251) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_03_175126) do
+  create_table "addresses", force: :cascade do |t|
+    t.string "street"
+    t.string "number"
+    t.string "neighborhood"
+    t.string "city"
+    t.string "state"
+    t.string "cep"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "inns", force: :cascade do |t|
+    t.string "name"
+    t.string "company_name"
+    t.string "cnpj"
+    t.string "phone"
+    t.string "email"
+    t.integer "address_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["address_id"], name: "index_inns_on_address_id"
+    t.index ["user_id"], name: "index_inns_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -18,10 +43,16 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_02_181251) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name"
+    t.boolean "host"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "inn_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["inn_id"], name: "index_users_on_inn_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "inns", "addresses"
+  add_foreign_key "inns", "users"
+  add_foreign_key "users", "inns"
 end

@@ -2,6 +2,8 @@ pt-BR:
   activerecord:
     models:
       user: 'Usuário'
+      users: 'Usuários'
     attributes:
       user:
         name: "Nome"
+        host: "Dono de Pousada"

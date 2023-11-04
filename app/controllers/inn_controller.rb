@@ -11,7 +11,7 @@ class InnController < ApplicationController
     if current_user.inn
       @inn = current_user.inn
     else
-      redirect_to new_inn_path
+      redirect_to new_address_path
     end
   end
 end

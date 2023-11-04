@@ -1,0 +1,11 @@
+pt-BR:
+  activerecord:
+    models:
+      inn: 'Pousada'
+    attributes:
+      inn:
+        name: "Nome"
+        company_name: "Razão Social"
+        cnpj: "CNPJ"
+        phone: "Telefone"
+        email: "E-mail"

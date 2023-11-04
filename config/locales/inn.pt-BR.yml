@@ -4,7 +4,7 @@ pt-BR:
       inn: 'Pousada'
     attributes:
       inn:
-        name: "Nome"
+        name: "Nome Fantasia"
         company_name: "Razão Social"
         cnpj: "CNPJ"
         phone: "Telefone"

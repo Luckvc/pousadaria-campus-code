@@ -2,6 +2,13 @@ class InnController < ApplicationController
   before_action :authenticate_user!
 
   def new
+    @inn = Inn.new
+    @address = Address.new
+  end
+
+  def create
+    
+    
   end
 
   def my_inn
@@ -11,7 +18,7 @@ class InnController < ApplicationController
     if current_user.inn
       @inn = current_user.inn
     else
-      redirect_to new_address_path
+      redirect_to new_user_inn_path
     end
   end
 end

@@ -63,7 +63,7 @@ describe 'User view its own inn' do
     click_on 'Minha Pousada'
     #Assert
     expect(page).to have_content 'Cadastrar Pousada'
-    expect(current_path).to eq new_inn_path
+    expect(current_path).to eq new_user_inn_path
   end
 end
 

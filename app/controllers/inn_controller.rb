@@ -3,12 +3,22 @@ class InnController < ApplicationController
 
   def new
     @inn = Inn.new
-    @address = Address.new
+    @inn.build_address
   end
-
+  
   def create
+    @user = User.find(current_user.id)
+    inn_params = params.require(:inn).permit(:name, :company_name, :cnpj, :phone, :email, 
+      address_attributes: [:id, :street, :number, :neighborhood, :city, :state, :cep])
     
-    
+    @inn = @user.build_inn(inn_params)
+
+    if @inn.save
+      redirect_to my_inn_path, notice: "Pousada registrada com sucesso."
+    else
+      flash.now[:notice] = "Pousada não cadastrada"
+      render 'new'
+    end
   end
 
   def my_inn

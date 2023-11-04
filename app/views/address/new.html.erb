@@ -1,0 +1,33 @@
+<h1> Cadastrar Pousada </h1>
+<h3> Passo 2 - Endereço da Pousada </h3>
+<%= form_with(model: @address, url: address_index_path) do |form| %>
+  <div>
+    <%= form.label :street, 'Logradouro' %>
+    <%= form.text_field :street %>
+  </div>
+  <div>
+    <%= form.label :number, 'Número' %>
+    <%= form.text_field :number %>
+  </div>
+  <div>
+    <%= form.label :neighborhood, 'Bairro' %>
+    <%= form.text_field :neighborhood %>
+  </div>
+  <div>
+    <%= form.label :city, 'Cidade' %>
+    <%= form.text_field :city %>
+  </div>
+  <div>
+    <%= form.label :state, 'Estado' %>
+    <%= form.text_field :state %>
+  </div>
+  <div>
+    <%= form.label :cep, 'CEP' %>
+    <%= form.text_field :cep %>
+  </div>
+  <div>
+    <%= form.submit 'Cadastrar' %>
+  </div>
+<% end %>
+
+

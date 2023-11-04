@@ -1,19 +1,25 @@
 
 <h1> <%= @inn.name %> </h1>
+
+<div>
+    <h3> Dados da Pousada </h3>
+</div>
 <div>
   <dl>
+    <dt>Nome:</dt>
+    <dd><%= @inn.name %></dd>
     <dt>CNPJ:</dt>
     <dd><%= @inn.cnpj %></dd>
     <dt>Endereço:</dt>
-    <dd><%= @inn.address.street %>, <%= @inn.address.number %></dd>
-    <dd><%= @inn.address.city %>, <%= @inn.address.state %></dd>
-    <dt>Telefone</dt>
+    <dd><%= @inn.address.street %>, <%= @inn.address.number %> - <%= @inn.address.city %>, <%= @inn.address.state %></dd>
+    <dt>CEP:</dt>
+    <dd><%= @inn.address.cep %> </dd>
+    <dt>Telefone:</dt>
     <dd><%= @inn.phone %> </dd>
-    <dt>E-mail</dt>
+    <dt>E-mail:</dt>
     <dd><%= @inn.email %> </dd>
   </dl>
 </div>
-
 <div>
   <%= link_to 'Adicionar Quarto', my_inn_path %>
 </div>

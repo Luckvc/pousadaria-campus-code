@@ -29,4 +29,31 @@ describe 'User registers an Inn' do
     expect(page).to have_field 'Bairro' 
     expect(page).to have_content 'Número' 
   end
+  it 'successfully' do
+    #Arrange
+    user = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)
+    #Act
+    login(user)
+    click_on 'Minha Pousada'
+    fill_in 'Nome Fantasia', with: 'Pousadinha'
+    fill_in 'Razão Social', with: 'Pousadinha lta'
+    fill_in 'CNPJ', with: '123456'
+    fill_in 'Telefone', with: '456123'
+    fill_in 'E-mail', with: 'pousadinha@gmail.com'
+    fill_in 'Logradouro', with: 'Rua da Pousadinha'
+    fill_in 'Número', with: '13'
+    fill_in 'Bairro', with: 'Centro'
+    fill_in 'Cidade', with: 'Palestina'
+    fill_in 'Estado', with: 'SP'
+    fill_in 'CEP', with: '15470-000'
+    click_on 'Cadastrar'
+    #Assert
+    expect(page).to have_content 'Pousadinha' 
+    expect(page).to have_content 'CNPJ: 123456' 
+    expect(page).to have_content 'Telefone: 456123' 
+    expect(page).to have_content 'E-mail: pousadinha@gmail.com' 
+    expect(page).to have_content 'Endereço: Rua da Pousadinha, 13 - Palestina, SP' 
+    expect(page).to have_content 'CEP: 15470-000' 
+    #expect(current_path).to eq my_inn_path
+  end
 end

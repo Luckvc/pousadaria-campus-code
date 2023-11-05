@@ -27,6 +27,8 @@
       <% @inn.rooms.each do |room| %>
       <dl>
         <dd>Quarto - <%= room.number %></dd>
+        <dt>Diária:</dt>
+        <dd><%= number_to_currency(room.price_cents / 100) %></dd>
         <dt>Descrição:</dt>
         <dd><%= room.description %></dd>
         <dt>Comporta:</dt>
@@ -36,7 +38,7 @@
             <% else %> <%= room.bathrooms %><% end %></dd>
         <dt>Camas:</dt>
         <dd><% if room.double_beds > 0 %> <%= room.double_beds %> de Casal <% end %><dd>
-        <dd><% if room.single_beds > 0 %> <%= room.single_beds %> de Casal <% end %><dd>
+        <dd><% if room.single_beds > 0 %> <%= room.single_beds %> de Solteiro <% end %><dd>
         <dt>Cozinha:</dt> 
         <dd><%= I18n.translate("room.kitchen.#{room.kitchen.to_s}") %> </dd>
       </dl>

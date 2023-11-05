@@ -19,6 +19,9 @@
     <dt>E-mail:</dt>
     <dd><%= @inn.email %> </dd>
   </dl>
+  <div>
+    <%= link_to 'Editar Pousada', edit_user_inn_path(@inn.id) %>
+  </div>
 </div>
 <div>
   <% if @inn.rooms.any? %>
@@ -42,10 +45,13 @@
         <dt>Cozinha:</dt> 
         <dd><%= I18n.translate("room.kitchen.#{room.kitchen.to_s}") %> </dd>
       </dl>
+      <div>
+        <%= link_to "Editar Quarto #{room.number}", edit_inn_room_path(@inn.id, room.id)%>
+      </div>
       <% end %>
     </div>
   <% else %>
     <p> Sem quartos registrados </p>
   <% end %>
-    <%= link_to 'Adicionar Quarto', my_inn_path %>
+    <%= link_to 'Adicionar Quarto', new_inn_room_path(@inn.id) %>
 </div>

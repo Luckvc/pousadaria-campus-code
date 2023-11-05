@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User views room' do
+describe 'Host views room in inn page' do
   it 'with no room registered' do
     #Arrange
     host = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)
@@ -62,5 +62,4 @@ describe 'User views room' do
     expect(page).to have_content 'Comporta: 3 Hóspedes'
     expect(page).to have_content 'Diária: R$ 150,00'
   end
-
 end

@@ -1,0 +1,39 @@
+<h1> Editar Quarto - <%= @room.number %></h1>
+
+<%= form_with(model: @room) do |form| %>
+  <div>
+    <%= form.label :number %>
+    <%= form.text_field :number %>
+  </div>
+  <div>
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+  <div>
+    <%= form.label :double_beds %>
+    <%= form.number_field :double_beds %>
+  </div>
+  <div>
+    <%= form.label :single_beds %>
+    <%= form.number_field :single_beds %>
+  </div>
+  <div>
+    <%= form.label :capacity, 'Hóspedes' %>
+    <%= form.number_field :capacity %>
+  </div>
+  <div>
+    <%= form.label :price_cents %>
+    <%= form.number_field :price_cents %>
+  </div>
+  <div>
+    <%= form.label :bathrooms %>
+    <%= form.number_field :bathrooms %>
+  </div>
+  <div>
+    <%= form.check_box :kitchen %>
+    <%= form.label :kitchen %>
+  </div>
+  <div>
+    <%= form.submit 'Atualizar' %>
+  </div>
+<% end %>

@@ -7,9 +7,9 @@ pt-BR:
       room:
         number: "Número"
         description: "Descrição"
-        double_beds: "Camas de casal"
-        single_beds: "Camas de solteiro"
+        double_beds: "Camas de Casal"
+        single_beds: "Camas de Solteiro"
         capacity: "Capacidade"
-        price_cents: "Preço"
+        price_cents: "Diária"
         bathrooms: "Banheiros"
         kitchen: "Cozinha"

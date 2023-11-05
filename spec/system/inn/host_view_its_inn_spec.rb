@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User view its own inn' do
+describe 'Host view its own inn' do
   it 'Successfully' do
     #Arrange
     host = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)

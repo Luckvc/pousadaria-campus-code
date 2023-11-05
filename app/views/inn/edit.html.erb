@@ -1,6 +1,6 @@
-<h1> Cadastrar Pousada </h1>
+<h1>Editar Pousada</h1>
 <h3> Dados da Empresa </h3>
-<%= form_with(model: @inn, url: user_inn_index_path) do |form| %>
+<%= form_with(model: @inn) do |form| %>
   <div>
     <div>
       <%= form.label :name %>
@@ -53,8 +53,6 @@
     <% end %>
   </div><br>
   <div>
-    <%= form.submit 'Cadastrar' %>
+    <%= form.submit 'Atualizar' %>
   </div>
 <% end %>
-
-

@@ -1,0 +1,15 @@
+pt-BR:
+  activerecord:
+    models:
+      room: 'Quarto'
+      rooms: 'Quartos'
+    attributes:
+      room:
+        number: "Número"
+        description: "Descrição"
+        double_beds: "Camas de casal"
+        single_beds: "Camas de solteiro"
+        capacity: "Capacidade"
+        price_cents: "Preço"
+        bathrooms: "Banheiros"
+        kitchen: "Cozinha"

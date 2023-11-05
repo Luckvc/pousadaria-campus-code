@@ -21,5 +21,29 @@
   </dl>
 </div>
 <div>
-  <%= link_to 'Adicionar Quarto', my_inn_path %>
+  <% if @inn.rooms.any? %>
+    <div>
+      <h3> Quartos </h3>
+      <% @inn.rooms.each do |room| %>
+      <dl>
+        <dd>Quarto - <%= room.number %></dd>
+        <dt>Descrição:</dt>
+        <dd><%= room.description %></dd>
+        <dt>Comporta:</dt>
+        <dd><%= room.capacity %> Hóspedes</dd>
+        <dt>Banheiros:</dt>
+        <dd><% if room.bathrooms == 0 %> Banheiro compartilhado 
+            <% else %> <%= room.bathrooms %><% end %></dd>
+        <dt>Camas:</dt>
+        <dd><% if room.double_beds > 0 %> <%= room.double_beds %> de Casal <% end %><dd>
+        <dd><% if room.single_beds > 0 %> <%= room.single_beds %> de Casal <% end %><dd>
+        <dt>Cozinha:</dt> 
+        <dd><%= I18n.translate("room.kitchen.#{room.kitchen.to_s}") %> </dd>
+      </dl>
+      <% end %>
+    </div>
+  <% else %>
+    <p> Sem quartos registrados </p>
+  <% end %>
+    <%= link_to 'Adicionar Quarto', my_inn_path %>
 </div>

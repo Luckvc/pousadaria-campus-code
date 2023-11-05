@@ -1,0 +1,5 @@
+pt-BR:
+  room:
+    kitchen:
+      true: "Sim"
+      false: "Não"

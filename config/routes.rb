@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: 'home#index'
   resource :user do
     resources :inn do
+      resources :room
     end
   end
   resources :address

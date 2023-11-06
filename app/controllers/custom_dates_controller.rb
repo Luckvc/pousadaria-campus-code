@@ -1,4 +1,4 @@
-class CustomDateController < ApplicationController
+class CustomDatesController < ApplicationController
 
   private 
 

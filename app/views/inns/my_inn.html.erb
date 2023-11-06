@@ -11,7 +11,7 @@
     <dt>CNPJ:</dt>
     <dd><%= @inn.cnpj %></dd>
     <dt>Endereço:</dt>
-    <dd><%= @inn.address.street %>, <%= @inn.address.number %> - <%= @inn.address.city %>, <%= @inn.address.state %></dd>
+    <dd><%= @inn.address.full_address %></dd>
     <dt>CEP:</dt>
     <dd><%= @inn.address.cep %> </dd>
     <dt>Telefone:</dt>
@@ -20,7 +20,7 @@
     <dd><%= @inn.email %> </dd>
   </dl>
   <div>
-    <%= link_to 'Editar Pousada', edit_user_inn_path(@inn.id) %>
+    <%= link_to 'Editar Pousada', edit_inn_path(@inn.id) %>
   </div>
 </div>
 <div>
@@ -55,7 +55,7 @@
         <%= link_to 'Adicionar período alteração de preço', new_room_custom_date_path(room.id) %>
       </dl>
       <div>
-        <%= link_to "Editar Quarto #{room.number}", edit_inn_room_path(@inn.id, room.id)%>
+        <%= link_to "Editar Quarto #{room.number}", edit_room_path(room.id)%>
       </div>
       <% end %>
     </div>

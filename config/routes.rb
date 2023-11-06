@@ -1,17 +1,16 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'home#index'
-  
-  resource :user do
-    resources :inn
-  end
-  resources :inn do
-    resources :room
-  end
-  resources :room do
-    resources :custom_date
-  end
 
+  get 'my_inn', to: 'inns#my_inn'
+  resources :inns, only: [:index, :new, :create, :edit, :update] do
+    resources :rooms, only: [:index, :new, :create]
+  end
+  
+  resources :rooms, only: [:edit, :update] do
+    resources :custom_dates, only: [:index, :new, :create]
+  end
+  resources :custom_dates, only: [:show]
   resources :address
-  get 'my_inn', to: 'inn#my_inn'
+  
 end

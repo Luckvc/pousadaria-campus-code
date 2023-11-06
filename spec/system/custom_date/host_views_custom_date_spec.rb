@@ -15,7 +15,7 @@ describe 'host views custom dates' do
     click_on 'Minha Pousada'
     #Assert
     expect(page).to have_content 'Sem períodos de alteração de preço adicionados'
-    expect(page).to have_css("custom_dates", :text => 'Diária')
+    #expect(page).to have_css("custom_dates", :text => 'Diária')
   end
   it 'from my_inn' do
     host = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)

@@ -1,4 +1,4 @@
-class InnController < ApplicationController
+class InnsController < ApplicationController
   before_action :authenticate_user!
 
   def new
@@ -39,7 +39,7 @@ class InnController < ApplicationController
     if current_user.inn
       @inn = current_user.inn
     else
-      redirect_to new_user_inn_path
+      redirect_to new_inn_path
     end
   end
 

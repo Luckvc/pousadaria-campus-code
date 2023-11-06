@@ -18,8 +18,7 @@ describe 'Host view its own inn' do
     expect(page).to have_content 'Pousadona'
     expect(page).not_to have_content 'Pousadinha'
     expect(page).to have_content '223345'
-    expect(page).to have_content 'Rua das torres, 28'
-    expect(page).to have_content 'São Paulo, SP'
+    expect(page).to have_content 'Rua das torres, 28 - centro, São Paulo - SP'
     expect(page).to have_content 'pousadona@email.com'
     expect(page).to have_content '223345'
     expect(page).to have_link 'Adicionar Quarto'
@@ -51,7 +50,7 @@ describe 'Host view its own inn' do
     click_on 'Minha Pousada'
     #Assert
     expect(page).to have_content 'Cadastrar Pousada'
-    expect(current_path).to eq new_user_inn_path
+    expect(current_path).to eq new_inn_path
   end
 end
 

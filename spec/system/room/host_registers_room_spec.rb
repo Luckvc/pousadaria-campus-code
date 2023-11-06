@@ -53,7 +53,7 @@ describe 'Host registers a Room' do
     expect(page).to have_content 'CNPJ: 123' 
     expect(page).to have_content 'Telefone: 556618' 
     expect(page).to have_content 'E-mail: pousadinha@email.com' 
-    expect(page).to have_content 'Endereço: Rua das ruas, 12 - São Paulo, SP' 
+    expect(page).to have_content 'Endereço: Rua das ruas, 12 - centro, São Paulo - SP' 
     expect(page).to have_content 'CEP: 15470-000' 
     
     expect(page).to have_content 'Quarto - 101' 

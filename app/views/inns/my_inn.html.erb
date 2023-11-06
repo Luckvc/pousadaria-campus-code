@@ -47,7 +47,8 @@
         <dt>Períodos de alteração de preço:</dt> 
         <% if room.custom_dates.any? %>
           <% room.custom_dates.each do |cd| %>
-            <dd id="custom_dates">De <%= l(cd.begin) %> até <%= l(cd.end) %> - Diária: <%= number_to_currency(cd.price_cents / 100) %></dd>
+            <dd id="custom_dates">De <%= l(cd.begin) %> até <%= l(cd.end) %> - Diária: 
+            <%= number_to_currency(cd.price_cents / 100) %></dd>
           <% end %>
         <% else %>
           <dd>Sem períodos de alteração de preço adicionados.</dd>

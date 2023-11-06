@@ -59,8 +59,8 @@ describe 'Host registers an Inn' do
   it 'and sees edit Inn page' do
     #Arrange
     host = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)
-    address = Address.create!(street: 'Rua das ruas', number:'12', neighborhood:'centro', city:'São Paulo', 
-                              state:'SP', cep:'15470-000')
+    address = Address.create!(street: 'Rua das ruas', number:'12', neighborhood:'centro',
+                              city:'São Paulo', state:'SP', cep:'15470-000')
     host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123', phone:'556618', 
                      email:'pousadinha@email.com', address:address)
     #Act
@@ -85,9 +85,9 @@ describe 'Host registers an Inn' do
   it 'and edits Inn' do
     #Arrange
     host = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)
-    address = Address.create!(street: 'Rua das ruas', number:'12', neighborhood:'Centro', city:'São Paulo',
-                              state:'SP', cep:'15470-000')
-    host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123', phone:'556618', 
+    address = Address.create!(street: 'Rua das ruas', number:'12', neighborhood:'Centro',
+                              city:'São Paulo', state:'SP', cep:'15470-000')
+    host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123', phone:'556618',
                      email:'pousadinha@email.com', address:address)
     #Act
     login(host)

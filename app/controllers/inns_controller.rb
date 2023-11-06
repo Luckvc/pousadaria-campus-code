@@ -34,7 +34,8 @@ class InnsController < ApplicationController
 
   def my_inn
     if !current_user.host?
-      return redirect_to root_path, notice: 'Para cadastrar pousadas por favor crie uma conta como dono de pousada.'
+      return redirect_to root_path, notice: 'Para cadastrar pousadas por favor crie uma conta como 
+                                             dono de pousada.'
     end
     if current_user.inn
       @inn = current_user.inn

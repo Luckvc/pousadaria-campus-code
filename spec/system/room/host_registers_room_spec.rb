@@ -11,10 +11,10 @@ describe 'Host registers a Room' do
   it 'and sees register page' do
     #Arrange
     host = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)
-    address = Address.create!(street: 'Rua das ruas', number:'12', neighborhood:'centro', city:'São Paulo', 
-                              state:'SP', cep:'15470-000')
-    inn = host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123', phone:'556618', 
-                     email:'pousadinha@email.com', address:address)
+    address = Address.create!(street: 'Rua das ruas', number:'12', neighborhood:'centro',
+                              city:'São Paulo', state:'SP', cep:'15470-000')
+    inn = host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123',
+                           phone:'556618', email:'pousadinha@email.com', address:address)
 
     #Act
     login(host)
@@ -31,10 +31,10 @@ describe 'Host registers a Room' do
   it 'successfully' do
     #Arrange
     host = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)
-    address = Address.create!(street: 'Rua das ruas', number:'12', neighborhood:'centro', city:'São Paulo', 
-                              state:'SP', cep:'15470-000')
-    inn = host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123', phone:'556618', 
-                     email:'pousadinha@email.com', address:address)
+    address = Address.create!(street: 'Rua das ruas', number:'12', neighborhood:'centro',
+                              city:'São Paulo', state:'SP', cep:'15470-000')
+    inn = host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123',
+                           phone:'556618', email:'pousadinha@email.com', address:address)
     #Act
     login(host)
     click_on 'Minha Pousada'
@@ -67,12 +67,13 @@ describe 'Host registers a Room' do
   it 'with another room registered' do
     #Arrange
     host = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)
-    address = Address.create!(street: 'Rua das ruas', number:'12', neighborhood:'centro', city:'São Paulo', 
-                              state:'SP', cep:'15470-000')
-    inn = host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123', phone:'556618', 
-                     email:'pousadinha@email.com', address:address)
-    inn.rooms.create!(number:'101', description:'Ótimo quarto com uma cama de casal, tv, varanda com vista para a praia', 
-                     double_beds:1, single_beds:1, capacity:2, price_cents:100_00, bathrooms:1, kitchen:false)
+    address = Address.create!(street: 'Rua das ruas', number:'12', neighborhood:'centro',
+                              city:'São Paulo', state:'SP', cep:'15470-000')
+    inn = host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123',
+                           phone:'556618', email:'pousadinha@email.com', address:address)
+    inn.rooms.create!(number:'101', description:'Ótimo quarto com uma cama de casal, tv, varanda com vista para a praia',
+                      double_beds:1, single_beds:1, capacity:2, price_cents:100_00,
+                      bathrooms:1, kitchen:false)
     login(host)
     click_on 'Minha Pousada'
     click_on 'Adicionar Quarto'
@@ -104,12 +105,13 @@ describe 'Host registers a Room' do
   it 'and sees edit page' do
     #Arrange
     host = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)
-    address = Address.create!(street: 'Rua das ruas', number:'12', neighborhood:'centro', city:'São Paulo', 
-                              state:'SP', cep:'15470-000')
-    inn = host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123', phone:'556618', 
-                     email:'pousadinha@email.com', address:address)
-    inn.rooms.create!(number:'101', description:'Ótimo quarto com uma cama de casal, tv, varanda com vista para a praia', 
-                     double_beds:1, single_beds:1, capacity:2, price_cents:100_00, bathrooms:1, kitchen:false)
+    address = Address.create!(street: 'Rua das ruas', number:'12', neighborhood:'centro',
+                              city:'São Paulo', state:'SP', cep:'15470-000')
+    inn = host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123',
+                           phone:'556618', email:'pousadinha@email.com', address:address)
+    inn.rooms.create!(number:'101', description:'Ótimo quarto com uma cama de casal, tv, varanda com vista para a praia',
+                      double_beds:1, single_beds:0, capacity:2, price_cents:100_00,
+                      bathrooms:1, kitchen:false)
     #Act
     login(host)
     click_on 'Minha Pousada'
@@ -125,12 +127,13 @@ describe 'Host registers a Room' do
   it 'and edits it' do
     #Arrange
     host = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)
-    address = Address.create!(street: 'Rua das ruas', number:'12', neighborhood:'centro', city:'São Paulo', 
-                              state:'SP', cep:'15470-000')
-    inn = host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123', phone:'556618', 
-                     email:'pousadinha@email.com', address:address)
-    inn.rooms.create!(number:'101', description:'Ótimo quarto com uma cama de casal, tv, varanda com vista para a praia', 
-                     double_beds:1, single_beds:1, capacity:2, price_cents:100_00, bathrooms:1, kitchen:false)
+    address = Address.create!(street: 'Rua das ruas', number:'12', neighborhood:'centro',
+                              city:'São Paulo', state:'SP', cep:'15470-000')
+    inn = host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123',
+                           phone:'556618', email:'pousadinha@email.com', address:address)
+    inn.rooms.create!(number:'101', description:'Ótimo quarto com uma cama de casal, tv, varanda com vista para a praia',
+                        double_beds:1, single_beds:1, capacity:2, price_cents:125_00,
+                        bathrooms:1, kitchen:false)
     #Act
     login(host)
     click_on 'Minha Pousada'
@@ -139,8 +142,8 @@ describe 'Host registers a Room' do
     click_on 'Atualizar'
     #Assert
     expect(page).to have_content 'Quarto - 101' 
-    expect(page).to have_content 'Ótimo quarto com uma cama de casal, tv, varanda com vista para a praia' 
-    expect(page).to have_content 'Camas: 1 de Casal 1 de Solteiro' 
+    expect(page).to have_content 'Ótimo quarto com uma cama de casal, tv, varanda com vista para a praia'
+    expect(page).to have_content 'Camas: 1 de Casal 1 de Solteiro'
     expect(page).to have_content '2 Hóspedes'
     expect(page).to have_content 'Diária: R$ 125,00'
     expect(page).to have_content 'Cozinha: Não'

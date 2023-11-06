@@ -4,8 +4,8 @@ describe 'Host views room in inn page' do
   it 'with no room registered' do
     #Arrange
     host = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)
-    address = Address.create!(street: 'Rua das ruas', number:'12', neighborhood:'centro', city:'São Paulo', state:'SP',
-                              cep:'15470-000')
+    address = Address.create!(street: 'Rua das ruas', number:'12', neighborhood:'centro', 
+                              city:'São Paulo', state:'SP', cep:'15470-000')
     host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123', phone:'556618', 
                      email:'pousadinha@email.com', address:address)
     #Act
@@ -19,12 +19,13 @@ describe 'Host views room in inn page' do
   it 'successfully' do
     #Arrange
     host = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)
-    address = Address.create!(street: 'Rua das ruas', number:'12', neighborhood:'centro', city:'São Paulo', state:'SP',
-                              cep:'15470-000')
-    inn = host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123', phone:'556618', 
-                           email:'pousadinha@email.com', address:address)
-    inn.rooms.create!(number:'101', description:'Ótimo quarto com uma cama de casal, tv, varanda com vista para a praia', 
-                            double_beds:1, single_beds:0, capacity:2, price_cents:100_00, bathrooms:1, kitchen:false)
+    address = Address.create!(street: 'Rua das ruas', number:'12', neighborhood:'centro', 
+                              city:'São Paulo', state:'SP', cep:'15470-000')
+    inn = host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123', 
+                           phone:'556618', email:'pousadinha@email.com', address:address)
+    inn.rooms.create!(number:'101', description:'Ótimo quarto com uma cama de casal, tv, varanda com
+                      vista para a praia', double_beds:1, single_beds:0, capacity:2,
+                      price_cents:100_00, bathrooms:1, kitchen:false)
     #Act
     login(host)
     click_on 'Minha Pousada'
@@ -41,14 +42,16 @@ describe 'Host views room in inn page' do
   it 'with more than one room' do
     #Arrange
     host = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)
-    address = Address.create!(street: 'Rua das ruas', number:'12', neighborhood:'centro', city:'São Paulo', state:'SP',
-                              cep:'15470-000')
-    inn = host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123', phone:'556618', 
-                            email:'pousadinha@email.com', address:address)
-    inn.rooms.create!(number:'101', description:'Ótimo quarto com uma cama de casal, tv, varanda com vista para a praia', 
-                            double_beds:1, single_beds:0, capacity:2, price_cents:100_00, bathrooms:0, kitchen:false)
-    inn.rooms.create!(number:'102', description:'Ótimo quarto com cozinha, uma cama de casal e uma de solteiro, tv, varanda com vista para a praia', 
-                            double_beds:1, single_beds:2, capacity:3, price_cents:150_00, bathrooms:1, kitchen:true)
+    address = Address.create!(street: 'Rua das ruas', number:'12', neighborhood:'centro', 
+                              city:'São Paulo', state:'SP', cep:'15470-000')
+    inn = host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123', 
+                           phone:'556618', email:'pousadinha@email.com', address:address)
+    inn.rooms.create!(number:'101', description:'Ótimo quarto com uma cama de casal, tv, varanda com
+                      vista para a praia', double_beds:1, single_beds:0, capacity:2, 
+                      price_cents:100_00, bathrooms:0, kitchen:false)
+    inn.rooms.create!(number:'102', description:'Ótimo quarto com cozinha, uma cama de casal e uma
+                      de solteiro, tv, varanda com vista para a praia', double_beds:1, 
+                      single_beds:2, capacity:3, price_cents:150_00, bathrooms:1, kitchen:true)
     #Act
     login(host)
     click_on 'Minha Pousada'

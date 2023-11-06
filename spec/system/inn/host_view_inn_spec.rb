@@ -4,12 +4,16 @@ describe 'Host view its own inn' do
   it 'Successfully' do
     #Arrange
     host = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)
-    address = Address.create!(street: 'Rua das ruas', number:'12', neighborhood:'centro', city:'São Paulo', state:'SP', cep:'15470-000')
-    host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123', phone:'556618', email:'pousadinha@email.com', address:address)
+    address = Address.create!(street: 'Rua das ruas', number:'12', neighborhood:'centro',
+                              city:'São Paulo', state:'SP', cep:'15470-000')
+    host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123', phone:'556618',
+                     email:'pousadinha@email.com', address:address)
     
     host2 = User.create!(name: 'João', email:'joao@email.com', password:'password', host: true)
-    address2 = Address.create!(street: 'Rua das torres', number:'28', neighborhood:'centro', city:'São Paulo', state:'SP', cep:'15470-000')
-    host2.create_inn!(name:'Pousadona', company_name:'Pousadona SN', cnpj:'456', phone:'223345', email:'pousadona@email.com', address:address2)
+    address2 = Address.create!(street: 'Rua das torres', number:'28', neighborhood:'centro',
+                               city:'São Paulo', state:'SP', cep:'15470-000')
+    host2.create_inn!(name:'Pousadona', company_name:'Pousadona SN', cnpj:'456', phone:'223345',
+                      email:'pousadona@email.com', address:address2)
 
     #Act
     login(host2)

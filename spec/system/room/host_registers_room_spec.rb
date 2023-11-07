@@ -17,7 +17,8 @@ describe 'Host registers a Room' do
                            phone:'556618', email:'pousadinha@email.com', address:address)
 
     #Act
-    login(host)
+    login_as(host)
+    visit root_path
     click_on 'Minha Pousada'
     click_on 'Adicionar Quarto'
     #Assert
@@ -36,7 +37,8 @@ describe 'Host registers a Room' do
     inn = host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123',
                            phone:'556618', email:'pousadinha@email.com', address:address)
     #Act
-    login(host)
+    login_as(host)
+    visit root_path
     click_on 'Minha Pousada'
     click_on 'Adicionar Quarto'
     fill_in 'Número', with: '101'
@@ -74,7 +76,8 @@ describe 'Host registers a Room' do
     inn.rooms.create!(number:'101', description:'Ótimo quarto com uma cama de casal, tv, varanda com vista para a praia',
                       double_beds:1, single_beds:1, capacity:2, price_cents:100_00,
                       bathrooms:1, kitchen:false)
-    login(host)
+    login_as(host)
+    visit root_path
     click_on 'Minha Pousada'
     click_on 'Adicionar Quarto'
     fill_in 'Número', with: '102'
@@ -113,7 +116,8 @@ describe 'Host registers a Room' do
                       double_beds:1, single_beds:0, capacity:2, price_cents:100_00,
                       bathrooms:1, kitchen:false)
     #Act
-    login(host)
+    login_as(host)
+    visit root_path
     click_on 'Minha Pousada'
     click_on 'Editar Quarto 101'
 
@@ -135,7 +139,8 @@ describe 'Host registers a Room' do
                         double_beds:1, single_beds:1, capacity:2, price_cents:125_00,
                         bathrooms:1, kitchen:false)
     #Act
-    login(host)
+    login_as(host)
+    visit root_path
     click_on 'Minha Pousada'
     click_on 'Editar Quarto 101'
     fill_in 'Diária', with: '12500'

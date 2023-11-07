@@ -12,7 +12,8 @@ describe 'host views custom dates' do
                              varanda com vista para a praia', double_beds:1, single_beds:0, 
                              capacity:2, price_cents:100_00, bathrooms:1, kitchen:false)
     #Act
-    login(host)
+    login_as(host)
+    visit root_path
     click_on 'Minha Pousada'
     #Assert
     expect(page).to have_content 'Sem períodos de alteração de preço adicionados'
@@ -30,7 +31,8 @@ describe 'host views custom dates' do
     room.custom_dates.create!(begin:'2023-11-05', end:'2023-12-05', price_cents:200_00)
     room.custom_dates.create!(begin:'2023-12-06', end:'2024-01-30', price_cents:300_00)
 
-    login(host)
+    login_as(host)
+    visit root_path
     click_on 'Minha Pousada'
 
     expect(page).to have_content 'Períodos de alteração de preço'

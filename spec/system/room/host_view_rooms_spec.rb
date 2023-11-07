@@ -9,7 +9,8 @@ describe 'Host views room in inn page' do
     host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123', phone:'556618', 
                      email:'pousadinha@email.com', address:address)
     #Act
-    login(host)
+    login_as(host)
+    visit root_path
     click_on 'Minha Pousada'
     #Assert
     expect(page).to have_content 'Sem quartos registrados'
@@ -27,7 +28,8 @@ describe 'Host views room in inn page' do
                       vista para a praia', double_beds:1, single_beds:0, capacity:2,
                       price_cents:100_00, bathrooms:1, kitchen:false)
     #Act
-    login(host)
+    login_as(host)
+    visit root_path
     click_on 'Minha Pousada'
     #Assert
     expect(page).not_to have_content 'Sem quartos registrados'
@@ -53,7 +55,8 @@ describe 'Host views room in inn page' do
                       de solteiro, tv, varanda com vista para a praia', double_beds:1, 
                       single_beds:2, capacity:3, price_cents:150_00, bathrooms:1, kitchen:true)
     #Act
-    login(host)
+    login_as(host)
+    visit root_path
     click_on 'Minha Pousada'
     #Assert
     expect(page).not_to have_content 'Sem quartos registrados'

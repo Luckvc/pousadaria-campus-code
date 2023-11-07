@@ -64,7 +64,8 @@ describe 'Host registers an Inn' do
     host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123', phone:'556618', 
                      email:'pousadinha@email.com', address:address)
     #Act
-    login(host)
+    login_as(host)
+    visit root_path
     click_on 'Minha Pousada'
     click_on 'Editar Pousada'
 
@@ -90,7 +91,8 @@ describe 'Host registers an Inn' do
     host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123', phone:'556618',
                      email:'pousadinha@email.com', address:address)
     #Act
-    login(host)
+    login_as(host)
+    visit root_path
     click_on 'Minha Pousada'
     click_on 'Editar Pousada'
     fill_in 'Telefone', with: '11955554444'

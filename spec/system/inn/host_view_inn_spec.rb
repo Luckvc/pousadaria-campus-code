@@ -39,7 +39,8 @@ describe 'Host view its own inn' do
     host = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: false)
     
     #Act
-    login(host)
+    login_as(host)
+    visit root_path
     visit my_inn_path
     #Assert
     expect(current_path).to eq root_path
@@ -50,7 +51,8 @@ describe 'Host view its own inn' do
     host = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)
     
     #Act
-    login(host)
+    login_as(host)
+    visit root_path
     click_on 'Minha Pousada'
     #Assert
     expect(page).to have_content 'Cadastrar Pousada'

@@ -1,4 +1,5 @@
 class RoomsController < ApplicationController
+  before_action :set_room, only: [:edit, :show, :update]
   def new
     @room = Room.new
   end
@@ -13,24 +14,27 @@ class RoomsController < ApplicationController
       render 'new'
     end
   end
-  def edit
-    @room = Room.find(params[:id])
-  end
+
+  def edit; end
+  
   def update
-    @room = Room.find(params[:id])
     if @room.update(room_params)
-      redirect_to my_inn_path, notice: 'Quarto atualizado com sucesso'
+      redirect_to room_path(@room.id), notice: 'Quarto atualizado com sucesso'
     else
       flash.now[:notice] = 'Não foi possível atualizar o quarto'
       render 'edit'
     end
   end
+  def show; end
   
   private
 
   def room_params
     room_params = params.require(:room).permit(:number, :description, :double_beds, :single_beds, 
                                      :capacity, :price_cents, :price_cents, :bathrooms, :kitchen)
+  end
+  def set_room
+    @room = Room.find(params[:id])
   end
 
 end

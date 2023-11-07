@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    models:
+      custom_date: 'Preço Sazonal'
+      custom_dates: 'Preços Sazonais'
+    attributes:
+      custom_date:
+        begin: "Data Início"
+        end: "Data Fim"
+        price_cents: "Diária"

@@ -12,7 +12,8 @@ describe 'Host registers an Inn' do
     #Arrange
     user = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)
     #Act
-    login(user)
+    login_as(user)
+    visit root_path
     click_on 'Minha Pousada'
     #Assert
     expect(current_path).to eq new_inn_path
@@ -33,7 +34,8 @@ describe 'Host registers an Inn' do
     #Arrange
     user = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)
     #Act
-    login(user)
+    login_as(user)
+    visit root_path
     click_on 'Minha Pousada'
     fill_in 'Nome Fantasia', with: 'Pousadinha'
     fill_in 'Razão Social', with: 'Pousadinha lta'
@@ -55,6 +57,22 @@ describe 'Host registers an Inn' do
     expect(page).to have_content 'Endereço: Rua da Pousadinha, 13 - Centro, Palestina - SP'
     expect(page).to have_content 'CEP: 15470-000'
     #expect(current_path).to eq my_inn_path
+  end
+  it 'insuccessfully' do
+    #Arrange
+    user = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)
+    #Act
+    login_as(user)
+    visit root_path
+    click_on 'Minha Pousada'
+    fill_in 'Nome Fantasia', with: ''
+    fill_in 'Razão Social', with: ''
+    click_on 'Cadastrar'
+    #Assert
+    expect(page).to have_content 'Pousada não cadastrada'
+    expect(page).to have_content 'Nome Fantasia não pode ficar em branco'
+    expect(page).to have_content 'Razão Social não pode ficar em branco'
+    expect(page).to have_content 'CNPJ não pode ficar em branco'
   end
   it 'and sees edit Inn page' do
     #Arrange

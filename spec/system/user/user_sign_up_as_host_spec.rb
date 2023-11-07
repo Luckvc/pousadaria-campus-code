@@ -25,8 +25,7 @@ describe 'User can create a host account' do
     #Arrange
     user = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)
     #Act
-    login_as(user)
-    visit root_path
+    login(user)
     #Assert
     expect(User.last.email).to eq 'test@email.com'
     expect(page).to have_content 'Login efetuado com sucesso.'

@@ -1,13 +1,6 @@
 require 'rails_helper'
 
 describe 'Host registers a Room' do
-  it 'and it is authenticated' do
-    #Arrange
-    #Act
-    visit my_inn_path
-    #Assert
-    expect(current_path).to eq new_user_session_path
-  end
   it 'and sees register page' do
     #Arrange
     host = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)
@@ -60,11 +53,64 @@ describe 'Host registers a Room' do
     
     expect(page).to have_content 'Quarto - 101' 
     expect(page).to have_content 'Ótimo quarto, com 2 camas de casal, varanda' 
+    expect(page).to have_content 'Diária: R$ 200,00'
+  end
+  it 'successfully and see details' do
+    #Arrange
+    host = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)
+    address = Address.create!(street: 'Rua das ruas', number:'12', neighborhood:'centro',
+                              city:'São Paulo', state:'SP', cep:'15470-000')
+    inn = host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123',
+                           phone:'556618', email:'pousadinha@email.com', address:address)
+    #Act
+    login_as(host)
+    visit root_path
+    click_on 'Minha Pousada'
+    click_on 'Adicionar Quarto'
+    fill_in 'Número', with: '101'
+    fill_in 'Descrição', with: 'Ótimo quarto, com 2 camas de casal, varanda'
+    fill_in 'Camas de Casal', with: '2'
+    fill_in 'Camas de Solteiro', with: '0'
+    fill_in 'Hóspedes', with: '4'
+    fill_in 'Diária', with: '20000'
+    fill_in 'Banheiros', with: '2'
+    check 'Cozinha'
+    click_on 'Cadastrar'
+    click_on 'Quarto - 101'
+    #Assert
+    
+    expect(page).to have_content 'Quarto - 101' 
+    expect(page).to have_content 'Ótimo quarto, com 2 camas de casal, varanda' 
     expect(page).to have_content 'Camas: 2 de Casal' 
     expect(page).not_to have_content 'de Solteiro'
     expect(page).to have_content '4 Hóspedes'
     expect(page).to have_content 'Diária: R$ 200,00'
     expect(page).to have_content 'Cozinha: Sim'
+  end
+  it 'insuccessfully' do
+    #Arrange
+    host = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)
+    address = Address.create!(street: 'Rua das ruas', number:'12', neighborhood:'centro',
+                              city:'São Paulo', state:'SP', cep:'15470-000')
+    inn = host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123',
+                           phone:'556618', email:'pousadinha@email.com', address:address)
+    #Act
+    login_as(host)
+    visit root_path
+    click_on 'Minha Pousada'
+    click_on 'Adicionar Quarto'
+    fill_in 'Número', with: ''
+    fill_in 'Camas de Casal', with: '2'
+    fill_in 'Camas de Solteiro', with: '0'
+    fill_in 'Hóspedes', with: '4'
+    fill_in 'Diária', with: '20000'
+    fill_in 'Banheiros', with: '2'
+    check 'Cozinha'
+    click_on 'Cadastrar'
+    #Assert
+    expect(page).to have_content 'Quarto não cadastrada'
+    expect(page).to have_content 'Número não pode ficar em branco'
+    expect(page).to have_content 'Descrição não pode ficar em branco'
   end
   it 'with another room registered' do
     #Arrange
@@ -93,17 +139,11 @@ describe 'Host registers a Room' do
     #Assert
     expect(page).to have_content 'Quarto - 101' 
     expect(page).to have_content 'Ótimo quarto com uma cama de casal, tv, varanda com vista para a praia' 
-    expect(page).to have_content 'Camas: 1 de Casal 1 de Solteiro' 
-    expect(page).to have_content '2 Hóspedes'
     expect(page).to have_content 'Diária: R$ 100,00'
-    expect(page).to have_content 'Cozinha: Não'
     
     expect(page).to have_content 'Quarto - 102' 
     expect(page).to have_content 'Ótimo quarto, com 2 camas de casal, varanda' 
-    expect(page).to have_content 'Camas: 2 de Casal' 
-    expect(page).to have_content '4 Hóspedes'
     expect(page).to have_content 'Diária: R$ 200,00'
-    expect(page).to have_content 'Cozinha: Sim'
   end
   it 'and sees edit page' do
     #Arrange
@@ -119,6 +159,7 @@ describe 'Host registers a Room' do
     login_as(host)
     visit root_path
     click_on 'Minha Pousada'
+    click_on 'Quarto - 101'
     click_on 'Editar Quarto 101'
 
     #Assert
@@ -142,6 +183,7 @@ describe 'Host registers a Room' do
     login_as(host)
     visit root_path
     click_on 'Minha Pousada'
+    click_on 'Quarto - 101'
     click_on 'Editar Quarto 101'
     fill_in 'Diária', with: '12500'
     click_on 'Atualizar'

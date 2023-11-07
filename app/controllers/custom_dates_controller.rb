@@ -1,9 +1,7 @@
 class CustomDatesController < ApplicationController
-
-  private 
-
-  def range_overlap?(range1_begin, range1_end, range2_begin, range2_end)
-    !(range1_end < range2_begin || range1_begin > range2_end)
+  def new
+    @room = Room.find(params[:room_id])
+    @custom_date = @room.custom_dates.build()
   end
 end
 

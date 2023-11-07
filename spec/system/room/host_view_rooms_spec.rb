@@ -15,7 +15,7 @@ describe 'Host views room in inn page' do
     #Assert
     expect(page).to have_content 'Sem quartos registrados'
     expect(page).not_to have_content 'Banheiro'
-    expect(page).not_to have_content 'Vaga'
+    expect(page).not_to have_content 'Cozinha'
   end
   it 'successfully' do
     #Arrange
@@ -31,6 +31,7 @@ describe 'Host views room in inn page' do
     login_as(host)
     visit root_path
     click_on 'Minha Pousada'
+    click_on 'Quarto - 101'
     #Assert
     expect(page).not_to have_content 'Sem quartos registrados'
     expect(page).to have_content 'Quarto - 101'
@@ -50,14 +51,15 @@ describe 'Host views room in inn page' do
                            phone:'556618', email:'pousadinha@email.com', address:address)
     inn.rooms.create!(number:'101', description:'Ótimo quarto com uma cama de casal, tv, varanda com
                       vista para a praia', double_beds:1, single_beds:0, capacity:2, 
-                      price_cents:100_00, bathrooms:0, kitchen:false)
+                      price_cents:100_00, bathrooms:1, kitchen:false)
     inn.rooms.create!(number:'102', description:'Ótimo quarto com cozinha, uma cama de casal e uma
                       de solteiro, tv, varanda com vista para a praia', double_beds:1, 
-                      single_beds:2, capacity:3, price_cents:150_00, bathrooms:1, kitchen:true)
+                      single_beds:2, capacity:3, price_cents:150_00, bathrooms:0, kitchen:true)
     #Act
     login_as(host)
     visit root_path
     click_on 'Minha Pousada'
+    click_on 'Quarto - 102'
     #Assert
     expect(page).not_to have_content 'Sem quartos registrados'
     expect(page).to have_content 'Quarto - 102'

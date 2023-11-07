@@ -18,5 +18,20 @@ describe 'host adds custom date price' do
     inn.rooms.create!(number:'101', description:'Ótimo quarto com uma cama de casal, tv, varanda com
                       vista para a praia', double_beds:1, single_beds:0, capacity:2,
                       price_cents:100_00, bathrooms:1, kitchen:false)
+    inn.rooms.create!(number:'102', description:'Ótimo quarto com uma cama de solteiro, tv, varanda
+                      com vista para a praia', double_beds:0, single_beds:1, capacity:1,
+                      price_cents:200_00, bathrooms:1, kitchen:false)
+    #Act
+    login_as(host)
+    visit root_path
+    click_on 'Minha Pousada'
+    click_on 'Quarto - 101'
+    click_on 'Adicionar preço sazonal'
+    
+    expect(page).to have_content 'Adicionar Preço Sazonal | Quarto - 101'
+    expect(page).to have_content 'Data Início'
+    #expect(page).to have_field 'Data Fim'
+    #expect(page).to have_field 'Diária'
+    #Assert
   end
 end

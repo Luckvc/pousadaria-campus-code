@@ -1,0 +1,27 @@
+<h1>Adicionar Preço Sazonal | Quarto - <%= @room.number %></h1>
+
+<% if(@custom_date.errors.any?) %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+    <% @custom_date.errors.full_messages.each do |msg| %>
+    <li> <%= msg %></li>
+    <% end %>
+    </ul>
+<% end %>
+<%= form_with(model: @custom_date, url: custom_dates_path) do |form| %>
+  <div>
+    <%= form.label :begin %>
+    <%= form.date_field :begin %>
+  </div>
+  <div>
+    <%= form.label :end %>
+    <%= form.date_field :end %>
+  </div>
+  <div>
+    <%= form.label :price_cents %>
+    <%= form.number_field :price_cents %>
+  </div>
+  <div>
+    <%= form.submit 'Cadastrar' %>
+  </div>
+<% end %>

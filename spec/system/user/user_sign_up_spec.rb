@@ -20,12 +20,26 @@ describe 'User can create an account' do
     expect(page).to have_content 'Sair'
     expect(current_path).to eq root_path 
   end
+  it 'insucessfully' do
+    #Arrange
+    #Act
+    visit root_path
+    click_on 'Entrar'
+    click_on 'Criar Conta'
+    fill_in 'Nome', with: ''
+    fill_in 'E-mail', with: 'example@email.com'
+    fill_in 'Senha', with: 'password'
+    fill_in 'Confirme sua senha', with: 'password'
+    click_on 'Criar Conta'
+    #Assert
+    expect(page).to have_content 'Não foi possível salvar usuário'
+    expect(page).to have_content 'Nome não pode ficar em branco'
+  end
   it 'and logs-in' do
     #Arrange
     user = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: false)
     #Act
-    login_as(user)
-    visit root_path
+    login(user)
     #Assert
     expect(User.last.email).to eq 'test@email.com'
     expect(page).to have_content 'Login efetuado com sucesso.'

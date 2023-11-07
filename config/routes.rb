@@ -7,10 +7,10 @@ Rails.application.routes.draw do
     resources :rooms, only: [:index, :new, :create]
   end
   
-  resources :rooms, only: [:edit, :update] do
+  resources :rooms, only: [:edit, :update, :show] do
     resources :custom_dates, only: [:index, :new, :create]
   end
-  resources :custom_dates, only: [:show]
+  resources :custom_dates, only: [:index, :show]
   resources :address
   
 end

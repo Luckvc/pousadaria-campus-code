@@ -27,7 +27,7 @@ class InnsController < ApplicationController
     if @inn.update(inn_params)
       redirect_to my_inn_path, notice: 'Pousada atualizada com sucesso'
     else
-      flahs[:notice] = 'Não foi possível atualizar a pousada'
+      flash.now[:notice] = 'Não foi possível atualizar a pousada'
       render 'edit'
     end
   end

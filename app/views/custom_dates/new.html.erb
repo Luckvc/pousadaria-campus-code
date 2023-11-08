@@ -8,7 +8,7 @@
     <% end %>
     </ul>
 <% end %>
-<%= form_with(model: @custom_date, url: custom_dates_path) do |form| %>
+<%= form_with(model: @custom_date, url: room_custom_dates_path) do |form| %>
   <div>
     <%= form.label :begin %>
     <%= form.date_field :begin %>

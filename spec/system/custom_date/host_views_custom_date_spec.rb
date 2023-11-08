@@ -28,16 +28,16 @@ describe 'host views custom dates' do
     room = inn.rooms.create!(number:'101', description:'Ótimo quarto com uma cama de casal, tv,
                              varanda com vista para a praia', double_beds:1, single_beds:0,
                              capacity:2, price_cents:100_00, bathrooms:1, kitchen:false)
-    room.custom_dates.create!(begin:'2023-11-05', end:'2023-12-05', price_cents:200_00)
-    room.custom_dates.create!(begin:'2023-12-06', end:'2024-01-30', price_cents:300_00)
+    room.custom_dates.create!(begin:1.days.from_now.to_date, end:5.days.from_now.to_date, price_cents:200_00)
+    room.custom_dates.create!(begin:1.month.from_now.to_date, end:2.month.from_now.to_date, price_cents:300_00)
 
     login_as(host)
     visit root_path
     click_on 'Minha Pousada'
 
     expect(page).to have_content 'Períodos de alteração de preço'
-    expect(page).to have_content 'De 05/11/2023 até 05/12/2023'
-    expect(page).to have_content 'De 06/12/2023 até 30/01/2024'
+    expect(page).to have_content "De #{I18n.l(1.days.from_now.to_date)} até #{I18n.l(5.days.from_now.to_date)}"
+    expect(page).to have_content "De #{I18n.l(1.month.from_now.to_date)} até #{I18n.l(2.month.from_now.to_date)}"
     expect(page).to have_content 'Diária: R$ 200,00'
     expect(page).to have_content 'Diária: R$ 300,00'  
   end

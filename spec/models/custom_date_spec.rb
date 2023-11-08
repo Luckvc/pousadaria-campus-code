@@ -5,36 +5,141 @@ RSpec.describe CustomDate, type: :model do
     context 'presence' do
       it 'false when begin date is empty' do
         #Arrange
-        room = Room.new(number:'1', description:'Ó',
-                        double_beds:1, single_beds:1, capacity:2, price_cents:125_00,
-                        bathrooms:1, kitchen:false)
-        cd = room.custom_dates.build(begin:'', end:'2024-01-30', price_cents:300_00)
+        cd = CustomDate.new(begin:'', end:5.days.from_now.to_date, price_cents:300_00)
         #Act
-        result = cd.valid?
+        cd.valid?
         #Assert
-        expect(result).to eq false
+        expect(cd.errors[:begin]).to include("não pode ficar em branco")
       end
       it 'false when end date is empty' do
         #Arrange
-        room = Room.new(number:'1', description:'Ó',
-                        double_beds:1, single_beds:1, capacity:2, price_cents:125_00,
-                        bathrooms:1, kitchen:false)
-        cd = room.custom_dates.build(begin:'2024-01-30', end:'', price_cents:300_00)
+        cd = CustomDate.new(begin:5.days.from_now.to_date, end:'', price_cents:300_00)
         #Act
-        result = cd.valid?
+        cd.valid?
         #Assert
-        expect(result).to eq false
+        expect(cd.errors[:end]).to include("não pode ficar em branco")
       end
       it 'false when price is empty' do
         #Arrange
-        room = Room.new(number:'1', description:'Ó',
-                        double_beds:1, single_beds:1, capacity:2, price_cents:125_00,
-                        bathrooms:1, kitchen:false)
-        cd = room.custom_dates.build(begin:'2024-01-30', end:'2024-01-30', price_cents:'')
+        cd = CustomDate.new(begin:2.days.from_now.to_date, end:5.days.from_now.to_date, price_cents:'')
         #Act
-        result = cd.valid?
+        cd.valid?
         #Assert
-        expect(result).to eq false
+        expect(cd.errors[:price_cents]).to include("não pode ficar em branco")
+      end
+    end
+    context 'range_overlap' do
+      it 'a starts after b ends' do
+        #Arrange
+        host = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)
+        address = Address.create!(street: 'Rua das ruas', number:'12', neighborhood:'centro',
+                                  city:'São Paulo', state:'SP', cep:'15470-000')
+        inn = host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123',
+                              phone:'556618', email:'pousadinha@email.com', address:address)
+        room = inn.rooms.create!(number:'101', description:'Ótimo quarto com uma cama de casal, tv,
+                                varanda com vista para a praia', double_beds:1, single_beds:0, 
+                                capacity:2, price_cents:100_00, bathrooms:1, kitchen:false)
+        room.custom_dates.create!(begin:10.days.from_now.to_date, end:20.days.from_now.to_date, 
+                                  price_cents:10000)
+        cd = room.custom_dates.build(begin:1.days.from_now.to_date, end:5.days.from_now.to_date, 
+                                     price_cents:20000)
+        #Act
+        #Assert
+        expect(cd.valid?).to be true
+      end
+      it 'b starts after a ends' do
+        #Arrange
+        host = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)
+        address = Address.create!(street: 'Rua das ruas', number:'12', neighborhood:'centro',
+                                  city:'São Paulo', state:'SP', cep:'15470-000')
+        inn = host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123',
+                              phone:'556618', email:'pousadinha@email.com', address:address)
+        room = inn.rooms.create!(number:'101', description:'Ótimo quarto com uma cama de casal, tv,
+                                varanda com vista para a praia', double_beds:1, single_beds:0, 
+                                capacity:2, price_cents:100_00, bathrooms:1, kitchen:false)
+        room.custom_dates.create!(begin:10.days.from_now.to_date, end:20.days.from_now.to_date, 
+                                  price_cents:10000)
+        cd = room.custom_dates.build(begin:25.days.from_now.to_date, end:35.days.from_now.to_date, 
+                                     price_cents:20000)
+        #Act
+        #Assert
+        expect(cd.valid?).to be true
+      end
+      it 'a starts in the middle of b' do
+        #Arrange
+        host = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)
+        address = Address.create!(street: 'Rua das ruas', number:'12', neighborhood:'centro',
+                                  city:'São Paulo', state:'SP', cep:'15470-000')
+        inn = host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123',
+                              phone:'556618', email:'pousadinha@email.com', address:address)
+        room = inn.rooms.create!(number:'101', description:'Ótimo quarto com uma cama de casal, tv,
+                                varanda com vista para a praia', double_beds:1, single_beds:0, 
+                                capacity:2, price_cents:100_00, bathrooms:1, kitchen:false)
+        room.custom_dates.create!(begin:10.days.from_now.to_date, end:20.days.from_now.to_date, 
+                                  price_cents:10000)
+        cd = room.custom_dates.build(begin:15.days.from_now.to_date, end:35.days.from_now.to_date, 
+                                     price_cents:20000)
+        #Act
+        cd.valid?
+        #Assert
+        expect(cd.errors[:begin]).to include("não pode haver sobreposição entre preços sazonais")
+      end
+      it 'b starts in the middle of a' do
+        #Arrange
+        host = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)
+        address = Address.create!(street: 'Rua das ruas', number:'12', neighborhood:'centro',
+                                  city:'São Paulo', state:'SP', cep:'15470-000')
+        inn = host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123',
+                              phone:'556618', email:'pousadinha@email.com', address:address)
+        room = inn.rooms.create!(number:'101', description:'Ótimo quarto com uma cama de casal, tv,
+                                varanda com vista para a praia', double_beds:1, single_beds:0, 
+                                capacity:2, price_cents:100_00, bathrooms:1, kitchen:false)
+        room.custom_dates.create!(begin:10.days.from_now.to_date, end:20.days.from_now.to_date, 
+                                  price_cents:10000)
+        cd = room.custom_dates.build(begin:5.days.from_now.to_date, end:15.days.from_now.to_date, 
+                                     price_cents:20000)
+        #Act
+        cd.valid?
+        #Assert
+        expect(cd.errors[:begin]).to include("não pode haver sobreposição entre preços sazonais")
+      end
+      it 'b is in between a' do
+        #Arrange
+        host = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)
+        address = Address.create!(street: 'Rua das ruas', number:'12', neighborhood:'centro',
+                                  city:'São Paulo', state:'SP', cep:'15470-000')
+        inn = host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123',
+                              phone:'556618', email:'pousadinha@email.com', address:address)
+        room = inn.rooms.create!(number:'101', description:'Ótimo quarto com uma cama de casal, tv,
+                                varanda com vista para a praia', double_beds:1, single_beds:0, 
+                                capacity:2, price_cents:100_00, bathrooms:1, kitchen:false)
+        room.custom_dates.create!(begin:10.days.from_now.to_date, end:20.days.from_now.to_date, 
+                                  price_cents:10000)
+        cd = room.custom_dates.build(begin:12.days.from_now.to_date, end:15.days.from_now.to_date, 
+                                     price_cents:20000)
+        #Act
+        cd.valid?
+        #Assert
+        expect(cd.errors[:begin]).to include("não pode haver sobreposição entre preços sazonais")
+      end
+      it 'a is in between b' do
+        #Arrange
+        host = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)
+        address = Address.create!(street: 'Rua das ruas', number:'12', neighborhood:'centro',
+                                  city:'São Paulo', state:'SP', cep:'15470-000')
+        inn = host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123',
+                              phone:'556618', email:'pousadinha@email.com', address:address)
+        room = inn.rooms.create!(number:'101', description:'Ótimo quarto com uma cama de casal, tv,
+                                varanda com vista para a praia', double_beds:1, single_beds:0, 
+                                capacity:2, price_cents:100_00, bathrooms:1, kitchen:false)
+        room.custom_dates.create!(begin:10.days.from_now.to_date, end:20.days.from_now.to_date, 
+                                  price_cents:10000)
+        cd = room.custom_dates.build(begin:5.days.from_now.to_date, end:25.days.from_now.to_date, 
+                                     price_cents:20000)
+        #Act
+        cd.valid?
+        #Assert
+        expect(cd.errors[:begin]).to include("não pode haver sobreposição entre preços sazonais")
       end
     end
   end

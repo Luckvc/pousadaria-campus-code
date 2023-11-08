@@ -1,1 +1,25 @@
-<h1>PousadariaCampusCode</h1>
+<h1>Pousadaria</h1>
+
+<h2> Destaques: </h2>
+<div>
+<% @last_inns.each do |inn| %>
+  <div>
+    <%= link_to inn_path(inn) do%>
+      <p><%= inn.name %><br>
+      <%= inn.address.city %> - <%= inn.address.state %></p>
+    <% end %>
+  </div>
+<% end %>
+</div>
+
+<h2> Outras opções: </h2>
+<div>
+<% @inns.each do |inn| %>
+  <div>
+    <%= link_to inn_path(inn) do%>
+      <p><%= inn.name %><br>
+      <%= inn.address.city %> - <%= inn.address.state %></p>
+    <% end %>
+  </div>
+<% end %>
+</div>

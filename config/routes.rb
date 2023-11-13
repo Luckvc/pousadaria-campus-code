@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'my_inn', to: 'inns#my_inn'
   resources :inns, only: [:index, :new, :create, :edit, :update] do
     resources :rooms, only: [:index, :new, :create]
+    get 'search', on: :collection
   end
   
   resources :rooms, only: [:edit, :update, :show] do
@@ -12,5 +13,4 @@ Rails.application.routes.draw do
   end
   resources :custom_dates, only: [:index, :show]
   resources :address
-  
 end

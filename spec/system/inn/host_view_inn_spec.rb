@@ -16,7 +16,8 @@ describe 'Host view its own inn' do
                       email:'pousadona@email.com', address:address2)
 
     #Act
-    login(host2)
+    login_as(host2)
+    visit root_path
     click_on 'Minha Pousada'
     #Assert
     expect(page).to have_content 'Pousadona'

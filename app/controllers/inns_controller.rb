@@ -1,5 +1,5 @@
 class InnsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:new, :edit, :my_inn]
 
   def new
     @inn = Inn.new
@@ -42,6 +42,10 @@ class InnsController < ApplicationController
     else
       redirect_to new_inn_path
     end
+  end
+
+  def search
+    @query = params["query"]
   end
 
   private

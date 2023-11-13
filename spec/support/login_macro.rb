@@ -1,9 +1,9 @@
 def login(user)
   visit root_path
     click_on 'Entrar'
-    within ('form') do
-      fill_in 'E-mail', with: user.email
-      fill_in 'Senha', with: user.password
+    fill_in 'E-mail', with: user.email
+    fill_in 'Senha', with: user.password
+    within ('div form') do
       click_on 'Entrar'
     end
   

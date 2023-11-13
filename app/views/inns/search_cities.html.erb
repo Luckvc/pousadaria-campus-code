@@ -1,0 +1,12 @@
+<h1> <%= @query %></h1>
+
+<div>
+<% @inns.each do |inn| %>
+  <div>
+    <%= link_to inn_path(inn) do%>
+      <p><%= inn.name %><br>
+      <%= inn.address.neighborhood %>, <%= inn.address.city %> - <%= inn.address.state %></p>
+    <% end %>
+  </div>
+<% end %>
+</div>

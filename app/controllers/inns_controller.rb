@@ -46,7 +46,17 @@ class InnsController < ApplicationController
 
   def search
     @query = params["query"]
-    @inns = Inn.where("name LIKE ?", "%#{@query}%")
+    @inns = Inn.joins("INNER JOIN addresses ON addresses.id = inns.address_id").
+      where("name LIKE ? OR neighborhood LIKE ? OR city LIKE ?", "%#{@query}%", "%#{@query}%", "%#{@query}%")
+  end
+
+  def cities
+    @cities = Address.distinct.pluck(:city)
+  end
+
+  def search_cities
+    @query = params["query"]
+    @inns = Inn.joins("INNER JOIN addresses ON addresses.id = inns.address_id").where("city = ?", "#{@query}")
   end
 
   private

@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   get 'my_inn', to: 'inns#my_inn'
   resources :inns, only: [:index, :new, :create, :edit, :update] do
     resources :rooms, only: [:index, :new, :create]
-    get 'search', on: :collection
+    collection do
+      get 'search'
+      get 'cities'
+      get 'search_cities'
+    end
   end
   
   resources :rooms, only: [:edit, :update, :show] do

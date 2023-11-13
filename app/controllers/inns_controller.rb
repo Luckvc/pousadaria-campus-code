@@ -46,6 +46,7 @@ class InnsController < ApplicationController
 
   def search
     @query = params["query"]
+    @inns = Inn.where("name LIKE ?", "%#{@query}%")
   end
 
   private

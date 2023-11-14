@@ -18,7 +18,7 @@ class InnsController < ApplicationController
       redirect_to my_inn_path, notice: "Pousada registrada com sucesso."
     else
       flash.now[:notice] = "Pousada não cadastrada"
-      render 'new'
+      render :new, status: 422
     end
   end
 
@@ -30,7 +30,7 @@ class InnsController < ApplicationController
       redirect_to my_inn_path, notice: 'Pousada atualizada com sucesso'
     else
       flash.now[:notice] = 'Não foi possível atualizar a pousada'
-      render 'edit'
+      render :edit, status: 422
     end
   end
 

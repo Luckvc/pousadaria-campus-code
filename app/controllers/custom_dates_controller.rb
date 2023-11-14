@@ -12,7 +12,7 @@ class CustomDatesController < ApplicationController
       redirect_to room_path(@room), notice: 'Preço Sazonal adicionado com sucesso'
     else
       flash.now[:notice] = 'Preço Sazonal não adicionado'
-      render 'new'
+      render 'new', status: 422
     end
   end
 end

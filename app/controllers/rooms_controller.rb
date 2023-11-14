@@ -11,7 +11,7 @@ class RoomsController < ApplicationController
       redirect_to my_inn_path, notice: "Quarto registrada com sucesso."
     else
       flash.now[:notice] = "Quarto não cadastrada"
-      render 'new'
+      render 'new', status: 422
     end
   end
 
@@ -22,7 +22,7 @@ class RoomsController < ApplicationController
       redirect_to room_path(@room.id), notice: 'Quarto atualizado com sucesso'
     else
       flash.now[:notice] = 'Não foi possível atualizar o quarto'
-      render 'edit'
+      render 'edit', status: 422
     end
   end
   def show; end

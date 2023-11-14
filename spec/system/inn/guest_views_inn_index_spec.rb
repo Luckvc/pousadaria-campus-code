@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User views inns' do
+describe 'Guest views inns' do
   it 'in home page' do
     #Arrange
     host = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)

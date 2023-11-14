@@ -24,7 +24,7 @@
       <% @inn.rooms.each do |room| %>
       <dl>
         <%= link_to room_path(room.id) do %>
-        <dd>Quarto <%= room.number %></dd>
+          <dd>Quarto <%= room.number %></dd>
         <% end %>
         <dt>Capacidade:</dt>
         <dd><%= room.capacity %> Hóspedes</dd>
@@ -36,5 +36,4 @@
   <% else %>
     <p> Sem quartos registrados </p>
   <% end %>
-    <%= link_to 'Adicionar Quarto', new_inn_room_path(@inn.id) %>
 </div>

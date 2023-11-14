@@ -15,22 +15,28 @@
   <dd><% if @room.single_beds > 0 %> <%= @room.single_beds %> de Solteiro <% end %><dd>
   <dt>Cozinha:</dt> 
   <dd><%= I18n.translate("room.kitchen.#{@room.kitchen.to_s}") %> </dd>
-  <dt>Diária:</dt>
-  <dd><%= number_to_currency(@room.price_cents / 100) %></dd>
-  <dt>Preços Sazonais:</dt> 
-  <% if @room.custom_dates.any? %>
-    <% @room.custom_dates.each do |cd| %>
-      <dd id="custom_dates">De <%= l(cd.begin) %> até <%= l(cd.end) %> - Diária: 
-      <%= number_to_currency(cd.price_cents / 100) %></dd>
+  <% if @room.inn.user == current_user %>
+    <dt>Diária:</dt>
+    <dd><%= number_to_currency(@room.price_cents / 100) %></dd>
+    <dt>Preços Sazonais:</dt> 
+    <% if @room.custom_dates.any? %>
+      <% @room.custom_dates.each do |cd| %>
+        <dd id="custom_dates">De <%= l(cd.begin) %> até <%= l(cd.end) %> - Diária: 
+        <%= number_to_currency(cd.price_cents / 100) %></dd>
+      <% end %>
+    <% else %>
+      <dd>Sem períodos de alteração de preço adicionados.</dd>
     <% end %>
+    <%= link_to 'Adicionar preço sazonal', new_room_custom_date_path(@room.id) %>
+    <div>
+      <%= link_to "Editar Quarto #{@room.number}", edit_room_path(@room.id)%>
+    </div>
+    <div>
+    <%= link_to('Voltar', my_inn_path)%>
+    </div>
   <% else %>
-    <dd>Sem períodos de alteração de preço adicionados.</dd>
+    <div>
+    <%= link_to('Voltar', inn_path(@room.inn))%>
+    </div>
   <% end %>
-  <%= link_to 'Adicionar preço sazonal', new_room_custom_date_path(@room.id) %>
-</dl>
-<div>
-  <%= link_to "Editar Quarto #{@room.number}", edit_room_path(@room.id)%>
-</div>
-<div>
-  <%= link_to('Voltar', my_inn_path)%>
-</div>
+  </dl>

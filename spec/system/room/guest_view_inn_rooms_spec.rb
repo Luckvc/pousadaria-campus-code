@@ -20,12 +20,14 @@ describe 'Guest views inn rooms' do
                       double_beds:1, single_beds:2, capacity:3, price_cents:150_00, bathrooms:0, kitchen:true)
     visit root_path
     click_on 'Pousadona'
+    click_on 'Quarto Elefante'
 
     expect(page).to have_content 'Quarto Elefante'
     expect(page).to have_content '2 Hóspedes'
-    expect(page).to have_content 'Quarto Leão'
-    expect(page).to have_content '3 Hóspedes'
     expect(page).to have_content 'Descrição: Ótimo quarto com uma cama de casal, tv, varanda com vista para a praia'
-    expect(page).to have_content 'Descrição: Ótimo quarto com cozinha, uma cama de casal e uma de solteiro, tv, varanda com vista para a praia'
+    expect(page).to have_content 'Banheiros: 1'
+    expect(page).to have_content 'Camas: 1 de Casal'
+    expect(page).to have_content 'Cozinha: Não'
+    expect(page).not_to have_content 'Diária:'
   end
 end

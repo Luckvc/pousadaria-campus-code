@@ -27,6 +27,7 @@ describe 'Guest views inn' do
     expect(page).to have_content 'Rua das torres, 28 - centro, Campinas - SP'
     expect(page).to have_content 'pousadona@email.com'
     expect(page).to have_content '223345'
+    expect(page).to have_content 'Aceita Pets: Sim'
   end
   it 'from search' do
     host = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)

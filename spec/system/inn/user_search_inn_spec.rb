@@ -45,7 +45,7 @@ describe 'User searchs for a inn' do
 
     #Assert
     expect(page).to have_content 'Resultados da busca por: Vineard'
-    #expect(page).to have_content '1 pousada encontrada'
+    expect(page).to have_content 'Resultados encontrados: 1'
     expect(page).to have_content 'Pousada Vineard'
     expect(page).to have_content 'Centro, Vinhedo - SP'
   end

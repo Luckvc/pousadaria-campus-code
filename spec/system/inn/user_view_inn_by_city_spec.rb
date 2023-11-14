@@ -50,7 +50,7 @@ describe 'User view inn by city' do
     click_on 'Vinhedo'
 
     expect(page).to have_content 'Vinhedo'
-    #expect(page).to have_content '1 pousada encontrada'
+    expect(page).to have_content 'Resultados encontrados: 2'
     expect(page).to have_content 'Pousada Vineard'
     expect(page).to have_content 'Centro, Vinhedo - SP'
     expect(page).to have_content 'Pousada Beira-Mar'

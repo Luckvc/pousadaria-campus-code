@@ -15,6 +15,8 @@
     <dd><%= @inn.phone %> </dd>
     <dt>E-mail:</dt>
     <dd><%= @inn.email %> </dd>
+    <dt>Aceita Pets:</dt>
+    <dd><%= I18n.translate("inn.pets.#{@inn.pets.to_s}") %> </dd>
   </dl>
 </div>
 <div>

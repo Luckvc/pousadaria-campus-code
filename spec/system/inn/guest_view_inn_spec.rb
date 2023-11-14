@@ -12,7 +12,7 @@ describe 'Guest views inn' do
     address2 = Address.create!(street: 'Rua das torres', number:'28', neighborhood:'centro',
                                city:'Campinas', state:'SP', cep:'15470-000')
     inn = host2.create_inn!(name:'Pousadona', company_name:'Pousadona SN', cnpj:'456', phone:'223345',
-                            email:'pousadona@email.com', address:address2)
+                            email:'pousadona@email.com', address:address2, pets:true)
     inn.rooms.create!(number:'Elefante', description:'Ótimo quarto com uma cama de casal, tv, varanda com vista para a praia', 
                       double_beds:1, single_beds:0, capacity:2, 
                       price_cents:100_00, bathrooms:1, kitchen:false)

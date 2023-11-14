@@ -1,0 +1,5 @@
+pt-BR:
+  inn:
+    pets:
+      true: "Sim"
+      false: "Não"

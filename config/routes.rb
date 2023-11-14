@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   get 'my_inn', to: 'inns#my_inn'
-  resources :inns, only: [:index, :new, :create, :edit, :update] do
+  resources :inns, only: [:show, :index, :new, :create, :edit, :update] do
     resources :rooms, only: [:index, :new, :create]
     collection do
       get 'search'

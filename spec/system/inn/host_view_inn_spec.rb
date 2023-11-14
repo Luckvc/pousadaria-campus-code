@@ -22,7 +22,6 @@ describe 'Host view its own inn' do
     #Assert
     expect(page).to have_content 'Pousadona'
     expect(page).not_to have_content 'Pousadinha'
-    expect(page).to have_content '223345'
     expect(page).to have_content 'Rua das torres, 28 - centro, São Paulo - SP'
     expect(page).to have_content 'pousadona@email.com'
     expect(page).to have_content '223345'

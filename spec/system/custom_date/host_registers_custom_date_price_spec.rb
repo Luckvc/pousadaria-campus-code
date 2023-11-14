@@ -25,11 +25,11 @@ describe 'host adds custom date price' do
     login_as(host)
     visit root_path
     click_on 'Minha Pousada'
-    click_on 'Quarto - 101'
+    click_on 'Quarto 101'
     click_on 'Adicionar preço sazonal'
     
     #Assert
-    expect(page).to have_content 'Adicionar Preço Sazonal | Quarto - 101'
+    expect(page).to have_content 'Adicionar Preço Sazonal | Quarto 101'
     expect(page).to have_content 'Data Início'
     expect(page).to have_field 'Data Fim'
     expect(page).to have_field 'Diária'
@@ -51,7 +51,7 @@ describe 'host adds custom date price' do
     login_as(host)
     visit root_path
     click_on 'Minha Pousada'
-    click_on 'Quarto - 101'
+    click_on 'Quarto 101'
     click_on 'Adicionar preço sazonal'
     fill_in 'Data Início', with: 1.days.from_now.to_date
     fill_in 'Data Fim', with: 1.month.from_now.to_date
@@ -79,7 +79,7 @@ describe 'host adds custom date price' do
     login_as(host)
     visit root_path
     click_on 'Minha Pousada'
-    click_on 'Quarto - 101'
+    click_on 'Quarto 101'
     click_on 'Adicionar preço sazonal'
     fill_in 'Diária', with: ''
     click_on 'Cadastrar'
@@ -106,7 +106,7 @@ describe 'host adds custom date price' do
     login_as(host)
     visit root_path
     click_on 'Minha Pousada'
-    click_on 'Quarto - 101'
+    click_on 'Quarto 101'
     click_on 'Adicionar preço sazonal'
     fill_in 'Data Início', with: 7.days.ago.to_date
     fill_in 'Data Fim', with: 1.days.ago.to_date
@@ -133,7 +133,7 @@ describe 'host adds custom date price' do
     login_as(host)
     visit root_path
     click_on 'Minha Pousada'
-    click_on 'Quarto - 101'
+    click_on 'Quarto 101'
     click_on 'Adicionar preço sazonal'
     fill_in 'Data Início', with: 2.days.from_now.to_date
     fill_in 'Data Fim', with: 1.days.from_now.to_date

@@ -1,5 +1,9 @@
 class InnsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :my_inn]
+  before_action :set_inn, only: [:show, :edit, :update]
+
+  def show
+  end
 
   def new
     @inn = Inn.new
@@ -19,11 +23,9 @@ class InnsController < ApplicationController
   end
 
   def edit
-    @inn = Inn.find(params[:id])
   end
 
   def update
-    @inn = Inn.find(params[:id])
     if @inn.update(inn_params)
       redirect_to my_inn_path, notice: 'Pousada atualizada com sucesso'
     else
@@ -67,5 +69,9 @@ class InnsController < ApplicationController
   def inn_params
     inn_params = params.require(:inn).permit(:name, :company_name, :cnpj, :phone, :email, 
       address_attributes: [:id, :street, :number, :neighborhood, :city, :state, :cep])
+  end
+
+  def set_inn
+    @inn = Inn.find(params[:id])
   end
 end

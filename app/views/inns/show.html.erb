@@ -1,4 +1,3 @@
-
 <h1> <%= @inn.name %> </h1>
 
 <div>
@@ -8,8 +7,6 @@
   <dl>
     <dt>Nome:</dt>
     <dd><%= @inn.name %></dd>
-    <dt>CNPJ:</dt>
-    <dd><%= @inn.cnpj %></dd>
     <dt>Endereço:</dt>
     <dd><%= @inn.address.full_address %></dd>
     <dt>CEP:</dt>
@@ -19,9 +16,6 @@
     <dt>E-mail:</dt>
     <dd><%= @inn.email %> </dd>
   </dl>
-  <div>
-    <%= link_to 'Editar Pousada', edit_inn_path(@inn.id) %>
-  </div>
 </div>
 <div>
   <% if @inn.rooms.any? %>
@@ -32,19 +26,10 @@
         <%= link_to room_path(room.id) do %>
         <dd>Quarto <%= room.number %></dd>
         <% end %>
-        <dt>Diária:</dt>
-        <dd><%= number_to_currency(room.price_cents / 100) %></dd>
+        <dt>Capacidade:</dt>
+        <dd><%= room.capacity %> Hóspedes</dd>
         <dt>Descrição:</dt>
         <dd><%= room.description %></dd>
-        <dt>Períodos de alteração de preço:</dt> 
-        <% if room.custom_dates.any? %>
-          <% room.custom_dates.each do |cd| %>
-            <dd id="custom_dates">De <%= l(cd.begin) %> até <%= l(cd.end) %> - Diária: 
-            <%= number_to_currency(cd.price_cents / 100) %></dd>
-          <% end %>
-        <% else %>
-          <dd>Sem períodos de alteração de preço adicionados.</dd>
-        <% end %>
       </dl>
       <% end %>
     </div>

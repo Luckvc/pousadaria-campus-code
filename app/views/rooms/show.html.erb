@@ -1,10 +1,8 @@
-<h1>Quarto - <%= @room.number %></h1>
+<h1>Quarto <%= @room.number %></h1>
 <dl>
-  <dt>Diária:</dt>
-  <dd><%= number_to_currency(@room.price_cents / 100) %></dd>
   <dt>Descrição:</dt>
   <dd><%= @room.description %></dd>
-  <dt>Comporta:</dt>
+  <dt>Capacidade:</dt>
   <dd><%= @room.capacity %> Hóspedes</dd>
   <dt>Banheiros:</dt>
   <dd><% if @room.bathrooms == 0 %> 
@@ -17,6 +15,8 @@
   <dd><% if @room.single_beds > 0 %> <%= @room.single_beds %> de Solteiro <% end %><dd>
   <dt>Cozinha:</dt> 
   <dd><%= I18n.translate("room.kitchen.#{@room.kitchen.to_s}") %> </dd>
+  <dt>Diária:</dt>
+  <dd><%= number_to_currency(@room.price_cents / 100) %></dd>
   <dt>Preços Sazonais:</dt> 
   <% if @room.custom_dates.any? %>
     <% @room.custom_dates.each do |cd| %>

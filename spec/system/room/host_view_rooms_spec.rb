@@ -31,15 +31,15 @@ describe 'Host views room in inn page' do
     login_as(host)
     visit root_path
     click_on 'Minha Pousada'
-    click_on 'Quarto - 101'
+    click_on 'Quarto 101'
     #Assert
     expect(page).not_to have_content 'Sem quartos registrados'
-    expect(page).to have_content 'Quarto - 101'
+    expect(page).to have_content 'Quarto 101'
     expect(page).to have_content 'Ótimo quarto com uma cama de casal, tv, varanda com vista para a praia'
     expect(page).to have_content 'Cozinha: Não'
     expect(page).to have_content 'Banheiros: 1'
     expect(page).to have_content 'Camas: 1 de Casal '
-    expect(page).to have_content 'Comporta: 2 Hóspedes'
+    expect(page).to have_content 'Capacidade: 2 Hóspedes'
     expect(page).to have_content 'Diária: R$ 100,00'
   end
   it 'with more than one room' do
@@ -59,15 +59,15 @@ describe 'Host views room in inn page' do
     login_as(host)
     visit root_path
     click_on 'Minha Pousada'
-    click_on 'Quarto - 102'
+    click_on 'Quarto 102'
     #Assert
     expect(page).not_to have_content 'Sem quartos registrados'
-    expect(page).to have_content 'Quarto - 102'
+    expect(page).to have_content 'Quarto 102'
     expect(page).to have_content 'Ótimo quarto com cozinha, uma cama de casal e uma de solteiro, tv, varanda com vista para a praia'
     expect(page).to have_content 'Cozinha: Sim'
     expect(page).to have_content 'Banheiros: Banheiro compartilhado'
     expect(page).to have_content 'Camas: 1 de Casal 2 de Solteiro'
-    expect(page).to have_content 'Comporta: 3 Hóspedes'
+    expect(page).to have_content 'Capacidade: 3 Hóspedes'
     expect(page).to have_content 'Diária: R$ 150,00'
   end
 end

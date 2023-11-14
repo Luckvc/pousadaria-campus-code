@@ -51,7 +51,7 @@ describe 'Host registers a Room' do
     expect(page).to have_content 'Endereço: Rua das ruas, 12 - centro, São Paulo - SP' 
     expect(page).to have_content 'CEP: 15470-000' 
     
-    expect(page).to have_content 'Quarto - 101' 
+    expect(page).to have_content 'Quarto 101' 
     expect(page).to have_content 'Ótimo quarto, com 2 camas de casal, varanda' 
     expect(page).to have_content 'Diária: R$ 200,00'
   end
@@ -76,10 +76,10 @@ describe 'Host registers a Room' do
     fill_in 'Banheiros', with: '2'
     check 'Cozinha'
     click_on 'Cadastrar'
-    click_on 'Quarto - 101'
+    click_on 'Quarto 101'
     #Assert
     
-    expect(page).to have_content 'Quarto - 101' 
+    expect(page).to have_content 'Quarto 101' 
     expect(page).to have_content 'Ótimo quarto, com 2 camas de casal, varanda' 
     expect(page).to have_content 'Camas: 2 de Casal' 
     expect(page).not_to have_content 'de Solteiro'
@@ -137,11 +137,11 @@ describe 'Host registers a Room' do
     click_on 'Cadastrar'
     
     #Assert
-    expect(page).to have_content 'Quarto - 101' 
+    expect(page).to have_content 'Quarto 101' 
     expect(page).to have_content 'Ótimo quarto com uma cama de casal, tv, varanda com vista para a praia' 
     expect(page).to have_content 'Diária: R$ 100,00'
     
-    expect(page).to have_content 'Quarto - 102' 
+    expect(page).to have_content 'Quarto 102' 
     expect(page).to have_content 'Ótimo quarto, com 2 camas de casal, varanda' 
     expect(page).to have_content 'Diária: R$ 200,00'
   end
@@ -159,11 +159,11 @@ describe 'Host registers a Room' do
     login_as(host)
     visit root_path
     click_on 'Minha Pousada'
-    click_on 'Quarto - 101'
+    click_on 'Quarto 101'
     click_on 'Editar Quarto 101'
 
     #Assert
-    expect(page).to have_content 'Editar Quarto - 101' 
+    expect(page).to have_content 'Editar Quarto 101' 
     expect(page).to have_content 'Número' 
     expect(page).to have_field 'Descrição' 
     expect(page).to have_content 'Banheiros' 
@@ -183,12 +183,12 @@ describe 'Host registers a Room' do
     login_as(host)
     visit root_path
     click_on 'Minha Pousada'
-    click_on 'Quarto - 101'
+    click_on 'Quarto 101'
     click_on 'Editar Quarto 101'
     fill_in 'Diária', with: '12500'
     click_on 'Atualizar'
     #Assert
-    expect(page).to have_content 'Quarto - 101' 
+    expect(page).to have_content 'Quarto 101' 
     expect(page).to have_content 'Ótimo quarto com uma cama de casal, tv, varanda com vista para a praia'
     expect(page).to have_content 'Camas: 1 de Casal 1 de Solteiro'
     expect(page).to have_content '2 Hóspedes'

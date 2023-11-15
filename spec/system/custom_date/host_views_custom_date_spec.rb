@@ -12,7 +12,7 @@ describe 'host views custom dates' do
                              varanda com vista para a praia', double_beds:1, single_beds:0, 
                              capacity:2, price_cents:100_00, bathrooms:1, kitchen:false)
     #Act
-    login_as(host)
+    login_as(host, scope: :user)
     visit root_path
     click_on 'Minha Pousada'
     #Assert
@@ -31,7 +31,7 @@ describe 'host views custom dates' do
     room.custom_dates.create!(begin:1.days.from_now.to_date, end:5.days.from_now.to_date, price_cents:200_00)
     room.custom_dates.create!(begin:1.month.from_now.to_date, end:2.month.from_now.to_date, price_cents:300_00)
 
-    login_as(host)
+    login_as(host, scope: :user)
     visit root_path
     click_on 'Minha Pousada'
 

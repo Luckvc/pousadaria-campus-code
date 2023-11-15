@@ -22,7 +22,7 @@ describe 'host adds custom date price' do
                       com vista para a praia', double_beds:0, single_beds:1, capacity:1,
                       price_cents:200_00, bathrooms:1, kitchen:false)
     #Act
-    login_as(host)
+    login_as(host, scope: :user)
     visit root_path
     click_on 'Minha Pousada'
     click_on 'Quarto 101'
@@ -48,7 +48,7 @@ describe 'host adds custom date price' do
                       com vista para a praia', double_beds:0, single_beds:1, capacity:1,
                       price_cents:200_00, bathrooms:1, kitchen:false)
     #Act
-    login_as(host)
+    login_as(host, scope: :user)
     visit root_path
     click_on 'Minha Pousada'
     click_on 'Quarto 101'
@@ -76,7 +76,7 @@ describe 'host adds custom date price' do
                       com vista para a praia', double_beds:0, single_beds:1, capacity:1,
                       price_cents:200_00, bathrooms:1, kitchen:false)
     #Act
-    login_as(host)
+    login_as(host, scope: :user)
     visit root_path
     click_on 'Minha Pousada'
     click_on 'Quarto 101'
@@ -103,7 +103,7 @@ describe 'host adds custom date price' do
                       com vista para a praia', double_beds:0, single_beds:1, capacity:1,
                       price_cents:200_00, bathrooms:1, kitchen:false)
     #Act
-    login_as(host)
+    login_as(host, scope: :user)
     visit root_path
     click_on 'Minha Pousada'
     click_on 'Quarto 101'
@@ -130,7 +130,7 @@ describe 'host adds custom date price' do
                       com vista para a praia', double_beds:0, single_beds:1, capacity:1,
                       price_cents:200_00, bathrooms:1, kitchen:false)
     #Act
-    login_as(host)
+    login_as(host, scope: :user)
     visit root_path
     click_on 'Minha Pousada'
     click_on 'Quarto 101'

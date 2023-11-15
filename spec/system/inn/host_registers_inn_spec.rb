@@ -12,7 +12,7 @@ describe 'Host registers an Inn' do
     #Arrange
     user = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)
     #Act
-    login_as(user)
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Minha Pousada'
     #Assert
@@ -34,7 +34,7 @@ describe 'Host registers an Inn' do
     #Arrange
     user = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)
     #Act
-    login_as(user)
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Minha Pousada'
     fill_in 'Nome Fantasia', with: 'Pousadinha'
@@ -61,7 +61,7 @@ describe 'Host registers an Inn' do
     #Arrange
     user = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)
     #Act
-    login_as(user)
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Minha Pousada'
     fill_in 'Nome Fantasia', with: ''

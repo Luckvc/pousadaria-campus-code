@@ -10,7 +10,7 @@ describe 'Host edits Inn' do
     host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123', phone:'556618', 
                      email:'pousadinha@email.com', address:address)
     #Act
-    login_as(host)
+    login_as(host, scope: :user)
     visit root_path
     click_on 'Minha Pousada'
     click_on 'Editar Pousada'
@@ -37,7 +37,7 @@ describe 'Host edits Inn' do
     host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123', phone:'556618',
                      email:'pousadinha@email.com', address:address)
     #Act
-    login_as(host)
+    login_as(host, scope: :user)
     visit root_path
     click_on 'Minha Pousada'
     click_on 'Editar Pousada'
@@ -61,7 +61,7 @@ describe 'Host edits Inn' do
     inn = host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123', phone:'556618',
                      email:'pousadinha@email.com', address:address)
     #Act
-    login_as(host)
+    login_as(host, scope: :user)
     visit root_path
     click_on 'Minha Pousada'
     click_on 'Editar Pousada'
@@ -79,7 +79,7 @@ describe 'Host edits Inn' do
     inn = host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123', phone:'556618',
                      email:'pousadinha@email.com', address:address)
     #Act
-    login_as(host)
+    login_as(host, scope: :user)
     visit root_path
     click_on 'Minha Pousada'
     click_on 'Mudar Status da Pousada'

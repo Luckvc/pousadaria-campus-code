@@ -16,7 +16,7 @@ describe 'Host view its own inn' do
                       email:'pousadona@email.com', address:address2)
 
     #Act
-    login_as(host2)
+    login_as(host2, scope: :user)
     visit root_path
     click_on 'Minha Pousada'
     #Assert
@@ -39,7 +39,7 @@ describe 'Host view its own inn' do
     host = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: false)
     
     #Act
-    login_as(host)
+    login_as(host, scope: :user)
     visit root_path
     visit my_inn_path
     #Assert
@@ -51,7 +51,7 @@ describe 'Host view its own inn' do
     host = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)
     
     #Act
-    login_as(host)
+    login_as(host, scope: :user)
     visit root_path
     click_on 'Minha Pousada'
     #Assert

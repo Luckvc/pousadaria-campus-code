@@ -49,7 +49,7 @@ class InnsController < ApplicationController
   def search
     @query = params["query"]
     @inns = Inn.joins("INNER JOIN addresses ON addresses.id = inns.address_id").
-      where("name LIKE ? OR neighborhood LIKE ? OR city LIKE ?", "%#{@query}%", "%#{@query}%", "%#{@query}%").
+      where("name LIKE ? OR neighborhood LIKE ? OR city LIKE ? AND active = ?", "%#{@query}%", "%#{@query}%", "%#{@query}%", true).
       order(:name)
     @count = @inns.count
   end
@@ -60,7 +60,7 @@ class InnsController < ApplicationController
   
   def search_cities
     @query = params["query"]
-    @inns = Inn.joins("INNER JOIN addresses ON addresses.id = inns.address_id").where("city = ?", "#{@query}")
+    @inns = Inn.joins("INNER JOIN addresses ON addresses.id = inns.address_id").where("city = ? AND active = ?", "#{@query}", true)
     @count = @inns.count
   end
 

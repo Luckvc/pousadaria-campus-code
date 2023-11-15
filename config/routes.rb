@@ -10,6 +10,11 @@ Rails.application.routes.draw do
       get 'cities'
       get 'search_cities'
     end
+    member do
+      get 'change_status'
+      post 'activate'
+      post 'deactivate'
+    end
   end
   
   resources :rooms, only: [:edit, :update, :show] do

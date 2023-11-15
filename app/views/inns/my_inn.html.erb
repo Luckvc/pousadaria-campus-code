@@ -18,9 +18,12 @@
     <dd><%= @inn.phone %> </dd>
     <dt>E-mail:</dt>
     <dd><%= @inn.email %> </dd>
+    <dt>Status:</dt>
+    <dd><%= I18n.translate("inn.active.#{@inn.active.to_s}") %> </dd>
   </dl>
   <div>
-    <%= link_to 'Editar Pousada', edit_inn_path(@inn.id) %>
+    <%= link_to 'Editar Pousada', edit_inn_path(@inn) %>
+    <%= link_to 'Mudar Status da Pousada', change_status_inn_path(@inn) %>
   </div>
 </div>
 <div>

@@ -71,4 +71,22 @@ describe 'Host edits Inn' do
     #Assert
     expect(page).to have_content 'Não foi possível atualizar a pousada'
   end
+  it 'to be innactive' do
+    #Arrange
+    host = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)
+    address = Address.create!(street: 'Rua das ruas', number:'12', neighborhood:'Centro',
+                              city:'São Paulo', state:'SP', cep:'15470-000')
+    inn = host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123', phone:'556618',
+                     email:'pousadinha@email.com', address:address)
+    #Act
+    login_as(host)
+    visit root_path
+    click_on 'Minha Pousada'
+    click_on 'Mudar Status da Pousada'
+    click_on 'Desativar'
+
+    #Assert
+    expect(page).to have_content 'Pousada desativada'
+    expect(page).to have_content 'Status: Inativa'
+  end
 end

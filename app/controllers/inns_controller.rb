@@ -1,6 +1,6 @@
 class InnsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :my_inn]
-  before_action :set_inn, only: [:show, :edit, :update]
+  before_action :set_inn, only: [:show, :edit, :update, :change_status, :deactivate, :activate]
 
   def show
   end
@@ -63,7 +63,22 @@ class InnsController < ApplicationController
     @inns = Inn.joins("INNER JOIN addresses ON addresses.id = inns.address_id").where("city = ?", "#{@query}")
     @count = @inns.count
   end
-  
+
+  def change_status
+  end
+
+  def deactivate
+    @inn.active = false
+    @inn.save
+    redirect_to my_inn_path, notice:'Pousada desativada'
+  end
+
+  def activate
+    @inn.active = true
+    @inn.save
+    redirect_to my_inn_path, notice:'Pousada reativada'
+  end
+
   private
   
   def inn_params

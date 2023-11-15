@@ -1,0 +1,16 @@
+<h1> Mudar Status da Pousada </h1>
+
+<% if @inn.active %>
+  <h2>Você tem certeza que deseja desativar sua pousada?</h2>
+  <%= button_to 'Voltar', my_inn_path%>
+  <%= form_with(url: deactivate_inn_path, method: "post") do |f| %>
+    <%= f.submit 'Desativar' %>
+  <% end %>
+
+<% else %>
+  <h2>Você tem certeza que deseja reativar sua pousada?</h2>
+  <%= button_to 'Voltar', my_inn_path%>
+  <%= form_with(url: activate_inn_path, method: "post") do |f| %>
+    <%= f.submit 'Reativar' %>
+  <% end %>
+<% end %>

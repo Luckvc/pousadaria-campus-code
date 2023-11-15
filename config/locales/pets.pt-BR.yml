@@ -3,3 +3,6 @@ pt-BR:
     pets:
       true: "Sim"
       false: "Não"
+    active:
+      true: "Ativa"
+      false: "Inativa"

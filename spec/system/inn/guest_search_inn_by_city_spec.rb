@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Guest view inn by city' do
+describe 'Guest search inn by city' do
   it 'from the home page' do
     host = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)
     address = Address.create!(street: 'Rua das ruas', number:'12', neighborhood:'Centro',

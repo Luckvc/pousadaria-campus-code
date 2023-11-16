@@ -1,0 +1,8 @@
+pt-BR:
+  activerecord:
+    models:
+      customer: 'Usuário'
+    attributes:
+      customer:
+        name: "Nome"
+        cpf: "CPF"

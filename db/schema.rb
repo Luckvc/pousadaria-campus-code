@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_15_213354) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_16_002113) do
   create_table "addresses", force: :cascade do |t|
     t.string "street"
     t.string "number"
@@ -85,7 +85,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_15_213354) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name"
-    t.boolean "host"
+    t.boolean "host", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true

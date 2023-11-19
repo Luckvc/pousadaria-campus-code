@@ -1,0 +1,16 @@
+<h1>Resumo da Reserva</h1>
+
+<dl>
+  <dt>Pousada:</dt>
+  <dd><%= @pre_reservation.room.inn.name %></dd>
+  <dt>Quarto: </dt>
+  <dd><%= @pre_reservation.room.number %></dd>
+  <dt>Endereço: </dt>
+  <dd><%= @pre_reservation.room.inn.address.full_address %></dd>
+  <dt>Check-in: </dt>
+  <dd><%= @pre_reservation.check_in_date.to_date %></dd>
+  <dt>Check-out: </dt>
+  <dd><%= @pre_reservation.check_out_date.to_date %></dd>
+</dl>
+
+<%= button_to 'Confirmar Reserva'%>

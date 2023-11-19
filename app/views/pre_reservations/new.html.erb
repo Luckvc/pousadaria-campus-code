@@ -18,7 +18,7 @@
 </dl>
   <div>
     <h3>Fazer Reserva</h3>
-    <%= form_with model:@pre_reservation do |form| %>
+    <%= form_with model:@pre_reservation, url: room_pre_reservations_path do |form| %>
       <div>
         <%= form.label :check_in_date %>
         <%= form.date_field :check_in_date %>

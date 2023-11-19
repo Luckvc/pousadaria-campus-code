@@ -1,0 +1,41 @@
+<h1>Quarto <%= @room.number %></h1>
+<dl>
+  <dt>Descrição:</dt>
+  <dd><%= @room.description %></dd>
+  <dt>Capacidade:</dt>
+  <dd><%= @room.capacity %> Hóspedes</dd>
+  <dt>Banheiros:</dt>
+  <dd><% if @room.bathrooms == 0 %> 
+        Banheiro compartilhado 
+      <% else %>
+        <%= @room.bathrooms %>
+      <% end %></dd>
+  <dt>Camas:</dt>
+  <dd><% if @room.double_beds > 0 %> <%= @room.double_beds %> de Casal <% end %><dd>
+  <dd><% if @room.single_beds > 0 %> <%= @room.single_beds %> de Solteiro <% end %><dd>
+  <dt>Cozinha:</dt> 
+  <dd><%= I18n.translate("room.kitchen.#{@room.kitchen.to_s}") %> </dd>
+</dl>
+  <div>
+    <h3>Fazer Reserva</h3>
+    <%= form_with model:@pre_reservation do |form| %>
+      <div>
+        <%= form.label :check_in_date %>
+        <%= form.date_field :check_in_date %>
+      </div>
+      <div>
+        <%= form.label :check_out_date %>
+        <%= form.date_field :check_out_date %>
+      </div>
+      <div>
+        <%= form.label :guests %>
+        <%= form.number_field :guests %>
+      </div>
+      <div>
+        <%= form.submit 'Checar Disponibilidade' %>
+      </div>
+    <% end %>
+  </div>
+  <div>
+  <%= link_to('Voltar', inn_path(@room.inn))%>
+  </div>

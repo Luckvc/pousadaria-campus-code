@@ -20,7 +20,9 @@ Rails.application.routes.draw do
   
   resources :rooms, only: [:edit, :update, :show] do
     resources :custom_dates, only: [:index, :new, :create]
+    resources :pre_reservations, only: [:new, :create]
   end
+  resources :pre_reservations, only: [:index]
   resources :custom_dates, only: [:index, :show]
   resources :address
 end

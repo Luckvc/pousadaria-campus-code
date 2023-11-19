@@ -11,6 +11,8 @@
   <dd><%= @pre_reservation.check_in_date.to_date %></dd>
   <dt>Check-out: </dt>
   <dd><%= @pre_reservation.check_out_date.to_date %></dd>
+  <dt>Total: </dt>
+  <dd><%= number_to_currency(@pre_reservation.total / 100) %></dd>
 </dl>
 
 <%= button_to 'Confirmar Reserva'%>

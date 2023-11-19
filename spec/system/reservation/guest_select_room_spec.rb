@@ -46,6 +46,7 @@ describe 'Guest selects room' do
     expect(page).to have_content 'Endereço: Rua das ruas, 12 - Centro, São Paulo - SP'
     expect(page).to have_content "Check-in: #{2.days.from_now.to_date}" 
     expect(page).to have_content "Check-out: #{5.days.from_now.to_date}" 
+    expect(page).to have_content "Total: R$ 300,00" 
     expect(page).to have_button 'Confirmar Reserva'
   end
 end

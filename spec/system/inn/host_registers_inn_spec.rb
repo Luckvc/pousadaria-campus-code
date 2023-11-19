@@ -57,7 +57,7 @@ describe 'Host registers an Inn' do
     expect(page).to have_content 'Endereço: Rua da Pousadinha, 13 - Centro, Palestina - SP'
     expect(page).to have_content 'CEP: 15470-000'
   end
-  it 'insuccessfully' do
+  it 'unsuccessfully' do
     #Arrange
     user = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)
     #Act

@@ -62,7 +62,7 @@ describe 'host adds custom date price' do
     expect(page).to have_content 'Diária: R$ 200,00'
     expect(page).to have_content 'Preço Sazonal adicionado com sucesso'
   end
-  it 'insuccessfully' do
+  it 'unsuccessfully' do
     #Arrange
     host = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)
     address = Address.create!(street: 'Rua das ruas', number:'12', neighborhood:'centro',

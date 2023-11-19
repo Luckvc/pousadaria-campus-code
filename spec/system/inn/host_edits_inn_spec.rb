@@ -53,7 +53,7 @@ describe 'Host edits Inn' do
     expect(page).to have_content 'E-mail: pousada@email.com'
     expect(page).to have_content 'Endereço: Rua Capitão, 30 - Centro, Palestina - SP'
   end
-  it 'insuccessfully' do
+  it 'unsuccessfully' do
     #Arrange
     host = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)
     address = Address.create!(street: 'Rua das ruas', number:'12', neighborhood:'Centro',

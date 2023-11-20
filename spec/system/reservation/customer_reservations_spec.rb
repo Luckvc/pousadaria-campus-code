@@ -27,4 +27,7 @@ describe 'Customer reservations' do
   it 'can be cancelled within 7 days' do
     #TODO
   end
+  it 'have a 8 digit unique code' do
+    #TODO
+  end
 end

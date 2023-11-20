@@ -12,6 +12,7 @@ describe 'Guest selects available room' do
                       double_beds:1, single_beds:0, capacity:2, price:100.00, bathrooms:1,
                       kitchen:false)
 
+    allow(SecureRandom).to receive(:alphanumeric).and_return('ABC12345')
     visit new_room_pre_reservation_path(room)
     fill_in 'Data de Check-in', with: 2.days.from_now.to_date
     fill_in 'Data de Check-out', with: 5.days.from_now.to_date
@@ -29,6 +30,7 @@ describe 'Guest selects available room' do
     end
     click_on 'Confirmar Reserva'
 
+    expect(page).to have_content 'Reserva ABC12345'
     expect(page).to have_content 'Reserva confirmada'
     expect(page).to have_content 'Pousada: Pomar'
     expect(page).to have_content 'Quarto: Amora'
@@ -56,6 +58,7 @@ describe 'Guest selects available room' do
     fill_in 'Data de Check-out', with: 15.days.from_now.to_date
     fill_in 'Hóspedes', with: '2'
     click_on 'Checar Disponibilidade'
+    click_on 'Confirmar Reserva'
 
     expect(page).to have_content 'Total: R$ 1.500,00'
   end

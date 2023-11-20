@@ -82,7 +82,8 @@ class InnsController < ApplicationController
   private
   
   def inn_params
-    inn_params = params.require(:inn).permit(:name, :company_name, :cnpj, :phone, :email, 
+    inn_params = params.require(:inn).permit(:name, :company_name, :cnpj, :phone, :email, :policies,
+                               :check_in_time, :check_out_time, :pets, :pix, :credit, :debit, :cash,
       address_attributes: [:id, :street, :number, :neighborhood, :city, :state, :cep])
   end
 

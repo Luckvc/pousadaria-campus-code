@@ -42,6 +42,14 @@ describe 'Host registers an Inn' do
     fill_in 'CNPJ', with: '123456'
     fill_in 'Telefone', with: '456123'
     fill_in 'E-mail', with: 'pousadinha@gmail.com'
+    fill_in 'Políticas da Pousada', with: 'Não pode ser triste'
+    fill_in 'Horário de Check-in', with: '14:00'
+    fill_in 'Horário de Check-out', with: '12:00'
+    check 'Pets'
+    check 'Pix'
+    check 'Cartão de Crédito'
+    check 'Cartão de Débito'
+    check 'Dinheiro'
     fill_in 'Logradouro', with: 'Rua da Pousadinha'
     fill_in 'Número', with: '13'
     fill_in 'Bairro', with: 'Centro'
@@ -56,6 +64,10 @@ describe 'Host registers an Inn' do
     expect(page).to have_content 'E-mail: pousadinha@gmail.com'
     expect(page).to have_content 'Endereço: Rua da Pousadinha, 13 - Centro, Palestina - SP'
     expect(page).to have_content 'CEP: 15470-000'
+    expect(page).to have_content 'Horário de Check-in: 14:00'
+    expect(page).to have_content 'Horário de Check-out: 12:00'
+    expect(page).to have_content 'Políticas: Não pode ser triste'
+    expect(page).to have_content 'Meios de Pagamento: Pix Cartão de Crédito Cartão de Débito Dinheiro'
   end
   it 'unsuccessfully' do
     #Arrange

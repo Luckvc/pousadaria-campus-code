@@ -1,5 +1,4 @@
 <h1> Cadastrar Pousada </h1>
-<h3> Dados da Empresa </h3>
 
 <% if(@inn.errors.any?) %>
   <p>Verifique os erros abaixo:</p>
@@ -11,6 +10,7 @@
 <% end %>
 
 <%= form_with(model: @inn, url: inns_path) do |form| %>
+<h3> Dados da Empresa </h3>
   <div>
     <div>
       <%= form.label :name %>
@@ -31,6 +31,42 @@
     <div>
       <%= form.label :email %>
       <%= form.email_field :email %>
+    </div>
+  </div>
+  <h3>Informações da Pousada</h3>
+  <div>
+    <div>
+      <%= form.label :policies %>
+      <%= form.text_area :policies %>
+    </div>
+    <div>
+      <%= form.label :check_in_time %>
+      <%= form.time_field :check_in_time%>
+    </div>
+    <div>
+      <%= form.label :check_out_time %>
+      <%= form.time_field :check_out_time %>
+    </div>
+    <div>
+      <%= form.check_box :pets %>
+      <%= form.label :pets %>
+    </div>
+    <h4>Meios de Pagamento</h4>
+    <div>
+      <%= form.check_box :pix %>
+      <%= form.label :pix %>
+    </div>
+    <div>
+      <%= form.check_box :credit %>
+      <%= form.label :credit %>
+    </div>
+    <div>
+      <%= form.check_box :debit %>
+      <%= form.label :debit %>
+    </div>
+    <div>
+      <%= form.check_box :cash %>
+      <%= form.label :cash %>
     </div>
   </div>
   <div>

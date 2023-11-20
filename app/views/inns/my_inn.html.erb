@@ -8,6 +8,8 @@
   <dl>
     <dt>Nome:</dt>
     <dd><%= @inn.name %></dd>
+    <dt>Razão Social:</dt>
+    <dd><%= @inn.company_name %></dd>
     <dt>CNPJ:</dt>
     <dd><%= @inn.cnpj %></dd>
     <dt>Endereço:</dt>
@@ -20,6 +22,25 @@
     <dd><%= @inn.email %> </dd>
     <dt>Status:</dt>
     <dd><%= I18n.translate("inn.active.#{@inn.active.to_s}") %> </dd>
+  </dl>
+<div>
+    <h3> Informações da Pousada </h3>
+</div>
+<div>
+  <dl>
+    <dt>Políticas:</dt>
+    <dd><%= @inn.policies %></dd>
+    <dt>Aceita pets:</dt>
+    <dd><%= I18n.translate("inn.pets.#{@inn.pets.to_s}") %> </dd>
+    <dt>Horário de Check-in:</dt>
+    <dd><%= @inn.check_in_time %></dd>
+    <dt>Horário de Check-out:</dt>
+    <dd><%= @inn.check_out_time %></dd>
+    <dt>Meios de Pagamento:</dt>
+    <dd><%= 'Pix' if @inn.pix? %> </dd>
+    <dd><%= 'Cartão de Crédito' if @inn.credit? %> </dd>
+    <dd><%= 'Cartão de Débito' if @inn.debit? %> </dd>
+    <dd><%= 'Dinheiro' if @inn.cash? %> </dd>
   </dl>
   <div>
     <%= link_to 'Editar Pousada', edit_inn_path(@inn) %>

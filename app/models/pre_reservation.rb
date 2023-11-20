@@ -19,6 +19,17 @@ class PreReservation < ApplicationRecord
   end
 
   def available_dates
+    if self.check_in_date.present? && self.check_out_date.present?
+      self.room.reservations.each do |reservation|
+        range_overlap(self.check_in_date, self.check_out_date, reservation.check_in_date, reservation.check_out_date)
+      end
+    end
+  end
+
+  def range_overlap(rangea_begin, rangea_end, rangeb_begin, rangeb_end)
+    if !(rangea_end < rangeb_begin || rangea_begin > rangeb_end)
+      self.errors.add(:check_in_date, "não disponível")
+    end
   end
 
   def valid_guests

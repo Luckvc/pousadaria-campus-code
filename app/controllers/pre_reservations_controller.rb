@@ -9,7 +9,7 @@ class PreReservationsController < ApplicationController
     @room = Room.find(params[:room_id])
     pr_params = params.require(:pre_reservation).permit(:check_in_date, :check_out_date, :guests)
     @pre_reservation = @room.pre_reservations.build(pr_params)
-
+    
     if @pre_reservation.save
       redirect_to pre_reservation_confirmation_path(@pre_reservation)
     else

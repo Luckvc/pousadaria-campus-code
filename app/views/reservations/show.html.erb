@@ -3,14 +3,21 @@
 <dl>
   <dt>Pousada:</dt>
   <dd><%= @reservation.room.inn.name %></dd>
-  <dt>Quarto: </dt>
-  <dd><%= @reservation.room.number %></dd>
+  <%= link_to room_path(@reservation.room) do %>
+    <dt>Quarto: </dt>
+    <dd><%= @reservation.room.number %></dd>
+  <% end %>
   <dt>Endereço: </dt>
   <dd><%= @reservation.room.inn.address.full_address %></dd>
   <dt>Check-in: </dt>
-  <dd><%= l(@reservation.check_in_date.to_date) %></dd>
+  <dd><%= l(@reservation.check_in_date.to_date) %> - <%= @reservation.room.inn.check_in_time %></dd>
   <dt>Check-out: </dt>
-  <dd><%= l(@reservation.check_out_date.to_date) %></dd>
+  <dd><%= l(@reservation.check_out_date.to_date) %> - <%= @reservation.room.inn.check_out_time %></dd>
   <dt>Total: </dt>
   <dd><%= number_to_currency(@reservation.total) %></dd>
+  <dt>Meios de Pagamento:</dt>
+  <dd><%= 'Pix' if @reservation.room.inn.pix? %> </dd>
+  <dd><%= 'Cartão de Crédito' if @reservation.room.inn.credit? %> </dd>
+  <dd><%= 'Cartão de Débito' if @reservation.room.inn.debit? %> </dd>
+  <dd><%= 'Dinheiro' if @reservation.room.inn.cash? %> </dd>
 </dl>

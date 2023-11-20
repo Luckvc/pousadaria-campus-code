@@ -9,11 +9,16 @@
   <dt>Endereço: </dt>
   <dd><%= @pre_reservation.room.inn.address.full_address %></dd>
   <dt>Check-in: </dt>
-  <dd><%= l(@pre_reservation.check_in_date.to_date) %></dd>
+  <dd><%= l(@pre_reservation.check_in_date.to_date) %> - <%= @pre_reservation.room.inn.check_in_time %></dd>
   <dt>Check-out: </dt>
-  <dd><%= l(@pre_reservation.check_out_date.to_date) %></dd>
+  <dd><%= l(@pre_reservation.check_out_date.to_date) %> - <%= @pre_reservation.room.inn.check_out_time %></dd>
   <dt>Total: </dt>
   <dd><%= number_to_currency(@pre_reservation.total) %></dd>
+  <dt>Meios de Pagamento:</dt>
+  <dd><%= 'Pix' if @pre_reservation.room.inn.pix? %> </dd>
+  <dd><%= 'Cartão de Crédito' if @pre_reservation.room.inn.credit? %> </dd>
+  <dd><%= 'Cartão de Débito' if @pre_reservation.room.inn.debit? %> </dd>
+  <dd><%= 'Dinheiro' if @pre_reservation.room.inn.cash? %> </dd>
 </dl>
 <div>
 <%= form_with model: @reservation, url:room_reservations_path(@pre_reservation.room) do |form| %>

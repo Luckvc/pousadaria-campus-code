@@ -29,7 +29,8 @@ describe 'Guest selects room' do
     address = Address.create!(street: 'Rua das ruas', number:'12', neighborhood:'Centro', 
                               city:'São Paulo', state:'SP', cep:'15470-000')
     inn = host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123', 
-                           phone:'556618', email:'pousadinha@email.com', address:address)
+                           phone:'556618', email:'pousadinha@email.com', address:address,
+                           pix:true, credit:true, debit:true, cash:true)
     room = inn.rooms.create!(number:'101', description:'Ótimo quarto com uma cama de casal',
                       double_beds:1, single_beds:0, capacity:2, price:100.00, bathrooms:1,
                       kitchen:false)
@@ -44,9 +45,10 @@ describe 'Guest selects room' do
     expect(page).to have_content 'Pousada: Pousadinha'
     expect(page).to have_content 'Quarto: 101'
     expect(page).to have_content 'Endereço: Rua das ruas, 12 - Centro, São Paulo - SP'
-    expect(page).to have_content "Check-in: #{I18n.l(2.days.from_now.to_date)}" 
-    expect(page).to have_content "Check-out: #{I18n.l(5.days.from_now.to_date)}" 
+    expect(page).to have_content "Check-in: #{I18n.l(2.days.from_now.to_date)} - 14:00" 
+    expect(page).to have_content "Check-out: #{I18n.l(5.days.from_now.to_date)} - 12:00" 
     expect(page).to have_content "Total: R$ 300,00" 
+    expect(page).to have_content "Meios de Pagamento: Pix Cartão de Crédito Cartão de Débito Dinheiro" 
     expect(page).to have_button 'Confirmar Reserva'
   end
   it 'and checks availibility unsuccessfully' do

@@ -13,7 +13,7 @@
   <dt>Check-out: </dt>
   <dd><%= l(@pre_reservation.check_out_date.to_date) %></dd>
   <dt>Total: </dt>
-  <dd><%= number_to_currency(@pre_reservation.total / 100) %></dd>
+  <dd><%= number_to_currency(@pre_reservation.total) %></dd>
 </dl>
 <div>
 <%= form_with model: @reservation, url:room_reservations_path(@pre_reservation.room) do |form| %>

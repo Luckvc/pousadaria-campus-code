@@ -4,7 +4,7 @@ class CustomDatesController < ApplicationController
     @custom_date = @room.custom_dates.build()
   end
   def create
-    cd_params = params.require(:custom_date).permit(:begin, :end, :price_cents)
+    cd_params = params.require(:custom_date).permit(:begin, :end, :price)
     @room = Room.find(params[:room_id])
     @custom_date = @room.custom_dates.build(cd_params)
 

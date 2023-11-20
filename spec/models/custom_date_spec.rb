@@ -5,7 +5,7 @@ RSpec.describe CustomDate, type: :model do
     context 'presence' do
       it 'false when begin date is empty' do
         #Arrange
-        cd = CustomDate.new(begin:'', end:5.days.from_now.to_date, price_cents:300_00)
+        cd = CustomDate.new(begin:'', end:5.days.from_now.to_date, price:300.00)
         #Act
         cd.valid?
         #Assert
@@ -13,7 +13,7 @@ RSpec.describe CustomDate, type: :model do
       end
       it 'false when end date is empty' do
         #Arrange
-        cd = CustomDate.new(begin:5.days.from_now.to_date, end:'', price_cents:300_00)
+        cd = CustomDate.new(begin:5.days.from_now.to_date, end:'', price:300.00)
         #Act
         cd.valid?
         #Assert
@@ -21,11 +21,11 @@ RSpec.describe CustomDate, type: :model do
       end
       it 'false when price is empty' do
         #Arrange
-        cd = CustomDate.new(begin:2.days.from_now.to_date, end:5.days.from_now.to_date, price_cents:'')
+        cd = CustomDate.new(begin:2.days.from_now.to_date, end:5.days.from_now.to_date, price:'')
         #Act
         cd.valid?
         #Assert
-        expect(cd.errors[:price_cents]).to include("não pode ficar em branco")
+        expect(cd.errors[:price]).to include("não pode ficar em branco")
       end
     end
     context 'range_overlap' do
@@ -38,11 +38,11 @@ RSpec.describe CustomDate, type: :model do
                               phone:'556618', email:'pousadinha@email.com', address:address)
         room = inn.rooms.create!(number:'101', description:'Ótimo quarto com uma cama de casal, tv,
                                 varanda com vista para a praia', double_beds:1, single_beds:0, 
-                                capacity:2, price_cents:100_00, bathrooms:1, kitchen:false)
+                                capacity:2, price:100.00, bathrooms:1, kitchen:false)
         room.custom_dates.create!(begin:10.days.from_now.to_date, end:20.days.from_now.to_date, 
-                                  price_cents:10000)
+                                  price:10000)
         cd = room.custom_dates.build(begin:1.days.from_now.to_date, end:5.days.from_now.to_date, 
-                                     price_cents:20000)
+                                     price:20000)
         #Act
         #Assert
         expect(cd.valid?).to be true
@@ -56,11 +56,11 @@ RSpec.describe CustomDate, type: :model do
                               phone:'556618', email:'pousadinha@email.com', address:address)
         room = inn.rooms.create!(number:'101', description:'Ótimo quarto com uma cama de casal, tv,
                                 varanda com vista para a praia', double_beds:1, single_beds:0, 
-                                capacity:2, price_cents:100_00, bathrooms:1, kitchen:false)
+                                capacity:2, price:100.00, bathrooms:1, kitchen:false)
         room.custom_dates.create!(begin:10.days.from_now.to_date, end:20.days.from_now.to_date, 
-                                  price_cents:10000)
+                                  price:10000)
         cd = room.custom_dates.build(begin:25.days.from_now.to_date, end:35.days.from_now.to_date, 
-                                     price_cents:20000)
+                                     price:20000)
         #Act
         #Assert
         expect(cd.valid?).to be true
@@ -74,11 +74,11 @@ RSpec.describe CustomDate, type: :model do
                               phone:'556618', email:'pousadinha@email.com', address:address)
         room = inn.rooms.create!(number:'101', description:'Ótimo quarto com uma cama de casal, tv,
                                 varanda com vista para a praia', double_beds:1, single_beds:0, 
-                                capacity:2, price_cents:100_00, bathrooms:1, kitchen:false)
+                                capacity:2, price:100.00, bathrooms:1, kitchen:false)
         room.custom_dates.create!(begin:10.days.from_now.to_date, end:20.days.from_now.to_date, 
-                                  price_cents:10000)
+                                  price:10000)
         cd = room.custom_dates.build(begin:15.days.from_now.to_date, end:35.days.from_now.to_date, 
-                                     price_cents:20000)
+                                     price:20000)
         #Act
         cd.valid?
         #Assert
@@ -93,11 +93,11 @@ RSpec.describe CustomDate, type: :model do
                               phone:'556618', email:'pousadinha@email.com', address:address)
         room = inn.rooms.create!(number:'101', description:'Ótimo quarto com uma cama de casal, tv,
                                 varanda com vista para a praia', double_beds:1, single_beds:0, 
-                                capacity:2, price_cents:100_00, bathrooms:1, kitchen:false)
+                                capacity:2, price:100.00, bathrooms:1, kitchen:false)
         room.custom_dates.create!(begin:10.days.from_now.to_date, end:20.days.from_now.to_date, 
-                                  price_cents:10000)
+                                  price:10000)
         cd = room.custom_dates.build(begin:5.days.from_now.to_date, end:15.days.from_now.to_date, 
-                                     price_cents:20000)
+                                     price:20000)
         #Act
         cd.valid?
         #Assert
@@ -112,11 +112,11 @@ RSpec.describe CustomDate, type: :model do
                               phone:'556618', email:'pousadinha@email.com', address:address)
         room = inn.rooms.create!(number:'101', description:'Ótimo quarto com uma cama de casal, tv,
                                 varanda com vista para a praia', double_beds:1, single_beds:0, 
-                                capacity:2, price_cents:100_00, bathrooms:1, kitchen:false)
+                                capacity:2, price:100.00, bathrooms:1, kitchen:false)
         room.custom_dates.create!(begin:10.days.from_now.to_date, end:20.days.from_now.to_date, 
-                                  price_cents:10000)
+                                  price:10000)
         cd = room.custom_dates.build(begin:12.days.from_now.to_date, end:15.days.from_now.to_date, 
-                                     price_cents:20000)
+                                     price:20000)
         #Act
         cd.valid?
         #Assert
@@ -131,11 +131,11 @@ RSpec.describe CustomDate, type: :model do
                               phone:'556618', email:'pousadinha@email.com', address:address)
         room = inn.rooms.create!(number:'101', description:'Ótimo quarto com uma cama de casal, tv,
                                 varanda com vista para a praia', double_beds:1, single_beds:0, 
-                                capacity:2, price_cents:100_00, bathrooms:1, kitchen:false)
+                                capacity:2, price:100.00, bathrooms:1, kitchen:false)
         room.custom_dates.create!(begin:10.days.from_now.to_date, end:20.days.from_now.to_date, 
-                                  price_cents:10000)
+                                  price:10000)
         cd = room.custom_dates.build(begin:5.days.from_now.to_date, end:25.days.from_now.to_date, 
-                                     price_cents:20000)
+                                     price:20000)
         #Act
         cd.valid?
         #Assert

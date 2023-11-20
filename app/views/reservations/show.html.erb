@@ -12,5 +12,5 @@
   <dt>Check-out: </dt>
   <dd><%= l(@reservation.check_out_date.to_date) %></dd>
   <dt>Total: </dt>
-  <dd><%= number_to_currency(@reservation.total / 100) %></dd>
+  <dd><%= number_to_currency(@reservation.total) %></dd>
 </dl>

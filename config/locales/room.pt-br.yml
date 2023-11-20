@@ -10,6 +10,6 @@ pt-BR:
         double_beds: "Camas de Casal"
         single_beds: "Camas de Solteiro"
         capacity: "Capacidade"
-        price_cents: "Diária"
+        price: "Diária"
         bathrooms: "Banheiros"
         kitchen: "Cozinha"

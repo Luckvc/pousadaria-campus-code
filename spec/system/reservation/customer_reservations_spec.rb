@@ -9,9 +9,9 @@ describe 'Customer reservations' do
                             email:'pousadona@email.com', address:address)
     room1 = inn.rooms.create!(number:'Elefante', description:'Ótimo quarto com uma cama de casal', 
                       double_beds:1, single_beds:0, capacity:2, 
-                      price_cents:100_00, bathrooms:1, kitchen:false)
+                      price:100.00, bathrooms:1, kitchen:false)
     room2 =inn.rooms.create!(number:'Leão', description:'Ótimo quarto com cozinha, uma cama de casal',
-                      double_beds:1, single_beds:2, capacity:3, price_cents:150_00, bathrooms:0, kitchen:true)
+                      double_beds:1, single_beds:2, capacity:3, price:150.00, bathrooms:0, kitchen:true)
     customer = Customer.create!(name:'Roberto', cpf:'123', email:'roberto@email.com', password:'123456')
     room1.reservations.create!(check_in_date: Date.tomorrow, check_out_date: 5.days.from_now.to_date,
                               guests:2, customer:customer)

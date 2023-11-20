@@ -15,9 +15,9 @@ describe 'Guest views inn rooms' do
                             email:'pousadona@email.com', address:address2)
     inn.rooms.create!(number:'Elefante', description:'Ótimo quarto com uma cama de casal, tv, varanda com vista para a praia', 
                       double_beds:1, single_beds:0, capacity:2, 
-                      price_cents:100_00, bathrooms:1, kitchen:false)
+                      price:100.00, bathrooms:1, kitchen:false)
     inn.rooms.create!(number:'Leão', description:'Ótimo quarto com cozinha, uma cama de casal e uma de solteiro, tv, varanda com vista para a praia',
-                      double_beds:1, single_beds:2, capacity:3, price_cents:150_00, bathrooms:0, kitchen:true)
+                      double_beds:1, single_beds:2, capacity:3, price:150.00, bathrooms:0, kitchen:true)
     visit root_path
     click_on 'Pousadona'
     click_on 'Quarto Elefante'

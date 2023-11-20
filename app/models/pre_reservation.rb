@@ -9,7 +9,7 @@ class PreReservation < ApplicationRecord
   private 
   
   def calculate_total
-    self.total = (self.check_out_date.to_date - self.check_in_date.to_date) * self.room.price_cents
+    self.total = (self.check_out_date.to_date - self.check_in_date.to_date) * self.room.price
   end
   
   def valid_dates

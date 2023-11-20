@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_20_144438) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_20_181614) do
   create_table "addresses", force: :cascade do |t|
     t.string "street"
     t.string "number"
@@ -25,7 +25,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_20_144438) do
   create_table "custom_dates", force: :cascade do |t|
     t.date "begin"
     t.date "end"
-    t.integer "price_cents"
+    t.decimal "price", precision: 8, scale: 10
     t.integer "room_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -99,7 +99,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_20_144438) do
     t.integer "double_beds"
     t.integer "single_beds"
     t.integer "capacity"
-    t.integer "price_cents"
+    t.decimal "price", precision: 8, scale: 10
     t.integer "bathrooms"
     t.boolean "kitchen"
     t.integer "inn_id", null: false

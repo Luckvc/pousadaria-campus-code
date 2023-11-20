@@ -10,7 +10,7 @@ describe 'host views custom dates' do
                            phone:'556618', email:'pousadinha@email.com', address:address)
     room = inn.rooms.create!(number:'101', description:'Ótimo quarto com uma cama de casal, tv,
                              varanda com vista para a praia', double_beds:1, single_beds:0, 
-                             capacity:2, price_cents:100_00, bathrooms:1, kitchen:false)
+                             capacity:2, price:100.00, bathrooms:1, kitchen:false)
     #Act
     login_as(host, scope: :user)
     visit root_path
@@ -27,9 +27,9 @@ describe 'host views custom dates' do
                            phone:'556618', email:'pousadinha@email.com', address:address)
     room = inn.rooms.create!(number:'101', description:'Ótimo quarto com uma cama de casal, tv,
                              varanda com vista para a praia', double_beds:1, single_beds:0,
-                             capacity:2, price_cents:100_00, bathrooms:1, kitchen:false)
-    room.custom_dates.create!(begin:1.days.from_now.to_date, end:5.days.from_now.to_date, price_cents:200_00)
-    room.custom_dates.create!(begin:1.month.from_now.to_date, end:2.month.from_now.to_date, price_cents:300_00)
+                             capacity:2, price:100.00, bathrooms:1, kitchen:false)
+    room.custom_dates.create!(begin:1.days.from_now.to_date, end:5.days.from_now.to_date, price:200.00)
+    room.custom_dates.create!(begin:1.month.from_now.to_date, end:2.month.from_now.to_date, price:300.00)
 
     login_as(host, scope: :user)
     visit root_path

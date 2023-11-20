@@ -8,7 +8,7 @@ RSpec.describe Room, type: :model do
         inn = Inn.new(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123',
                            phone:'556618', email:'pousadinha@email.com')
         room = inn.rooms.build(number:'', description:'Ótimo quarto com uma cama de casal, tv, varanda com vista para a praia',
-                        double_beds:1, single_beds:1, capacity:2, price_cents:125_00,
+                        double_beds:1, single_beds:1, capacity:2, price:125.00,
                         bathrooms:1, kitchen:false)
         #Act
         result = room.valid?
@@ -20,7 +20,7 @@ RSpec.describe Room, type: :model do
         inn = Inn.new(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123',
                            phone:'556618', email:'pousadinha@email.com')
         room = inn.rooms.build(number:'1', description:'',
-                        double_beds:1, single_beds:1, capacity:2, price_cents:125_00,
+                        double_beds:1, single_beds:1, capacity:2, price:125.00,
                         bathrooms:1, kitchen:false)
         #Act
         result = room.valid?

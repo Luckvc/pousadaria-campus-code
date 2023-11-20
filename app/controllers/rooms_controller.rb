@@ -31,7 +31,7 @@ class RoomsController < ApplicationController
 
   def room_params
     room_params = params.require(:room).permit(:number, :description, :double_beds, :single_beds, 
-                                     :capacity, :price_cents, :price_cents, :bathrooms, :kitchen)
+                                     :capacity, :price, :price, :bathrooms, :kitchen)
   end
   def set_room
     @room = Room.find(params[:id])

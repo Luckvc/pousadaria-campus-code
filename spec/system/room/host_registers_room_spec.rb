@@ -39,7 +39,7 @@ describe 'Host registers a Room' do
     fill_in 'Camas de Casal', with: '2'
     fill_in 'Camas de Solteiro', with: '0'
     fill_in 'Hóspedes', with: '4'
-    fill_in 'Diária', with: '20000'
+    fill_in 'Diária', with: '200'
     fill_in 'Banheiros', with: '2'
     check 'Cozinha'
     click_on 'Cadastrar'
@@ -72,7 +72,7 @@ describe 'Host registers a Room' do
     fill_in 'Camas de Casal', with: '2'
     fill_in 'Camas de Solteiro', with: '0'
     fill_in 'Hóspedes', with: '4'
-    fill_in 'Diária', with: '20000'
+    fill_in 'Diária', with: '200'
     fill_in 'Banheiros', with: '2'
     check 'Cozinha'
     click_on 'Cadastrar'
@@ -103,7 +103,7 @@ describe 'Host registers a Room' do
     fill_in 'Camas de Casal', with: '2'
     fill_in 'Camas de Solteiro', with: '0'
     fill_in 'Hóspedes', with: '4'
-    fill_in 'Diária', with: '20000'
+    fill_in 'Diária', with: '200'
     fill_in 'Banheiros', with: '2'
     check 'Cozinha'
     click_on 'Cadastrar'
@@ -120,7 +120,7 @@ describe 'Host registers a Room' do
     inn = host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123',
                            phone:'556618', email:'pousadinha@email.com', address:address)
     inn.rooms.create!(number:'101', description:'Ótimo quarto com uma cama de casal, tv, varanda com vista para a praia',
-                      double_beds:1, single_beds:1, capacity:2, price_cents:100_00,
+                      double_beds:1, single_beds:1, capacity:2, price:100.00,
                       bathrooms:1, kitchen:false)
     login_as(host, scope: :user)
     visit root_path
@@ -131,7 +131,7 @@ describe 'Host registers a Room' do
     fill_in 'Camas de Casal', with: '2'
     fill_in 'Camas de Solteiro', with: '0'
     fill_in 'Hóspedes', with: '4'
-    fill_in 'Diária', with: '20000'
+    fill_in 'Diária', with: '200'
     fill_in 'Banheiros', with: '2'
     check 'Cozinha'
     click_on 'Cadastrar'
@@ -153,7 +153,7 @@ describe 'Host registers a Room' do
     inn = host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123',
                            phone:'556618', email:'pousadinha@email.com', address:address)
     inn.rooms.create!(number:'101', description:'Ótimo quarto com uma cama de casal, tv, varanda com vista para a praia',
-                      double_beds:1, single_beds:0, capacity:2, price_cents:100_00,
+                      double_beds:1, single_beds:0, capacity:2, price:100.00,
                       bathrooms:1, kitchen:false)
     #Act
     login_as(host, scope: :user)
@@ -177,7 +177,7 @@ describe 'Host registers a Room' do
     inn = host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123',
                            phone:'556618', email:'pousadinha@email.com', address:address)
     inn.rooms.create!(number:'101', description:'Ótimo quarto com uma cama de casal, tv, varanda com vista para a praia',
-                        double_beds:1, single_beds:1, capacity:2, price_cents:125_00,
+                        double_beds:1, single_beds:1, capacity:2, price:125.00,
                         bathrooms:1, kitchen:false)
     #Act
     login_as(host, scope: :user)
@@ -185,7 +185,7 @@ describe 'Host registers a Room' do
     click_on 'Minha Pousada'
     click_on 'Quarto 101'
     click_on 'Editar Quarto 101'
-    fill_in 'Diária', with: '12500'
+    fill_in 'Diária', with: '125'
     click_on 'Atualizar'
     #Assert
     expect(page).to have_content 'Quarto 101' 

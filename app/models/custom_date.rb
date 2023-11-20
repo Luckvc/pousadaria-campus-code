@@ -1,6 +1,6 @@
 class CustomDate < ApplicationRecord
   belongs_to :room
-  validates :begin, :end, :price_cents, presence:true
+  validates :begin, :end, :price, presence:true
   validates :end, comparison: { greater_than: :begin}
   validate :valid_dates, :range_overlap
 

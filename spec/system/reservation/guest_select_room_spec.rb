@@ -8,7 +8,7 @@ describe 'Guest selects room' do
     inn = host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123', 
                            phone:'556618', email:'pousadinha@email.com', address:address)
     inn.rooms.create!(number:'101', description:'Ótimo quarto com uma cama de casal',
-                      double_beds:1, single_beds:0, capacity:2, price_cents:100_00, bathrooms:1,
+                      double_beds:1, single_beds:0, capacity:2, price:100.00, bathrooms:1,
                       kitchen:false)
 
     visit root_path
@@ -31,7 +31,7 @@ describe 'Guest selects room' do
     inn = host.create_inn!(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123', 
                            phone:'556618', email:'pousadinha@email.com', address:address)
     room = inn.rooms.create!(number:'101', description:'Ótimo quarto com uma cama de casal',
-                      double_beds:1, single_beds:0, capacity:2, price_cents:100_00, bathrooms:1,
+                      double_beds:1, single_beds:0, capacity:2, price:100.00, bathrooms:1,
                       kitchen:false)
 
     visit new_room_pre_reservation_path(room)

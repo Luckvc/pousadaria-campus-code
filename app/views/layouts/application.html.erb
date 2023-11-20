@@ -17,6 +17,9 @@
         <% if current_user.is_a?(User) %>
           <%= link_to 'Minha Pousada', my_inn_path %>
         <% end %>
+        <% if current_customer.is_a?(Customer) %>
+          <%= link_to 'Minhas Reservas', reservations_path %>
+        <% end %>
       <% else %>
         <%= link_to 'Entrar', new_customer_session_path %>
         <%= link_to 'Área Dono de Pousada', new_user_session_path %>

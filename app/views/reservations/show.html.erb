@@ -1,1 +1,16 @@
 <h1> Reserva </h1>
+
+<dl>
+  <dt>Pousada:</dt>
+  <dd><%= @reservation.room.inn.name %></dd>
+  <dt>Quarto: </dt>
+  <dd><%= @reservation.room.number %></dd>
+  <dt>Endereço: </dt>
+  <dd><%= @reservation.room.inn.address.full_address %></dd>
+  <dt>Check-in: </dt>
+  <dd><%= l(@reservation.check_in_date.to_date) %></dd>
+  <dt>Check-out: </dt>
+  <dd><%= l(@reservation.check_out_date.to_date) %></dd>
+  <dt>Total: </dt>
+  <dd><%= number_to_currency(@reservation.total / 100) %></dd>
+</dl>

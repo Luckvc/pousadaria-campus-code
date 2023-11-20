@@ -1,0 +1,17 @@
+<h1>Minhas Reservas</h1>
+
+
+<% @reservations.each do |r| %>
+  <%= link_to reservation_path(r) do %>
+  <div>
+    <dt>Id:</dt>
+    <dd><%= r.id %></dd>
+    <dt>Pousada:</dt>
+    <dd><%= r.room.inn.name %></dd>
+    <dt>Quarto: </dt>
+    <dd><%= r.room.number %></dd>
+    <dt>Check-in: </dt>
+    <dd><%= l(r.check_in_date.to_date) %></dd>
+  </div>
+  <% end %>
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_20_181614) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_20_190228) do
   create_table "addresses", force: :cascade do |t|
     t.string "street"
     t.string "number"
@@ -101,11 +101,18 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_20_181614) do
     t.integer "capacity"
     t.decimal "price", precision: 8, scale: 10
     t.integer "bathrooms"
-    t.boolean "kitchen"
+    t.boolean "kitchen", default: false
     t.integer "inn_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "active", default: true
+    t.integer "dimension", default: 0
+    t.boolean "balcony", default: false
+    t.boolean "air", default: false
+    t.boolean "tv", default: false
+    t.boolean "wardrobe", default: false
+    t.boolean "safe", default: false
+    t.boolean "accessible", default: false
     t.index ["inn_id"], name: "index_rooms_on_inn_id"
   end
 

@@ -39,7 +39,7 @@ describe 'Host registers a Room' do
     fill_in 'Camas de Casal', with: '2'
     fill_in 'Camas de Solteiro', with: '0'
     fill_in 'Hóspedes', with: '4'
-    fill_in 'Diária', with: '200'
+    fill_in 'Diária', with: '200.50'
     fill_in 'Banheiros', with: '2'
     check 'Cozinha'
     click_on 'Cadastrar'
@@ -50,10 +50,9 @@ describe 'Host registers a Room' do
     expect(page).to have_content 'E-mail: pousadinha@email.com' 
     expect(page).to have_content 'Endereço: Rua das ruas, 12 - centro, São Paulo - SP' 
     expect(page).to have_content 'CEP: 15470-000' 
-    
     expect(page).to have_content 'Quarto 101' 
     expect(page).to have_content 'Ótimo quarto, com 2 camas de casal, varanda' 
-    expect(page).to have_content 'Diária: R$ 200,00'
+    expect(page).to have_content 'Diária: R$ 200,50'
   end
   it 'successfully and see details' do
     #Arrange
@@ -74,7 +73,14 @@ describe 'Host registers a Room' do
     fill_in 'Hóspedes', with: '4'
     fill_in 'Diária', with: '200'
     fill_in 'Banheiros', with: '2'
+    fill_in 'Dimensão', with: '17'
+    check 'Varanda'
+    check 'Ar Condicionado'
+    check 'TV'
+    check 'Guarda-Roupas'
+    check 'Cofre'
     check 'Cozinha'
+    check 'Acessível para PCD'
     click_on 'Cadastrar'
     click_on 'Quarto 101'
     #Assert
@@ -85,7 +91,9 @@ describe 'Host registers a Room' do
     expect(page).not_to have_content 'de Solteiro'
     expect(page).to have_content '4 Hóspedes'
     expect(page).to have_content 'Diária: R$ 200,00'
-    expect(page).to have_content 'Cozinha: Sim'
+    expect(page).to have_content 'Dimensão: 17 m²'
+    expect(page).to have_content 'Amenidades: Cozinha Varanda Ar Condicionado TV Guarda-Roupas Cofre'
+    expect(page).to have_content 'Acessível para PCD: Sim'
   end
   it 'unsuccessfully' do
     #Arrange
@@ -193,6 +201,6 @@ describe 'Host registers a Room' do
     expect(page).to have_content 'Camas: 1 de Casal 1 de Solteiro'
     expect(page).to have_content '2 Hóspedes'
     expect(page).to have_content 'Diária: R$ 125,00'
-    expect(page).to have_content 'Cozinha: Não'
+    expect(page).to have_content 'Amenidades:'
   end
 end

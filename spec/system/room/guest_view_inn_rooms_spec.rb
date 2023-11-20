@@ -27,7 +27,7 @@ describe 'Guest views inn rooms' do
     expect(page).to have_content 'Descrição: Ótimo quarto com uma cama de casal, tv, varanda com vista para a praia'
     expect(page).to have_content 'Banheiros: 1'
     expect(page).to have_content 'Camas: 1 de Casal'
-    expect(page).to have_content 'Cozinha: Não'
+    expect(page).to have_content 'Amenidades:'
     expect(page).not_to have_content 'Diária:'
   end
 end

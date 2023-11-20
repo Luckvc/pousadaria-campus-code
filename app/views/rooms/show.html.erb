@@ -4,6 +4,8 @@
   <dd><%= @room.description %></dd>
   <dt>Capacidade:</dt>
   <dd><%= @room.capacity %> Hóspedes</dd>
+  <dt>Dimensão:</dt>
+  <dd><%= @room.dimension %> m²</dd>
   <dt>Banheiros:</dt>
   <dd><% if @room.bathrooms == 0 %> 
         Banheiro compartilhado 
@@ -13,14 +15,20 @@
   <dt>Camas:</dt>
   <dd><% if @room.double_beds > 0 %> <%= @room.double_beds %> de Casal <% end %><dd>
   <dd><% if @room.single_beds > 0 %> <%= @room.single_beds %> de Solteiro <% end %><dd>
-  <dt>Cozinha:</dt> 
-  <dd><%= I18n.translate("room.kitchen.#{@room.kitchen.to_s}") %> </dd>
+  <dt>Amenidades:</dt> 
+  <dd><%= 'Cozinha' if @room.kitchen? %> </dd>
+  <dd><%= 'Varanda' if @room.balcony? %> </dd>
+  <dd><%= 'Ar Condicionado' if @room.air? %> </dd>
+  <dd><%= 'TV' if @room.tv? %> </dd>
+  <dd><%= 'Guarda-Roupas' if @room.wardrobe? %> </dd>
+  <dd><%= 'Cofre' if @room.safe? %> </dd>
+  <dt>Acessível para PCD:</dt> 
+  <dd><%= @room.kitchen? ? 'Sim' : 'Não' %> </dd>
 
   <% if @room.inn.user == current_user %>
     <dt>Diária:</dt>
     <dd><%= number_to_currency(@room.price) %></dd>
     <dt>Preços Sazonais:</dt> 
-
     <% if @room.custom_dates.any? %>
       <% @room.custom_dates.each do |cd| %>
         <dd id="custom_dates">De <%= l(cd.begin) %> até <%= l(cd.end) %> - Diária: 

@@ -20,5 +20,7 @@ class PreReservationsController < ApplicationController
 
   def confirmation
     @pre_reservation = PreReservation.find(params[:pre_reservation_id])
+    @reservation = Reservation.new()
+    store_location_for(:customer, pre_reservation_confirmation_path(@pre_reservation))
   end
 end

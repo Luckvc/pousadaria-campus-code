@@ -21,12 +21,12 @@ Rails.application.routes.draw do
   resources :rooms, only: [:edit, :update, :show] do
     resources :custom_dates, only: [:index, :new, :create]
     resources :pre_reservations, only: [:new, :create]
-    resources :reservations, only: [:new, :create]
+    resources :reservations, only: [:create]
   end
   resources :pre_reservations, only: [:index] do
     get 'confirmation'
   end
-  resources :reservations, only: [:index]
+  resources :reservations, only: [:index, :show]
   resources :custom_dates, only: [:index, :show]
   resources :address
 end

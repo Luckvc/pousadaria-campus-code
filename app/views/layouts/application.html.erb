@@ -12,6 +12,7 @@
 
   <body>
     <nav>
+      <%= link_to 'Pousadaria', root_path %>
       <% if user_signed_in? || customer_signed_in? %>
         <%= button_to 'Sair', destroy_user_session_path, method: :delete %>
         <% if current_user.is_a?(User) %>

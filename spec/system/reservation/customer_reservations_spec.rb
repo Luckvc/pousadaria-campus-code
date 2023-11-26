@@ -13,9 +13,9 @@ describe 'Customer reservations' do
     room2 =inn.rooms.create!(number:'Leão', description:'Ótimo quarto com cozinha, uma cama de casal',
                       double_beds:1, single_beds:2, capacity:3, price:150.00, bathrooms:0, kitchen:true)
     customer = Customer.create!(name:'Roberto', cpf:'123', email:'roberto@email.com', password:'123456')
-    room1.reservations.create!(check_in_date: Date.tomorrow, check_out_date: 5.days.from_now,
+    room1.reservations.create!(checkin_expected_date: Date.tomorrow, checkout_expected_date: 5.days.from_now,
                               guests:2, customer:customer)
-    room2.reservations.create!(check_in_date: 5.months.from_now, check_out_date: 6.months.from_now,
+    room2.reservations.create!(checkin_expected_date: 5.months.from_now, checkout_expected_date: 6.months.from_now,
                               guests:2, customer:customer)
     
     login_as(customer, scope: :customer)
@@ -35,7 +35,7 @@ describe 'Customer reservations' do
                       price:100.00, bathrooms:1, kitchen:false)
     customer = Customer.create!(name:'Roberto', cpf:'123', email:'roberto@email.com', password:'123456')
     allow(SecureRandom).to receive(:alphanumeric).and_return('ABC12345')
-    res = room.reservations.create!(check_in_date: Date.tomorrow, check_out_date: 5.days.from_now,
+    res = room.reservations.create!(checkin_expected_date: Date.tomorrow, checkout_expected_date: 5.days.from_now,
                               guests:2, customer:customer)
 
     login_as(customer, scope: :customer)
@@ -57,7 +57,7 @@ describe 'Customer reservations' do
                       double_beds:1, single_beds:0, capacity:2, 
                       price:100.00, bathrooms:1, kitchen:false)
     customer = Customer.create!(name:'Roberto', cpf:'123', email:'roberto@email.com', password:'123456')
-    res = room.reservations.create!(check_in_date: Date.tomorrow, check_out_date: 5.days.from_now,
+    res = room.reservations.create!(checkin_expected_date: Date.tomorrow, checkout_expected_date: 5.days.from_now,
                               guests:2, customer:customer)
 
     visit reservation_path(res)

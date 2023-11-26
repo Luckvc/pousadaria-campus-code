@@ -5,7 +5,7 @@ class ReservationsController < ApplicationController
 
   def create
     @customer = current_customer
-    reserv_params = params.require(:reservation).permit(:check_in_date, :check_out_date, :guests, :total)
+    reserv_params = params.require(:reservation).permit(:checkin_expected_date, :checkout_expected_date, :guests, :total)
     @reservation = @customer.reservations.build(reserv_params)
     
     @room = Room.find(params[:room_id])
@@ -26,7 +26,7 @@ class ReservationsController < ApplicationController
   end
 
   def cancelled
-    if (@reservation.check_in_date.to_date - Date.today).to_i < 7
+    if (@reservation.checkin_expected_date.to_date - Date.today).to_i < 7
       return redirect_to @reservation, notice: 'Reservas não podem ser canceladas com menos de 7 dias do check-in'
     end
     

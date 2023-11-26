@@ -9,9 +9,9 @@
   <dt>Endereço: </dt>
   <dd><%= @pre_reservation.room.inn.address.full_address %></dd>
   <dt>Check-in: </dt>
-  <dd><%= l(@pre_reservation.check_in_date.to_date) %> - <%= @pre_reservation.room.inn.check_in_time %></dd>
+  <dd><%= l(@pre_reservation.checkin_expected_date.to_date) %> - <%= @pre_reservation.room.inn.check_in_time %></dd>
   <dt>Check-out: </dt>
-  <dd><%= l(@pre_reservation.check_out_date.to_date) %> - <%= @pre_reservation.room.inn.check_out_time %></dd>
+  <dd><%= l(@pre_reservation.checkout_expected_date.to_date) %> - <%= @pre_reservation.room.inn.check_out_time %></dd>
   <dt>Total: </dt>
   <dd><%= number_to_currency(@pre_reservation.total) %></dd>
   <dt>Meios de Pagamento:</dt>
@@ -23,8 +23,8 @@
 <div>
 <%= form_with model: @reservation, url:room_reservations_path(@pre_reservation.room) do |form| %>
   <div>
-    <%= form.hidden_field :check_in_date, value:@pre_reservation.check_in_date %>
-    <%= form.hidden_field :check_out_date, value:@pre_reservation.check_out_date %>
+    <%= form.hidden_field :checkin_expected_date, value:@pre_reservation.checkin_expected_date %>
+    <%= form.hidden_field :checkout_expected_date, value:@pre_reservation.checkout_expected_date %>
     <%= form.hidden_field :guests, value:@pre_reservation.guests %>
     <%= form.hidden_field :total, value:@pre_reservation.total %>
   <%= form.submit 'Confirmar Reserva' %>

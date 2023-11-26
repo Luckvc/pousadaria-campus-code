@@ -11,8 +11,8 @@ RSpec.describe PreReservation, type: :model do
       room = inn.rooms.create!(number:'101', description:'Ótimo quarto com uma cama de casal, tv,
                               varanda com vista para a praia', double_beds:1, single_beds:0, 
                               capacity:2, price:100.00, bathrooms:1, kitchen:false)
-      pr = room.pre_reservations.create!(check_in_date: 2.days.from_now.to_date, 
-                              check_out_date: 12.days.from_now.to_date, guests:1)
+      pr = room.pre_reservations.create!(checkin_expected_date: 2.days.from_now.to_date, 
+                              checkout_expected_date: 12.days.from_now.to_date, guests:1)
 
       expect(pr.total).to eq 1000.00
     end

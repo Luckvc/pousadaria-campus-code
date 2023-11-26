@@ -12,7 +12,7 @@ describe 'Customer changes reservations status' do
                       double_beds:1, single_beds:0, capacity:2, 
                       price:100.00, bathrooms:1, kitchen:false)
     customer = Customer.create!(name:'Roberto', cpf:'123', email:'roberto@email.com', password:'123456')
-    res = room.reservations.create!(check_in_date: 10.days.from_now, check_out_date: 15.days.from_now,
+    res = room.reservations.create!(checkin_expected_date: 10.days.from_now, checkout_expected_date: 15.days.from_now,
                               guests:2, customer:customer)
 
     login_as(customer, scope: :customer)
@@ -36,7 +36,7 @@ describe 'Customer changes reservations status' do
                       double_beds:1, single_beds:0, capacity:2, 
                       price:100.00, bathrooms:1, kitchen:false)
     customer = Customer.create!(name:'Roberto', cpf:'123', email:'roberto@email.com', password:'123456')
-    res = room.reservations.create!(check_in_date: 5.days.from_now, check_out_date: 12.days.from_now,
+    res = room.reservations.create!(checkin_expected_date: 5.days.from_now, checkout_expected_date: 12.days.from_now,
                               guests:2, customer:customer)
 
     login_as(customer, scope: :customer)

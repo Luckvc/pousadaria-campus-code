@@ -4,6 +4,6 @@ pt-BR:
       pre_reservation: 'Pré-reserva'
     attributes:
       pre_reservation:
-        check_in_date: "Data de Check-in"
-        check_out_date: "Data de Check-out"
+        checkin_expected_date: "Data de Check-in"
+        checkout_expected_date: "Data de Check-out"
         guests: "Hóspedes"

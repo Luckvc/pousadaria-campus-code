@@ -12,8 +12,8 @@ RSpec.describe Reservation, type: :model do
                         double_beds:1, single_beds:0, capacity:2, price:100.00, bathrooms:1,
                         kitchen:false)  
       customer = Customer.create!(name:'nome', cpf:'123', email:'email@email.com', password:'123123')
-      reservation = customer.reservations.build(check_in_date:10.days.from_now.to_date,
-                                  check_out_date:20.days.from_now.to_date, guests: 2, room:room)
+      reservation = customer.reservations.build(checkin_expected_date:10.days.from_now.to_date,
+                                  checkout_expected_date:20.days.from_now.to_date, guests: 2, room:room)
 
       expect(reservation.valid?).to be true
     end
@@ -29,8 +29,8 @@ RSpec.describe Reservation, type: :model do
                         double_beds:1, single_beds:0, capacity:2, price:100.00, bathrooms:1,
                         kitchen:false)  
       customer = Customer.create!(name:'nome', cpf:'123', email:'email@email.com', password:'123123')
-      reservation = customer.reservations.build(check_in_date:10.days.from_now.to_date,
-                                  check_out_date:20.days.from_now.to_date, guests: 2, room:room)
+      reservation = customer.reservations.build(checkin_expected_date:10.days.from_now.to_date,
+                                  checkout_expected_date:20.days.from_now.to_date, guests: 2, room:room)
 
       reservation.save!
 
@@ -47,10 +47,10 @@ RSpec.describe Reservation, type: :model do
                         double_beds:1, single_beds:0, capacity:2, price:100.00, bathrooms:1,
                         kitchen:false)  
       customer = Customer.create!(name:'nome', cpf:'123', email:'email@email.com', password:'123123')
-      reservation1 = customer.reservations.create!(check_in_date:10.days.from_now.to_date,
-                                  check_out_date:20.days.from_now.to_date, guests: 2, room:room)
-      reservation2 = customer.reservations.build(check_in_date:25.days.from_now.to_date,
-                                  check_out_date:35.days.from_now.to_date, guests: 2, room:room)
+      reservation1 = customer.reservations.create!(checkin_expected_date:10.days.from_now.to_date,
+                                  checkout_expected_date:20.days.from_now.to_date, guests: 2, room:room)
+      reservation2 = customer.reservations.build(checkin_expected_date:25.days.from_now.to_date,
+                                  checkout_expected_date:35.days.from_now.to_date, guests: 2, room:room)
 
       reservation2.save!
 

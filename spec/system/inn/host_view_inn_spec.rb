@@ -36,15 +36,16 @@ describe 'Host view its own inn' do
   end
   it 'if it is not logged in as host' do
     #Arrange
-    host = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: false)
+    customer = Customer.create!(name: 'Lucas', cpf:'222', email:'test@email.com', password:'password')
     
     #Act
-    login_as(host, scope: :user)
+    login_as(customer, scope: :customer)
     visit root_path
     visit my_inn_path
     #Assert
-    expect(current_path).to eq root_path
-    expect(page).to have_content 'Para cadastrar pousadas por favor crie uma conta como dono de pousada.'
+    expect(current_path).to eq new_user_session_path
+    expect(page).to have_content 'Para continuar, faça login ou registre-se.'
+    expect(page).to have_content 'Dono de Pousada'
   end
   it 'with no inn registered' do
     #Arrange

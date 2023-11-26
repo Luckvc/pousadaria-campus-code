@@ -20,12 +20,12 @@
     <h3>Fazer Reserva</h3>
     <%= form_with model:@pre_reservation, url: room_pre_reservations_path do |form| %>
       <div>
-        <%= form.label :check_in_date %>
-        <%= form.date_field :check_in_date %>
+        <%= form.label :checkin_expected_date %>
+        <%= form.date_field :checkin_expected_date %>
       </div>
       <div>
-        <%= form.label :check_out_date %>
-        <%= form.date_field :check_out_date %>
+        <%= form.label :checkout_expected_date %>
+        <%= form.date_field :checkout_expected_date %>
       </div>
       <div>
         <%= form.label :guests %>

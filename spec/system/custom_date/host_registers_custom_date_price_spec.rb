@@ -1,13 +1,6 @@
 require 'rails_helper'
 
 describe 'host adds custom date price' do
-  it 'and it is authenticated' do
-    #Arrange
-    #Act
-    visit my_inn_path
-    #Assert
-    expect(current_path).to eq new_user_session_path
-  end
   it 'and sees custom date page' do
     #Arrange
     host = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)
@@ -142,6 +135,13 @@ describe 'host adds custom date price' do
     #Assert
     expect(page).to have_content 'Preço Sazonal não adicionado'
     expect(page).to have_content "Data Fim deve ser maior que #{2.days.from_now.to_date}"
+  end
+  it 'and it is authenticated' do
+    #Arrange
+    #Act
+    visit my_inn_path
+    #Assert
+    expect(current_path).to eq new_user_session_path
   end
   
 end

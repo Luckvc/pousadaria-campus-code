@@ -8,9 +8,9 @@
   <dt>Hóspedes: </dt>
   <dd><%=  @reservation.guests %></dd>
   <dt>Check-in: </dt>
-  <dd><%= l(@reservation.check_in_date.to_date) %> - <%= @reservation.room.inn.check_in_time %></dd>
+  <dd><%= l(@reservation.checkin_expected_date.to_date) %> - <%= @reservation.room.inn.check_in_time %></dd>
   <dt>Check-out: </dt>
-  <dd><%= l(@reservation.check_out_date.to_date) %> - <%= @reservation.room.inn.check_out_time %></dd>
+  <dd><%= l(@reservation.checkout_expected_date.to_date) %> - <%= @reservation.room.inn.check_out_time %></dd>
   <dt>Total: </dt>
   <dd><%= number_to_currency(@reservation.total) %></dd>
   <dt>Status da Reserva:</dt>

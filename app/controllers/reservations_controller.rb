@@ -27,7 +27,8 @@ class ReservationsController < ApplicationController
 
   def cancelled
     if (@reservation.check_in_date - Date.today).to_i < 7
-      return redirect_to @reservation, notice: 'Reservas não podem ser canceladas com menos de 7 dias do check-in'
+      return redirect_to @reservation, notice: 'Reservas não podem ser canceladas com menos de 7 
+        dias do check-in'
     end
     @reservation.cancelled!
     redirect_to @reservation
@@ -35,7 +36,8 @@ class ReservationsController < ApplicationController
 
   def admin_cancelled
     if (Date.today - @reservation.check_in_date).to_i < 2
-      return redirect_to admin_reservation_path(@reservation), notice: 'Reservas só podem ser canceladas pelo dono da pousada após 2 dias de atraso no check-in'
+      return redirect_to admin_reservation_path(@reservation), notice: 'Reservas só podem ser 
+        canceladas pelo dono da pousada após 2 dias de atraso no check-in'
     end
     @reservation.cancelled!
     redirect_to admin_reservation_path(@reservation)
@@ -46,6 +48,12 @@ class ReservationsController < ApplicationController
     @reservations = Reservation.joins("INNER JOIN rooms ON rooms.id = reservations.room_id").
     where("inn_id = ?", host)
   end
+  
+  def ongoing
+    host = current_user.id
+    @reservations = Reservation.ongoing.joins("INNER JOIN rooms ON rooms.id = reservations.room_id").
+    where("inn_id = ?", host)
+  end
 
   def admin; end
   
@@ -53,7 +61,7 @@ class ReservationsController < ApplicationController
     if (Date.today - @reservation.check_in_date).to_i < 0
       return redirect_to admin_reservation_path(@reservation), notice: 'É cedo demais para fazer check-in'
     end
-    @reservation.occurring!
+    @reservation.ongoing!
     @reservation.checked_in_datetime = DateTime.now
     @reservation.save!
     redirect_to admin_reservation_path(@reservation)

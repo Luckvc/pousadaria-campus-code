@@ -1,0 +1,17 @@
+<h1>Reservas em andamento</h1>
+
+<% @reservations.each do |r| %>
+  <div>
+    <dt>Código:</dt>
+  <%= link_to admin_reservation_path(r) do %>
+    <dd><%= r.code %></dd>
+  <% end %>
+    <dt>Quarto: </dt>
+    <dd><%= r.room.number %></dd>
+    <dt>Check-in: </dt>
+    <dd><%= r.checked_in_datetime %></dd>
+    <dt>Check-out: </dt>
+    <dd><%= I18n.l(r.check_out_date) %></dd>
+    <br>
+  </div>
+<% end %>

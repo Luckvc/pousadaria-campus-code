@@ -18,6 +18,7 @@
         <% if current_user.is_a?(User) %>
           <%= link_to 'Minha Pousada', my_inn_path %> | 
           <%= link_to 'Reservas', inn_reservations_path %> | 
+          <%= link_to 'Estadias Ativas', ongoing_reservations_path %>
         <% end %>
         <% if current_customer.is_a?(Customer) %>
           <%= link_to 'Minhas Reservas', reservations_path %>

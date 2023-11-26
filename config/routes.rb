@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   resources :reservations, only: [:index, :show] do
     collection do
       get 'inn', to: 'reservations#inn_reservations'
+      get 'ongoing'
     end
     member do
       post 'cancelled'

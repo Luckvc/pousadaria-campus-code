@@ -1,6 +1,6 @@
 pt-BR:
   confirmed: Confirmada
-  occurring: Em andamento
+  ongoing: Em andamento
   completed: Finalizada
   cancelled: Cancelada
   activerecord:

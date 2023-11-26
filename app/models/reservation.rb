@@ -3,7 +3,7 @@ class Reservation < ApplicationRecord
   belongs_to :customer
   before_create :generate_code
   validates :check_in_date, :check_out_date, :guests, presence: true
-  enum status: { confirmed: 2, occurring:5, completed:7, cancelled:9}
+  enum status: { confirmed: 2, ongoing:5, completed:7, cancelled:9}
 
   private
 

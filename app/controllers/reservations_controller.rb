@@ -29,14 +29,13 @@ class ReservationsController < ApplicationController
     if (@reservation.check_in_date - Date.today).to_i < 7
       return redirect_to @reservation, notice: 'Reservas não podem ser canceladas com menos de 7 dias do check-in'
     end
-    
-    @reservation.cancelled! 
+    @reservation.cancelled!
     redirect_to @reservation
   end
 
   def admin_cancelled
-    @reservation.cancelled! 
-    redirect_to @reservation
+    @reservation.cancelled!
+    redirect_to admin_reservation_path(@reservation)
   end
   
   def inn_reservations
@@ -64,7 +63,7 @@ class ReservationsController < ApplicationController
   end
   def set_reservation_and_check_user
     @reservation = Reservation.find(params[:id])
-    if @reservation.room.inn.user != current_user
+    if @reservation.room.inn.user.id != current_user.id
       return redirect_to root_path, alert: 'Você não possui acesso a esta reserva'
     end
   end

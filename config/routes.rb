@@ -32,8 +32,10 @@ Rails.application.routes.draw do
     end
     member do
       post 'cancelled'
+      post 'admin_cancelled'
+      post 'check_in'
       get 'admin'
-    end
+    end 
   end
   resources :custom_dates, only: [:index, :show]
   resources :address

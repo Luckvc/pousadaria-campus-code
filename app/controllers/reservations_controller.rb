@@ -1,11 +1,11 @@
 class ReservationsController < ApplicationController
   before_action :authenticate_customer!, only: [:create]
   before_action :set_reservation_and_check_customer, only: [:show, :cancelled]
-  before_action :set_reservation_and_check_user, only: [:admin]
+  before_action :set_reservation_and_check_user, only: [:admin, :admin_cancelled, :check_in]
 
   def create
     @customer = current_customer
-    reserv_params = params.require(:reservation).permit(:checkin_expected_date, :checkout_expected_date, :guests, :total)
+    reserv_params = params.require(:reservation).permit(:check_in_date, :check_out_date, :guests, :total)
     @reservation = @customer.reservations.build(reserv_params)
     
     @room = Room.find(params[:room_id])
@@ -26,7 +26,7 @@ class ReservationsController < ApplicationController
   end
 
   def cancelled
-    if (@reservation.checkin_expected_date.to_date - Date.today).to_i < 7
+    if (@reservation.check_in_date - Date.today).to_i < 7
       return redirect_to @reservation, notice: 'Reservas não podem ser canceladas com menos de 7 dias do check-in'
     end
     
@@ -34,6 +34,11 @@ class ReservationsController < ApplicationController
     redirect_to @reservation
   end
 
+  def admin_cancelled
+    @reservation.cancelled! 
+    redirect_to @reservation
+  end
+  
   def inn_reservations
     host = current_user.id
     @reservations = Reservation.joins("INNER JOIN rooms ON rooms.id = reservations.room_id").
@@ -41,6 +46,13 @@ class ReservationsController < ApplicationController
   end
 
   def admin; end
+  
+  def check_in
+    @reservation.occurring!
+    @reservation.checked_in_datetime = DateTime.now
+    @reservation.save!
+    redirect_to admin_reservation_path(@reservation)
+  end
 
   private 
 

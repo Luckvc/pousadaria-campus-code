@@ -36,8 +36,8 @@ describe 'Guest selects room' do
                       kitchen:false)
 
     visit new_room_pre_reservation_path(room)
-    fill_in 'Data de Check-in', with: 2.days.from_now.to_date
-    fill_in 'Data de Check-out', with: 5.days.from_now.to_date
+    fill_in 'Data de Check-in', with: 2.days.from_now
+    fill_in 'Data de Check-out', with: 5.days.from_now
     fill_in 'Hóspedes', with: '2'
     click_on 'Checar Disponibilidade'
 
@@ -61,8 +61,8 @@ describe 'Guest selects room' do
                       double_beds:1, single_beds:0, capacity:2, price:100.00, bathrooms:1,
                       kitchen:false)  
     customer = Customer.create!(name:'nome', cpf:'123', email:'email@email.com', password:'123123')
-    customer.reservations.create!(checkin_expected_date:10.days.from_now,
-                                checkout_expected_date:20.days.from_now, guests: 2, room:room)
+    customer.reservations.create!(check_in_date:10.days.from_now,
+                                check_out_date:20.days.from_now, guests: 2, room:room)
 
 
     visit new_room_pre_reservation_path(room)

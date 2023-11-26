@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_26_173457) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_26_185803) do
   create_table "addresses", force: :cascade do |t|
     t.string "street"
     t.string "number"
@@ -70,8 +70,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_26_173457) do
   end
 
   create_table "pre_reservations", force: :cascade do |t|
-    t.datetime "checkin_expected_date"
-    t.datetime "checkout_expected_date"
+    t.date "check_in_date"
+    t.date "check_out_date"
     t.integer "guests"
     t.integer "room_id", null: false
     t.datetime "created_at", null: false
@@ -81,8 +81,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_26_173457) do
   end
 
   create_table "reservations", force: :cascade do |t|
-    t.datetime "checkin_expected_date"
-    t.datetime "checkout_expected_date"
+    t.date "check_in_date"
+    t.date "check_out_date"
     t.integer "guests"
     t.integer "total"
     t.integer "room_id", null: false
@@ -91,6 +91,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_26_173457) do
     t.integer "customer_id", null: false
     t.string "code"
     t.integer "status", default: 2
+    t.datetime "checked_in_datetime"
+    t.datetime "checked_out_datetime"
     t.index ["customer_id"], name: "index_reservations_on_customer_id"
     t.index ["room_id"], name: "index_reservations_on_room_id"
   end

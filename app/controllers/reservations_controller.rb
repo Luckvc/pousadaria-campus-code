@@ -33,6 +33,12 @@ class ReservationsController < ApplicationController
     redirect_to @reservation
   end
 
+  def inn_reservations
+    host = current_user.id
+    @reservations = Reservation.joins("INNER JOIN rooms ON rooms.id = reservations.room_id").
+    where("inn_id = ?", host)
+  end
+
   private 
 
   def set_reservation_and_check_user

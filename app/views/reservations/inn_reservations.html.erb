@@ -1,0 +1,15 @@
+<h1>Reservas</h1>
+
+<% @reservations.each do |r| %>
+  <div>
+    <dt>Código:</dt>
+  <%= link_to reservation_path(r) do %>
+    <dd><%= r.code %></dd>
+  <% end %>
+    <dt>Quarto: </dt>
+    <dd><%= r.room.number %></dd>
+    <dt>Check-in: </dt>
+    <dd><%= l(r.check_in_date.to_date) %></dd>
+    <br>
+  </div>
+<% end %>

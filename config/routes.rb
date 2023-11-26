@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'home#index'
   get 'my_inn', to: 'inns#my_inn'
+  get 'inn_reservations', to: 'reservations#inn_reservations'
 
   resources :inns, only: [:show, :index, :new, :create, :edit, :update] do
     resources :rooms, only: [:index, :new, :create]

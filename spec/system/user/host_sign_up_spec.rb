@@ -17,6 +17,8 @@ describe 'User can create a host account' do
     expect(User.last.host).to eq true
     expect(User.last.name).to eq 'João'
     expect(page).to have_content 'Você realizou seu registro com sucesso'
+    expect(page).to have_content 'Minha Pousada'
+    expect(page).not_to have_content 'Minhas Reservas'
     expect(page).to have_content 'Sair'
     expect(current_path).to eq root_path 
   end

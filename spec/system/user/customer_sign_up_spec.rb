@@ -18,6 +18,8 @@ describe 'Customer can create an account' do
     expect(Customer.last.name).to eq 'João'
     expect(Customer.last.cpf).to eq '454288'
     expect(page).to have_content 'Você realizou seu registro com sucesso'
+    expect(page).not_to have_content 'Minha Pousada'
+    expect(page).to have_content 'Minhas Reservas'
     expect(page).to have_content 'Sair'
     expect(current_path).to eq root_path 
   end

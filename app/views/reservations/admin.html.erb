@@ -15,8 +15,10 @@
   <dd><%= number_to_currency(@reservation.total) %></dd>
   <dt>Status da Reserva:</dt>
   <dd><%= I18n.translate(@reservation.status) %></dd>
-  <dt>Check-in registrado:</dt>
-  <dd><%= @reservation.checked_in_datetime %></dd>
+  <% unless @reservation.checked_in_datetime.nil? %>
+    <dt>Check-in registrado:</dt>
+    <dd><%= @reservation.checked_in_datetime %></dd>
+  <% end %>
 </dl>
 
 <%= button_to 'Realizar Check-in', check_in_reservation_path(@reservation) %>

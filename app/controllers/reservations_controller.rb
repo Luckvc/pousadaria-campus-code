@@ -50,6 +50,9 @@ class ReservationsController < ApplicationController
   def admin; end
   
   def check_in
+    if (Date.today - @reservation.check_in_date).to_i < 0
+      return redirect_to admin_reservation_path(@reservation), notice: 'É cedo demais para fazer check-in'
+    end
     @reservation.occurring!
     @reservation.checked_in_datetime = DateTime.now
     @reservation.save!

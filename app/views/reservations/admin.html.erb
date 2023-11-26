@@ -1,0 +1,20 @@
+<h1> Reserva <%= @reservation.code %> </h1>
+
+<dl>
+  <%= link_to room_path(@reservation.room) do %>
+    <dt>Quarto: </dt>
+    <dd><%= @reservation.room.number %></dd>
+  <% end %>
+  <dt>Hóspedes: </dt>
+  <dd><%=  @reservation.guests %></dd>
+  <dt>Check-in: </dt>
+  <dd><%= l(@reservation.check_in_date.to_date) %> - <%= @reservation.room.inn.check_in_time %></dd>
+  <dt>Check-out: </dt>
+  <dd><%= l(@reservation.check_out_date.to_date) %> - <%= @reservation.room.inn.check_out_time %></dd>
+  <dt>Total: </dt>
+  <dd><%= number_to_currency(@reservation.total) %></dd>
+  <dt>Status da Reserva:</dt>
+  <dd><%= I18n.translate(@reservation.status) %></dd>
+</dl>
+
+<%= button_to 'Cancelar Reserva', cancelled_reservation_path(@reservation) %>

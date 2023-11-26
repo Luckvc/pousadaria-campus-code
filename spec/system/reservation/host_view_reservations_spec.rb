@@ -51,7 +51,7 @@ describe 'Host views reservation' do
     login_as(host, scope: :user)
     visit root_path
     click_on 'Reservas'
-    click_on "Código: #{res_one.code}"
+    click_on "#{res_one.code}"
 
     expect(page).to have_content "Reserva #{res_one.code}"
     expect(page).to have_link "Quarto: #{res_one.room.number}"

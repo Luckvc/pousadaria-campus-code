@@ -1,6 +1,7 @@
 class ReservationsController < ApplicationController
   before_action :authenticate_customer!, only: [:create]
-  before_action :set_reservation_and_check_user, only: [:show, :cancelled]
+  before_action :set_reservation_and_check_customer, only: [:show, :cancelled]
+  before_action :set_reservation_and_check_user, only: [:admin]
 
   def create
     @customer = current_customer
@@ -39,11 +40,19 @@ class ReservationsController < ApplicationController
     where("inn_id = ?", host)
   end
 
+  def admin; end
+
   private 
 
-  def set_reservation_and_check_user
+  def set_reservation_and_check_customer
     @reservation = Reservation.find(params[:id])
     if @reservation.customer != current_customer
+      return redirect_to root_path, alert: 'Você não possui acesso a esta reserva'
+    end
+  end
+  def set_reservation_and_check_user
+    @reservation = Reservation.find(params[:id])
+    if @reservation.room.inn.user != current_user
       return redirect_to root_path, alert: 'Você não possui acesso a esta reserva'
     end
   end

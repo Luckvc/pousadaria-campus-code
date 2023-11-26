@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'home#index'
   get 'my_inn', to: 'inns#my_inn'
-  get 'inn_reservations', to: 'reservations#inn_reservations'
 
   resources :inns, only: [:show, :index, :new, :create, :edit, :update] do
     resources :rooms, only: [:index, :new, :create]
@@ -28,8 +27,12 @@ Rails.application.routes.draw do
     get 'confirmation'
   end
   resources :reservations, only: [:index, :show] do
+    collection do
+      get 'inn', to: 'reservations#inn_reservations'
+    end
     member do
       post 'cancelled'
+      get 'admin'
     end
   end
   resources :custom_dates, only: [:index, :show]

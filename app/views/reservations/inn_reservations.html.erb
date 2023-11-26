@@ -3,7 +3,7 @@
 <% @reservations.each do |r| %>
   <div>
     <dt>Código:</dt>
-  <%= link_to reservation_path(r) do %>
+  <%= link_to admin_reservation_path(r) do %>
     <dd><%= r.code %></dd>
   <% end %>
     <dt>Quarto: </dt>

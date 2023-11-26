@@ -34,6 +34,9 @@ class ReservationsController < ApplicationController
   end
 
   def admin_cancelled
+    if (Date.today - @reservation.check_in_date).to_i < 2
+      return redirect_to admin_reservation_path(@reservation), notice: 'Reservas só podem ser canceladas pelo dono da pousada após 2 dias de atraso no check-in'
+    end
     @reservation.cancelled!
     redirect_to admin_reservation_path(@reservation)
   end

@@ -90,7 +90,7 @@ describe 'Host views reservation' do
     room = inn.rooms.create!(number:'Elefante', description:'Ótimo quarto com uma cama de casal', 
       double_beds:1, single_beds:0, capacity:2, price:100.00, bathrooms:1)
     customer = Customer.create!(name:'Roberto', cpf:'123', email:'roberto@email.com', password:'123456')
-    res_one = room.reservations.create!(check_in_date: 2.days.from_now, check_out_date: 12.days.from_now,
+    res_one = room.reservations.create!(check_in_date: 2.days.ago, check_out_date: 12.days.from_now,
       guests:2, customer:customer)
 
     login_as(host, scope: :user)

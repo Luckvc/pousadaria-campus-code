@@ -1,0 +1,59 @@
+0000000000000000000000000000000000000000 f17e824a97dac65024f112610d5907c265671799 Lucas Vasques <lucasvc1996@gmail.com> 1698895294 -0300	commit (initial): first commit, project setup
+f17e824a97dac65024f112610d5907c265671799 86513d8b50b9f426940ba0ef2dc4984be76a4065 Lucas Vasques <lucasvc1996@gmail.com> 1698945386 -0300	commit: rspec setup
+86513d8b50b9f426940ba0ef2dc4984be76a4065 86513d8b50b9f426940ba0ef2dc4984be76a4065 Lucas Vasques <lucasvc1996@gmail.com> 1698952872 -0300	Branch: renamed refs/heads/main to refs/heads/main
+86513d8b50b9f426940ba0ef2dc4984be76a4065 96eaf73abd0e2a3974732aaf9911bcaa868b6125 Lucas Vasques <lucasvc1996@gmail.com> 1698952895 -0300	commit: feat: login system
+96eaf73abd0e2a3974732aaf9911bcaa868b6125 4743dd8b1a2f882088ea507011730e0dc9d766f3 Lucas Vasques <lucasvc1996@gmail.com> 1699040699 -0300	commit: feat: User can view its own inn
+4743dd8b1a2f882088ea507011730e0dc9d766f3 093c7f24d5bbb3922235f5ad857952d359c08f3b Lucas Vasques <lucasvc1996@gmail.com> 1699048156 -0300	commit: feat: inn page protected
+093c7f24d5bbb3922235f5ad857952d359c08f3b 6f453249b8c8c6a84874c9b137a265079a4bee8a Lucas Vasques <lucasvc1996@gmail.com> 1699050094 -0300	commit: fix: login macro on test
+6f453249b8c8c6a84874c9b137a265079a4bee8a f027d83276bb2dc99f7ceb74409a4d99e8103870 Lucas Vasques <lucasvc1996@gmail.com> 1699112490 -0300	commit: feat: inn register page
+f027d83276bb2dc99f7ceb74409a4d99e8103870 aac8930250bd9ce7558b768c778581da15eca1f2 Lucas Vasques <lucasvc1996@gmail.com> 1699115347 -0300	commit: fix: nested inn in user and register page
+aac8930250bd9ce7558b768c778581da15eca1f2 f20e74a76de918f6149150de43fbac104026575d Lucas Vasques <lucasvc1996@gmail.com> 1699125128 -0300	commit: feat: inn register page fully functional
+f20e74a76de918f6149150de43fbac104026575d 1e2f15129240b45e9a35cbd6ccbfb2b1ab219d2c Lucas Vasques <lucasvc1996@gmail.com> 1699146624 -0300	commit: feat: host sees registered rooms
+1e2f15129240b45e9a35cbd6ccbfb2b1ab219d2c f29f9144e7076f9b4bdf511d32b66fbce57fa1c1 Lucas Vasques <lucasvc1996@gmail.com> 1699147909 -0300	commit: feat: price on room page
+f29f9144e7076f9b4bdf511d32b66fbce57fa1c1 a723b5fb0c266b26e796391d979fc4596d32548e Lucas Vasques <lucasvc1996@gmail.com> 1699211839 -0300	commit: feat: edit inn and room
+a723b5fb0c266b26e796391d979fc4596d32548e 26f14b9986b9291f319216fb15bee8150017afce Lucas Vasques <lucasvc1996@gmail.com> 1699280649 -0300	commit: feat: User sees custom price date ranges
+26f14b9986b9291f319216fb15bee8150017afce bf77cd356d166fa76b20a6c89b993e8c449ffc6e Lucas Vasques <lucasvc1996@gmail.com> 1699311416 -0300	commit: fix: routing and controller pluralization
+bf77cd356d166fa76b20a6c89b993e8c449ffc6e 6461b6e55ac765f9bdb62ced09cf24524b58fa22 Lucas Vasques <lucasvc1996@gmail.com> 1699313928 -0300	commit: fix: code readability
+6461b6e55ac765f9bdb62ced09cf24524b58fa22 83b216efc89524e7f21f4626b6e10b55543a8e26 Lucas Vasques <lucasvc1996@gmail.com> 1699315482 -0300	commit: fix: login_as on tests
+83b216efc89524e7f21f4626b6e10b55543a8e26 6de91649a54bc44f5ebc3a9a3181893e4fb77797 Lucas Vasques <lucasvc1996@gmail.com> 1699324120 -0300	commit: feat: custom date register page
+6de91649a54bc44f5ebc3a9a3181893e4fb77797 7661e3fd981c281250a2febd4013213c380e9c87 Lucas Vasques <lucasvc1996@gmail.com> 1699468406 -0300	commit: feat: seazonal price overlap verification
+7661e3fd981c281250a2febd4013213c380e9c87 d77da9711602c5a1a56104b522c2459f7d771f29 Lucas Vasques <lucasvc1996@gmail.com> 1699476465 -0300	commit: feat: unitary test of inn
+d77da9711602c5a1a56104b522c2459f7d771f29 f3436d41999b283f5f9fc86456171cb9bdd9ca07 Lucas Vasques <lucasvc1996@gmail.com> 1699482142 -0300	commit: feat: home shows inns with highlighs column
+f3436d41999b283f5f9fc86456171cb9bdd9ca07 75939619da2730b02b871798323cb36a558a243f Lucas Vasques <lucasvc1996@gmail.com> 1699840144 -0300	commit: feat: search bar
+75939619da2730b02b871798323cb36a558a243f 1d0789acd24d8a3fb177050954ee6479321d0290 Lucas Vasques <lucasvc1996@gmail.com> 1699841327 -0300	commit: feat: search by name
+1d0789acd24d8a3fb177050954ee6479321d0290 d766e7effd1adceae28aa26b7ea75323418c4cca Lucas Vasques <lucasvc1996@gmail.com> 1699845828 -0300	commit: feat: cities page
+d766e7effd1adceae28aa26b7ea75323418c4cca cf84e0b1e73dd7a060de44d9c112fa0d7e7cfa01 Lucas Vasques <lucasvc1996@gmail.com> 1699974184 -0300	commit: feat: full search
+cf84e0b1e73dd7a060de44d9c112fa0d7e7cfa01 fc4400e102644f98390687d16a308b6d9d82a4d5 Lucas Vasques <lucasvc1996@gmail.com> 1699974328 -0300	commit: fix: spec naming
+fc4400e102644f98390687d16a308b6d9d82a4d5 9f18e8952f1e68045c3c8f64e32867aa2edca899 Lucas Vasques <lucasvc1996@gmail.com> 1699982589 -0300	commit: feat: guest view inn details
+9f18e8952f1e68045c3c8f64e32867aa2edca899 ea64a40fa417be3565ecad787d013cf050e86d58 Lucas Vasques <lucasvc1996@gmail.com> 1699984436 -0300	commit: feat: guest view inn details from search
+ea64a40fa417be3565ecad787d013cf050e86d58 e650291ca259970b21af6289d7cd96b7a61bb2c2 Lucas Vasques <lucasvc1996@gmail.com> 1699985601 -0300	commit: feat: guest view room details
+e650291ca259970b21af6289d7cd96b7a61bb2c2 0e439bae5ed5596872d2ccd990446700507a2714 Lucas Vasques <lucasvc1996@gmail.com> 1699985710 -0300	commit: feat: inn shows pet acceptance
+0e439bae5ed5596872d2ccd990446700507a2714 f1f5cf24aa3957194e0c8777ddf592a3a9cfa24a Lucas Vasques <lucasvc1996@gmail.com> 1699986555 -0300	commit: feat: active column inn and room
+f1f5cf24aa3957194e0c8777ddf592a3a9cfa24a ffcff0f03646846fdc154646fe3c8b1a415256cc Lucas Vasques <lucasvc1996@gmail.com> 1699996519 -0300	commit: fix: all edit validation
+ffcff0f03646846fdc154646fe3c8b1a415256cc 23366b828b4f371b637a57c02f303649154a6f83 Lucas Vasques <lucasvc1996@gmail.com> 1700072578 -0300	commit: fix: search spec naming
+23366b828b4f371b637a57c02f303649154a6f83 f7eb813006ad0ff1e2d66b2d39a8b16422236686 Lucas Vasques <lucasvc1996@gmail.com> 1700072988 -0300	commit: fix: indexes only active inns
+f7eb813006ad0ff1e2d66b2d39a8b16422236686 85f8e898d94a01e529fa9c77aa2ba0319b6f004b Lucas Vasques <lucasvc1996@gmail.com> 1700083957 -0300	commit: fix: devise secret key config
+85f8e898d94a01e529fa9c77aa2ba0319b6f004b 7faf88607e0c8c29187575b45516303943bdb145 Lucas Vasques <lucasvc1996@gmail.com> 1700084697 -0300	commit: feat: new user customer
+7faf88607e0c8c29187575b45516303943bdb145 4f07b1a0a39fa4b74e40bd3a35dc6b7082d8c0b9 Lucas Vasques <lucasvc1996@gmail.com> 1700094190 -0300	commit: fix: default value for host
+4f07b1a0a39fa4b74e40bd3a35dc6b7082d8c0b9 82b1b34b6818befb0039ffba3e75abe847a6b15e Lucas Vasques <lucasvc1996@gmail.com> 1700097100 -0300	commit: refactor: split host and customer
+82b1b34b6818befb0039ffba3e75abe847a6b15e 84a0d745a2531e49bc0d396a7e5a444c589985eb Lucas Vasques <lucasvc1996@gmail.com> 1700411567 -0300	commit: fix: inn index order
+84a0d745a2531e49bc0d396a7e5a444c589985eb c9abbc7491a0f3c53596398a623488101a582d64 Lucas Vasques <lucasvc1996@gmail.com> 1700415633 -0300	commit: feat: reservation availibilty page
+c9abbc7491a0f3c53596398a623488101a582d64 1826be1cd0e702eecd3848df73c2b8962ef82fd3 Lucas Vasques <lucasvc1996@gmail.com> 1700430186 -0300	commit: feat: reservation confirmation page
+1826be1cd0e702eecd3848df73c2b8962ef82fd3 ba5dfb1699ab2fa3bf58712a1a8648f0773ddfca Lucas Vasques <lucasvc1996@gmail.com> 1700433185 -0300	commit: feat: total price
+ba5dfb1699ab2fa3bf58712a1a8648f0773ddfca 853cdb94dd1adba569971e2e3d04680cae8ae0d8 Lucas Vasques <lucasvc1996@gmail.com> 1700435239 -0300	commit: fix: typo
+853cdb94dd1adba569971e2e3d04680cae8ae0d8 d34f77380317dfced4f0df7295913681f37e3727 Lucas Vasques <lucasvc1996@gmail.com> 1700435520 -0300	commit (amend): fix: typo
+d34f77380317dfced4f0df7295913681f37e3727 bdb99335253acf59a43638b45ad6708e3a918f80 Lucas Vasques <lucasvc1996@gmail.com> 1700453573 -0300	commit: feat: reservation
+bdb99335253acf59a43638b45ad6708e3a918f80 b5a977466138435228f221ded8341be13e7e89c9 Lucas Vasques <lucasvc1996@gmail.com> 1700455006 -0300	commit: feat: reservation index and show
+b5a977466138435228f221ded8341be13e7e89c9 97badf0574919165915ebb900b119c7cbd9a0792 Lucas Vasques <lucasvc1996@gmail.com> 1700455073 -0300	commit: feat: global root link
+97badf0574919165915ebb900b119c7cbd9a0792 b1682c6ba59b946d10d910fb7acb386d37215acd Lucas Vasques <lucasvc1996@gmail.com> 1700457510 -0300	commit: fix: naming and unused files
+b1682c6ba59b946d10d910fb7acb386d37215acd 9b661625b803941ebc43f999657e12638afc30e8 Lucas Vasques <lucasvc1996@gmail.com> 1700502528 -0300	commit: feat: added missing attributes for inn
+9b661625b803941ebc43f999657e12638afc30e8 6c8f0bae46e3d342d0777644e984b4d0b1a9c739 Lucas Vasques <lucasvc1996@gmail.com> 1700504726 -0300	commit: fix: price attribute
+6c8f0bae46e3d342d0777644e984b4d0b1a9c739 cc1383daf225d3cb8cd65b9ec1b14fe91b67ca3c Lucas Vasques <lucasvc1996@gmail.com> 1700506790 -0300	commit: feat: added missing attributes for inn
+cc1383daf225d3cb8cd65b9ec1b14fe91b67ca3c 922f586f80d209a552e991da806b7fd15e5bcf1c Lucas Vasques <lucasvc1996@gmail.com> 1700507095 -0300	commit (amend): feat: added missing attributes for inn
+922f586f80d209a552e991da806b7fd15e5bcf1c a319a4257a4f10a6071804619004070ce2384a45 Lucas Vasques <lucasvc1996@gmail.com> 1700507109 -0300	commit (amend): feat: added missing attributes for room
+a319a4257a4f10a6071804619004070ce2384a45 a532e3e82fcdb73842f5fe498fb12e60f7cf4ec8 Lucas Vasques <lucasvc1996@gmail.com> 1700510478 -0300	commit: feat: reservation availibility
+a532e3e82fcdb73842f5fe498fb12e60f7cf4ec8 eebff610060b03f27dc6c8db2df343f2615a449d Lucas Vasques <lucasvc1996@gmail.com> 1700519426 -0300	commit: feat: seasonal price correctly calculated
+eebff610060b03f27dc6c8db2df343f2615a449d 37d2544be53b1f61331640540df38be3f1c63c67 Lucas Vasques <lucasvc1996@gmail.com> 1700523685 -0300	commit: feat: unique code for reservation
+37d2544be53b1f61331640540df38be3f1c63c67 d1cf7d576789519cf9fd7f5ac217241337db6f67 Lucas Vasques <lucasvc1996@gmail.com> 1700524146 -0300	commit (amend): feat: unique code for reservation
+d1cf7d576789519cf9fd7f5ac217241337db6f67 4e233b79a3f84f88077638f88136fba444872343 Lucas Vasques <lucasvc1996@gmail.com> 1700524185 -0300	commit (amend): feat: unique code for reservation
+4e233b79a3f84f88077638f88136fba444872343 d19497e41970df10aa914556e7fc9691211b2f2e Lucas Vasques <lucasvc1996@gmail.com> 1700527175 -0300	commit: wip: reservation status

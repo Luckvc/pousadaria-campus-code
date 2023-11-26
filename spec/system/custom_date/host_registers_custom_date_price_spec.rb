@@ -53,8 +53,8 @@ describe 'host adds custom date price' do
     click_on 'Minha Pousada'
     click_on 'Quarto 101'
     click_on 'Adicionar preço sazonal'
-    fill_in 'Data Início', with: 1.days.from_now.to_date
-    fill_in 'Data Fim', with: 1.month.from_now.to_date
+    fill_in 'Data Início', with: 1.days.from_now
+    fill_in 'Data Fim', with: 1.month.from_now
     fill_in 'Diária', with: '200'
     click_on 'Cadastrar'
     #Assert
@@ -108,8 +108,8 @@ describe 'host adds custom date price' do
     click_on 'Minha Pousada'
     click_on 'Quarto 101'
     click_on 'Adicionar preço sazonal'
-    fill_in 'Data Início', with: 7.days.ago.to_date
-    fill_in 'Data Fim', with: 1.days.ago.to_date
+    fill_in 'Data Início', with: 7.days.ago
+    fill_in 'Data Fim', with: 1.days.ago
     fill_in 'Diária', with: '200'
     click_on 'Cadastrar'
     #Assert
@@ -135,8 +135,8 @@ describe 'host adds custom date price' do
     click_on 'Minha Pousada'
     click_on 'Quarto 101'
     click_on 'Adicionar preço sazonal'
-    fill_in 'Data Início', with: 2.days.from_now.to_date
-    fill_in 'Data Fim', with: 1.days.from_now.to_date
+    fill_in 'Data Início', with: 2.days.from_now
+    fill_in 'Data Fim', with: 1.days.from_now
     fill_in 'Diária', with: '200'
     click_on 'Cadastrar'
     #Assert

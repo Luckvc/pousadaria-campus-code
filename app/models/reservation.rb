@@ -1,9 +1,9 @@
 class Reservation < ApplicationRecord
   belongs_to :room
   belongs_to :customer
-  before_validation :generate_code
-  before_save :calculate_total
-  validates :check_in_date, :check_out_date, :guests, :code, presence: true
+  before_create :generate_code
+  validates :check_in_date, :check_out_date, :guests, presence: true
+  enum status: { confirmed: 2, occurring:5, completed:7, cancelled:9}
 
   private
 
@@ -31,6 +31,12 @@ class Reservation < ApplicationRecord
         end
         self.total += price
       end
+    end
+  end
+
+  def range_overlap(rangea_begin, rangea_end, rangeb_begin, rangeb_end)
+    if !(rangea_end < rangeb_begin || rangea_begin > rangeb_end)
+      self.errors.add(:check_in_date, "não disponível")
     end
   end
 

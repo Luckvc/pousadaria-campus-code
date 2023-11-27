@@ -21,5 +21,10 @@
   <% end %>
 </dl>
 
-<%= button_to 'Realizar Check-in', check_in_reservation_path(@reservation) %>
-<%= button_to 'Cancelar Reserva', admin_cancelled_reservation_path(@reservation) %>
+<% if @reservation.confirmed? %>
+  <%= button_to 'Realizar Check-in', check_in_reservation_path(@reservation) %>
+  <%= button_to 'Cancelar Reserva', admin_cancelled_reservation_path(@reservation) %> 
+<% end %>
+<% if @reservation.ongoing? %>
+  <%= link_to 'Realizar Check-out', check_out_reservation_path(@reservation) %> 
+<% end %>

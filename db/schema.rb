@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_26_185803) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_27_010412) do
   create_table "addresses", force: :cascade do |t|
     t.string "street"
     t.string "number"
@@ -93,6 +93,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_26_185803) do
     t.integer "status", default: 2
     t.datetime "checked_in_datetime"
     t.datetime "checked_out_datetime"
+    t.string "payment_method"
+    t.boolean "paid", default: false
     t.index ["customer_id"], name: "index_reservations_on_customer_id"
     t.index ["room_id"], name: "index_reservations_on_room_id"
   end

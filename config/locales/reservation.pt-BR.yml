@@ -11,3 +11,4 @@ pt-BR:
         check_in_date: "Data de Check-in"
         check_out_date: "Data de Check-out"
         guests: "Hóspedes"
+        payment_methods: "Forma de pagamento"

@@ -8,8 +8,12 @@
   <% end %>
     <dt>Quarto: </dt>
     <dd><%= r.room.number %></dd>
+    <dt>Hóspedes: </dt>
+    <dd><%= r.guests %></dd>
     <dt>Check-in: </dt>
     <dd><%= l(r.check_in_date) %></dd>
+    <dt>Check-out: </dt>
+    <dd><%= l(r.check_out_date) %></dd>
     <br>
   </div>
 <% end %>

@@ -1,0 +1,24 @@
+<h1>Check-out reserva <%= @reservation.code %></h1>
+
+<dl>
+  <%= link_to room_path(@reservation.room) do %>
+    <dt>Quarto: </dt>
+    <dd><%= @reservation.room.number %></dd>
+  <% end %>
+  <dt>Hóspedes: </dt>
+  <dd><%= @reservation.guests %></dd>
+  <dt>Check-in: </dt>
+  <dd><%= @reservation.checked_in_datetime %></dd>
+  <dt>Check-out: </dt>
+  <dd><%= l(@reservation.check_out_date) %> - <%= @reservation.room.inn.check_out_time %></dd>
+  <dt>Total a pagar: </dt>
+  <dd><%= @total %></dd>
+</dl>
+<%= form_with model: @reservation, url: check_out_confirm_reservation_path do |f| %>
+  <%= f.label :payment_method, 'Forma de pagamento' %>
+  <%= f.select :payment_method, @payment_methods %>
+  <%= f.hidden_field :paid, value: true %>
+  <%= f.submit 'Confirmar Check-out'%>
+<% end %>
+
+<%= button_to 'Cancelar Reserva', cancelled_reservation_path(@reservation) %>

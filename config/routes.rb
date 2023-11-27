@@ -35,6 +35,8 @@ Rails.application.routes.draw do
       post 'cancelled'
       post 'admin_cancelled'
       post 'check_in'
+      post 'check_out_confirm'
+      get 'check_out'
       get 'admin'
     end 
   end

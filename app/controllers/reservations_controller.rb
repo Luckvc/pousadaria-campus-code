@@ -1,7 +1,7 @@
 class ReservationsController < ApplicationController
   before_action :authenticate_customer!, only: [:create]
   before_action :set_reservation_and_check_customer, only: [:show, :cancelled]
-  before_action :set_reservation_and_check_user, only: [:admin, :admin_cancelled, :check_in]
+  before_action :set_reservation_and_check_user, only: [:admin, :admin_cancelled, :check_in, :check_out]
 
   def create
     @customer = current_customer
@@ -35,7 +35,7 @@ class ReservationsController < ApplicationController
   end
 
   def admin_cancelled
-    if (Date.today - @reservation.check_in_date).to_i < 2
+    if (Time.zone.now.to_date - @reservation.check_in_date).to_i < 2
       return redirect_to admin_reservation_path(@reservation), notice: 'Reservas só podem ser 
         canceladas pelo dono da pousada após 2 dias de atraso no check-in'
     end
@@ -58,13 +58,27 @@ class ReservationsController < ApplicationController
   def admin; end
   
   def check_in
-    if (Date.today - @reservation.check_in_date).to_i < 0
+    if (Time.zone.now.to_date - @reservation.check_in_date).to_i < 0
       return redirect_to admin_reservation_path(@reservation), notice: 'É cedo demais para fazer check-in'
     end
     @reservation.ongoing!
     @reservation.checked_in_datetime = DateTime.now
     @reservation.save!
     redirect_to admin_reservation_path(@reservation)
+  end
+
+  def check_out
+  @payment_methods = []
+  @payment_methods << 'Pix' if @reservation.room.inn.pix?
+  @payment_methods << 'Cartão de Crédito' if @reservation.room.inn.credit?
+  @payment_methods << 'Cartão de Débito' if @reservation.room.inn.debit?
+  @payment_methods << 'Dinheiro' if @reservation.room.inn.cash?
+  @check_out = Time.zone.now
+  if late_checkout?(@reservation)
+    @check_out + 1.day
+  end
+  calculate_total(@reservation)
+  @total = @reservation.total
   end
 
   private 
@@ -75,10 +89,36 @@ class ReservationsController < ApplicationController
       return redirect_to root_path, alert: 'Você não possui acesso a esta reserva'
     end
   end
+
   def set_reservation_and_check_user
     @reservation = Reservation.find(params[:id])
     if @reservation.room.inn.user.id != current_user.id
       return redirect_to root_path, alert: 'Você não possui acesso a esta reserva'
     end
+  end
+
+  def calculate_total(reservation)
+    cd_matches = []
+    total = 0
+
+    reservation.room.custom_dates.each do |cd|
+      if range_overlap(reservation.checked_in_datetime, @check_out , cd.begin, cd.end)
+        cd_matches << cd
+      end
+    end
+
+    (reservation.checked_in_datetime.to_date...@check_out.to_date).each do |day|
+      price = reservation.room.price
+      cd_matches.each do |cd|
+        (cd.begin..cd.end).each do |cd_day|
+          price = cd.price if cd_day == day
+        end
+      end
+      total += price
+    end
+  end
+  
+  def late_checkout?(reservation)
+    Time.zone.now > reservation.room.inn.check_out_time.to_time
   end
 end

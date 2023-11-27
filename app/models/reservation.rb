@@ -11,29 +11,6 @@ class Reservation < ApplicationRecord
     self.code = SecureRandom.alphanumeric(8).upcase
   end
 
-  def calculate_total
-    if self.check_in_date.present? && self.check_out_date.present?
-      cd_matches = []
-      self.total = 0
-
-      self.room.custom_dates.each do |cd|
-        if range_overlap(self.check_in_date, self.check_out_date, cd.begin, cd.end)
-          cd_matches << cd
-        end
-      end
-
-      (self.check_in_date...self.check_out_date).each do |day|
-        price = self.room.price
-        cd_matches.each do |cd|
-          (cd.begin..cd.end).each do |cd_day|
-            price = cd.price if cd_day == day
-          end
-        end
-        self.total += price
-      end
-    end
-  end
-
   def range_overlap(rangea_begin, rangea_end, rangeb_begin, rangeb_end)
     if !(rangea_end < rangeb_begin || rangea_begin > rangeb_end)
       self.errors.add(:check_in_date, "não disponível")

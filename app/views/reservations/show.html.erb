@@ -31,11 +31,15 @@
   <% if @reservation.review.nil? %>
     <%= link_to 'Fazer Avaliação', new_reservation_review_path(@reservation) %>
   <% else %>
-  <dl>
-    <dt>Nota:</dt>
-    <dd><%= @reservation.review.score %></dd>
-    <dt>Mensagem:</dt>
-    <dd><%= @reservation.review.message %></dd>
-  </dl>
+    <dl>
+      <dt>Nota:</dt>
+      <dd><%= @reservation.review.score %></dd>
+      <dt>Mensagem:</dt>
+      <dd><%= @reservation.review.message %></dd>
+    <% unless @reservation.review.answer.nil? %>
+      <dt>Resposta:</dt>
+      <dd><%= @reservation.review.answer %></dd>
+    <% end %>
+    </dl>
   <% end %>
 <% end %>

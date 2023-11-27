@@ -6,7 +6,7 @@
   <dd><%= review.score %></dd>
   <dt>Mensagem:</dt>
   <dd><%= review.message %></dd>
-  <% unless review.answer.nil? || review.answer.empty? %>
+  <% unless review.answer.nil? %>
     <dt>Resposta:</dt>
     <dd><%= review.answer %></dd>
   <% else %>

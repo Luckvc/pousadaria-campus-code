@@ -1,5 +1,4 @@
 class ReviewsController < ApplicationController
-  before_action :set_review_and_check_customer, only: [:create]
   before_action :set_review_and_check_user, only: [:answer]
 
   def new
@@ -29,7 +28,9 @@ class ReviewsController < ApplicationController
 
   def answer
     @review.answer = params[:review][:answer]
-    if @review.save && !@review.answer.empty?
+    return redirect_to reviews_path, notice: 'Resposta inválida' if @review.answer.empty?
+
+    if @review.save
       redirect_to reviews_path, notice: 'Avaliação Respondida'
     else
       redirect_to reviews_path, notice: 'Resposta inválida'

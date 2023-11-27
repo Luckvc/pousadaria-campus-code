@@ -3,6 +3,8 @@ class InnsController < ApplicationController
   before_action :set_inn, only: [:show, :edit, :update, :change_status, :deactivate, :activate]
 
   def show
+    @score = Review.joins(reservation: :room).where("inn_id = ?", @inn.id).average(:score)
+    @reviews = Review.joins(reservation: :room).where("inn_id = ?", @inn.id).last(3)
   end
 
   def new

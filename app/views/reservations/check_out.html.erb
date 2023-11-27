@@ -14,10 +14,10 @@
   <dt>Total a pagar: </dt>
   <dd><%= number_to_currency(@total) %></dd>
 </dl>
-<%= form_with model: @reservation, url: check_out_confirm_reservation_path do |f| %>
-  <%= f.label :payment_method, 'Forma de pagamento' %>
+<%= form_with model: @reservation, method: :post, url: check_out_confirm_reservation_path do |f| %>
+  <%= f.label :payment_method, 'Forma de Pagamento' %>
   <%= f.select :payment_method, @payment_methods %>
-  <%= f.hidden_field :paid, value: true %>
+  <%= f.hidden_field :total, value: @total %>
   <%= f.submit 'Confirmar Check-out'%>
 <% end %>
 

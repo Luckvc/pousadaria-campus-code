@@ -1,7 +1,7 @@
 class ReservationsController < ApplicationController
   before_action :authenticate_customer!, only: [:create]
   before_action :set_reservation_and_check_customer, only: [:show, :cancelled]
-  before_action :set_reservation_and_check_user, only: [:admin, :admin_cancelled, :check_in, :check_out]
+  before_action :set_reservation_and_check_user, only: [:admin, :admin_cancelled, :check_in, :check_out, :check_out_confirm]
 
   def create
     @customer = current_customer
@@ -68,16 +68,26 @@ class ReservationsController < ApplicationController
   end
 
   def check_out
-  @payment_methods = []
-  @payment_methods << 'Pix' if @reservation.room.inn.pix?
-  @payment_methods << 'Cartão de Crédito' if @reservation.room.inn.credit?
-  @payment_methods << 'Cartão de Débito' if @reservation.room.inn.debit?
-  @payment_methods << 'Dinheiro' if @reservation.room.inn.cash?
-  @check_out = Time.zone.now
-  if late_checkout?(@reservation)
-    @check_out += 1.day
+    @payment_methods = []
+    @payment_methods << 'Pix' if @reservation.room.inn.pix?
+    @payment_methods << 'Cartão de Crédito' if @reservation.room.inn.credit?
+    @payment_methods << 'Cartão de Débito' if @reservation.room.inn.debit?
+    @payment_methods << 'Dinheiro' if @reservation.room.inn.cash?
+    @check_out = Time.zone.now
+    if late_checkout?(@reservation)
+      @check_out += 1.day
+    end
+    @total = calculate_total(@reservation)
   end
-  @total = calculate_total(@reservation)
+
+  def check_out_confirm
+    @reservation.payment_method = params[:reservation][:payment_method]
+    @reservation.total = params[:reservation][:total]
+    @reservation.paid = true
+    @reservation.completed!
+    @reservation.save
+
+    redirect_to admin_reservation_path(@reservation)
   end
 
   private 

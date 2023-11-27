@@ -13,11 +13,19 @@
   <dd><%= l(@reservation.check_out_date) %> - <%= @reservation.room.inn.check_out_time %></dd>
   <dt>Total: </dt>
   <dd><%= number_to_currency(@reservation.total) %></dd>
+  <% if @reservation.paid? %>
+    <dt>Forma de Pagamento:</dt>
+    <dd><%= @reservation.payment_method %></dd>
+  <% end %>
   <dt>Status da Reserva:</dt>
   <dd><%= I18n.translate(@reservation.status) %></dd>
   <% unless @reservation.checked_in_datetime.nil? %>
-    <dt>Check-in registrado:</dt>
+    <dt>Check-in Registrado:</dt>
     <dd><%= @reservation.checked_in_datetime %></dd>
+  <% end %>
+  <% unless @reservation.checked_out_datetime.nil? %>
+    <dt>Check-out Registrado:</dt>
+    <dd><%= @reservation.checked_out_datetime %></dd>
   <% end %>
 </dl>
 

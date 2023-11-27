@@ -24,7 +24,7 @@ describe 'Host checks-in guests' do
     expect(page).to have_content "Check-in: #{I18n.l(res.check_in_date)}"
     expect(page).to have_content "Check-out: #{I18n.l(res.check_out_date)}"
     expect(page).to have_content "Hóspedes: 2"
-    expect(page).to have_content "Check-in registrado: #{res.checked_in_datetime}"
+    expect(page).to have_content "Check-in Registrado: #{res.checked_in_datetime}"
     expect(page).to have_content "Status da Reserva: Em andamento"
   end
   it 'unsuccessfully too early' do
@@ -51,7 +51,7 @@ describe 'Host checks-in guests' do
     expect(page).to have_content "Check-in: #{I18n.l(res.check_in_date)}"
     expect(page).to have_content "Check-out: #{I18n.l(res.check_out_date)}"
     expect(page).to have_content "Hóspedes: 2"
-    expect(page).not_to have_content "Check-in registrado"
+    expect(page).not_to have_content "Check-in Registrado"
     expect(page).to have_content "Status da Reserva: Confirmada"
   end
 end

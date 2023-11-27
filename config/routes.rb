@@ -47,4 +47,11 @@ Rails.application.routes.draw do
   end
   resources :custom_dates, only: [:index, :show]
   resources :address
+
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :inns, only: [:show]
+    end
+  end
+
 end

@@ -6,3 +6,4 @@ pt-BR:
       review:
         score: "Nota"
         message: "Mensagem"
+        answer: "Resposta"

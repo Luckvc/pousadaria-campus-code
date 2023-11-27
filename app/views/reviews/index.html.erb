@@ -6,5 +6,15 @@
   <dd><%= review.score %></dd>
   <dt>Mensagem:</dt>
   <dd><%= review.message %></dd>
+  <% unless review.answer.nil? || review.answer.empty? %>
+    <dt>Resposta:</dt>
+    <dd><%= review.answer %></dd>
+  <% else %>
+    <%= form_with model: review, method: :post, url: answer_review_path(review) do |f|%>
+      <%= f.label :answer %>
+      <%= f.text_field :answer %>
+      <%= f.submit 'Responder' %>
+    <% end %>
+  <% end %>
 <% end %>
 </dl>

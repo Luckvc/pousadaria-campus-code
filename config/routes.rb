@@ -41,7 +41,9 @@ Rails.application.routes.draw do
       get 'admin'
     end 
   end
+  resources :reviews, only: [:index]  do
+    post 'answer', on: :member
+  end
   resources :custom_dates, only: [:index, :show]
-  resources :reviews, only: [:index]
   resources :address
 end

@@ -39,7 +39,24 @@
 <div>
     <h3> Avaliações: <%= @score %> </h3>
 </div>
-
+<div>
+  <% if @reviews.any? %>
+    <div>
+      <% @reviews.each do |review| %>
+      <dl>
+        <dt>Quarto:</dt>
+        <dd><%= review.reservation.room.number %></dd>
+        <dt>Nota:</dt>
+        <dd><%= review.score %></dd>
+        <dt>Mensagem:</dt>
+        <dd><%= review.message %></dd>
+      </dl>
+      <% end %>
+    </div>
+  <% else %>
+    <p> Sem avaliações registradas </p>
+  <% end %>
+</div>
 <div>
   <% if @inn.rooms.any? %>
     <div>

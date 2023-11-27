@@ -1,0 +1,10 @@
+<h1>Avaliações da Pousada</h1>
+
+<dl>
+<% @reviews.each do |review| %>
+  <dt>Nota:</dt>
+  <dd><%= review.score %></dd>
+  <dt>Mensagem:</dt>
+  <dd><%= review.message %></dd>
+<% end %>
+</dl>

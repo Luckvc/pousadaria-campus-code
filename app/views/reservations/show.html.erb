@@ -24,4 +24,18 @@
   <dd><%= I18n.translate(@reservation.status) %></dd>
 </dl>
 
-<%= button_to 'Cancelar Reserva', cancelled_reservation_path(@reservation) %>
+<% if @reservation.confirmed? %>
+  <%= button_to 'Cancelar Reserva', cancelled_reservation_path(@reservation) %>
+<% end %>
+<% if @reservation.completed? %>
+  <% if @reservation.review.nil? %>
+    <%= link_to 'Fazer Avaliação', new_reservation_review_path(@reservation) %>
+  <% else %>
+  <dl>
+    <dt>Nota:</dt>
+    <dd><%= @reservation.review.score %></dd>
+    <dt>Mensagem:</dt>
+    <dd><%= @reservation.review.message %></dd>
+  </dl>
+  <% end %>
+<% end %>

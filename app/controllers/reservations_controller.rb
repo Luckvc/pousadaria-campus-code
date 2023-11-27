@@ -45,14 +45,12 @@ class ReservationsController < ApplicationController
   
   def inn_reservations
     host = current_user.id
-    @reservations = Reservation.joins("INNER JOIN rooms ON rooms.id = reservations.room_id").
-    where("inn_id = ?", host)
+    @reservations = Reservation.joins(room: :inn).where("user_id = ?", host)
   end
   
   def ongoing
     host = current_user.id
-    @reservations = Reservation.ongoing.joins("INNER JOIN rooms ON rooms.id = reservations.room_id").
-    where("inn_id = ?", host)
+    @reservations = Reservation.ongoing.joins(room: :inn).where("user_id = ?", host)
   end
 
   def admin; end

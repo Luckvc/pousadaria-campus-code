@@ -1,0 +1,9 @@
+<h1> Fazer Avaliação do Quarto <%= @reservation.room.number %>
+
+<%= form_with model: @review, url: reservation_reviews_path do |f| %>
+  <%= f.label :score %>
+  <%= f.number_field :score, options: {max:5, min:0} %>
+  <%= f.label :message %>
+  <%= f.text_field :message %>
+  <%= f.submit 'Avaliar' %>
+<% end %>

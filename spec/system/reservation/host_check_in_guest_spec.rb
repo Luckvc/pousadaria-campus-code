@@ -28,6 +28,7 @@ describe 'Host checks-in guests' do
     expect(page).to have_content "Status da Reserva: Em andamento"
   end
   it 'unsuccessfully too early' do
+    host = User.create!(name: 'lucas', email:'lucas@email.com', password:'password', host: true)
     host = User.create!(name: 'João', email:'joao@email.com', password:'password', host: true)
     address = Address.create!(street: 'Rua das torres', number:'28', neighborhood:'centro',
       city:'Campinas', state:'SP', cep:'15470-000')

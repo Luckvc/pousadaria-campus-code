@@ -1,6 +1,6 @@
 class InnsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :my_inn]
-  before_action :set_inn, only: [:show, :edit, :update, :change_status, :deactivate, :activate]
+  before_action :set_inn, only: [:show, :edit, :update, :change_status, :deactivate, :activate, :reviews]
 
   def show
     @score = Review.joins(reservation: :room).where("inn_id = ?", @inn.id).average(:score)
@@ -75,6 +75,10 @@ class InnsController < ApplicationController
     @inn.active = true
     @inn.save
     redirect_to my_inn_path, notice:'Pousada reativada'
+  end
+
+  def reviews
+    @reviews = Review.joins(reservation: :room).where("inn_id = ?", @inn.id)
   end
 
   private

@@ -14,7 +14,6 @@
     <nav>
       <%= link_to 'Pousadaria', root_path %> | 
       <% if user_signed_in? || customer_signed_in? %>
-        <%= button_to 'Sair', destroy_user_session_path, method: :delete %>
         <% if current_user.is_a?(User) %>
           <%= link_to 'Minha Pousada', my_inn_path %> | 
           <%= link_to 'Reservas', inn_reservations_path %> | 
@@ -24,8 +23,9 @@
         <% if current_customer.is_a?(Customer) %>
           <%= link_to 'Minhas Reservas', reservations_path %>
         <% end %>
+        <%= button_to 'Sair', destroy_user_session_path, method: :delete %>
       <% else %>
-        <%= link_to 'Entrar', new_customer_session_path %>
+        <%= link_to 'Entrar', new_customer_session_path %> |
         <%= link_to 'Área Dono de Pousada', new_user_session_path %>
       <% end %>
       <%= form_with(url: search_inns_path , method: :get) do |f|%>

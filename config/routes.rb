@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     end
     member do
       get 'change_status'
+      get 'reviews'
       post 'activate'
       post 'deactivate'
     end

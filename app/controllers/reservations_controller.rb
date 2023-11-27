@@ -75,10 +75,9 @@ class ReservationsController < ApplicationController
   @payment_methods << 'Dinheiro' if @reservation.room.inn.cash?
   @check_out = Time.zone.now
   if late_checkout?(@reservation)
-    @check_out + 1.day
+    @check_out += 1.day
   end
-  calculate_total(@reservation)
-  @total = @reservation.total
+  @total = calculate_total(@reservation)
   end
 
   private 
@@ -116,6 +115,11 @@ class ReservationsController < ApplicationController
       end
       total += price
     end
+    total
+  end
+
+  def range_overlap(rangea_begin, rangea_end, rangeb_begin, rangeb_end)
+    !(rangea_end < rangeb_begin || rangea_begin > rangeb_end)
   end
   
   def late_checkout?(reservation)

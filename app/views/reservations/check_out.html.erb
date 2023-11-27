@@ -12,7 +12,7 @@
   <dt>Check-out: </dt>
   <dd><%= l(@reservation.check_out_date) %> - <%= @reservation.room.inn.check_out_time %></dd>
   <dt>Total a pagar: </dt>
-  <dd><%= @total %></dd>
+  <dd><%= number_to_currency(@total) %></dd>
 </dl>
 <%= form_with model: @reservation, url: check_out_confirm_reservation_path do |f| %>
   <%= f.label :payment_method, 'Forma de pagamento' %>

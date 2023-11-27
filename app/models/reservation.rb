@@ -10,11 +10,4 @@ class Reservation < ApplicationRecord
   def generate_code
     self.code = SecureRandom.alphanumeric(8).upcase
   end
-
-  def range_overlap(rangea_begin, rangea_end, rangeb_begin, rangeb_end)
-    if !(rangea_end < rangeb_begin || rangea_begin > rangeb_end)
-      self.errors.add(:check_in_date, "não disponível")
-    end
-  end
-
 end

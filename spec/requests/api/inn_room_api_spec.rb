@@ -58,4 +58,41 @@ describe 'Room API' do
       expect(response.status).to eq 404
     end
   end
+  context 'GET /api/v1/rooms/1/available' do
+    it 'success' do
+      host = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)
+      address = Address.create!(street: 'Rua das ruas', number:'12', neighborhood:'centro',
+        city:'São Paulo', state:'SP', cep:'15470-000')
+      inn = host.create_inn!(name:'Safari', company_name:'Safari SN', cnpj:'123',
+        phone:'556618', email:'safari@email.com', address:address)
+      room = inn.rooms.create!(number:'Elefante', description:'Ótimo quarto com uma cama de casal, tv', 
+        double_beds:1, single_beds:0, capacity:2, price:100.00, bathrooms:1, tv:true)
+
+      get "/api/v1/rooms/#{room.id}/available", params: { check_in_date: 2.days.from_now.to_date, 
+        check_out_date: 7.days.from_now.to_date, guests: 2}
+
+      expect(response.status).to eq 200
+      expect(response.content_type).to include 'application/json'
+      json_response = JSON.parse(response.body)
+      expect(json_response["total"]).to eq 500.00
+    end
+    it 'fail' do
+      host = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)
+      address = Address.create!(street: 'Rua das ruas', number:'12', neighborhood:'centro',
+        city:'São Paulo', state:'SP', cep:'15470-000')
+      inn = host.create_inn!(name:'Safari', company_name:'Safari SN', cnpj:'123',
+        phone:'556618', email:'safari@email.com', address:address)
+      room = inn.rooms.create!(number:'Elefante', description:'Ótimo quarto com uma cama de casal, tv', 
+        double_beds:1, single_beds:0, capacity:2, price:100.00, bathrooms:1, tv:true)
+
+      get "/api/v1/rooms/#{room.id}/available", params: { check_in_date: 2.days.ago.to_date, 
+        check_out_date: 7.days.from_now.to_date, guests: 2}
+
+      expect(response.status).to eq 200
+      expect(response.content_type).to include 'application/json'
+      json_response = JSON.parse(response.body)
+      expect(json_response).to be {}
+    end
+  end
+
 end

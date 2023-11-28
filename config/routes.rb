@@ -48,12 +48,16 @@ Rails.application.routes.draw do
   resources :custom_dates, only: [:index, :show]
   resources :address
 
-  namespace :api, defaults: { format: :json } do
+  namespace :api do
     namespace :v1 do
       resources :inns, only: [:show, :index] do
         resources :rooms, only: [:index]
       end
+      resources :rooms, only: [:show] do
+        member do
+          get 'available'
+        end
+      end
     end
   end
-
 end

@@ -12,8 +12,8 @@ class Api::V1::InnsController < ActionController::API
   end
 
   def index
-    @query = params[:query]
-    render status:200, json: Inn.where("name LIKE ? AND active = ?", "%#{@query}%", true)
+    query = params[:query]
+    render status:200, json: Inn.where("name LIKE ? AND active = ?", "%#{query}%", true)
       .as_json(except: [:created_at, :updated_at])
   end
 end

@@ -18,6 +18,8 @@ describe 'Inn API' do
       expect(json_response["email"]).to eq 'safari@email.com'
       expect(json_response.keys).not_to include("created_at")
       expect(json_response.keys).not_to include("updated_at")
+      expect(json_response.keys).not_to include("cnpj")
+      expect(json_response.keys).not_to include("company_name")
     end
     it 'fail if inn not found' do
       get "/api/v1/inns/99999"

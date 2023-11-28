@@ -50,7 +50,9 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :inns, only: [:show, :index]
+      resources :inns, only: [:show, :index] do
+        resources :rooms, only: [:index]
+      end
     end
   end
 

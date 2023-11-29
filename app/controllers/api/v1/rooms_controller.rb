@@ -1,5 +1,4 @@
 class Api::V1::RoomsController < ActionController::API
-  before_action :set_cors_header, only: [:index, :available]
 
   def index
     begin
@@ -18,11 +17,5 @@ class Api::V1::RoomsController < ActionController::API
     else
       render status:200, json: {}
     end
-  end
-
-  private
-
-  def set_cors_header
-    response.headers['Access-Control-Allow-Origin'] = "http://127.0.0.1:3001"
   end
 end

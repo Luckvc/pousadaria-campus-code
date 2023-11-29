@@ -1,5 +1,4 @@
 class Api::V1::InnsController < ActionController::API
-  before_action :set_cors_header, only: [:show, :index]
 
   def show
     begin 
@@ -22,10 +21,6 @@ class Api::V1::InnsController < ActionController::API
   end
 
   private
-
-  def set_cors_header
-    response.headers['Access-Control-Allow-Origin'] = "http://127.0.0.1:3001"
-  end
 
   def set_address(inn)
     inn[:address] = Address.find(inn["address_id"]).as_json(except: [:id, :created_at, :updated_at])

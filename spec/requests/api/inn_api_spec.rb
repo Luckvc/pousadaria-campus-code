@@ -64,6 +64,14 @@ describe 'Inn API' do
       expect(json_response.length).to eq 2
       expect(json_response[0]["name"]).to eq 'Safari'
       expect(json_response[0]["email"]).to eq 'safari@email.com'
+      expect(json_response[0]["phone"]).to eq '556618'
+      expect(json_response[0]["cnpj"]).not_to eq '123'
+      expect(json_response[0]["address"]["street"]).to eq 'Rua das ruas'
+      expect(json_response[0]["address"]["number"]).to eq '12'
+      expect(json_response[0]["address"]["neighborhood"]).to eq 'centro'
+      expect(json_response[0]["address"]["city"]).to eq 'São Paulo'
+      expect(json_response[0]["address"]["state"]).to eq 'SP'
+      expect(json_response[0]["address"]["cep"]).to eq '15470-000'
       expect(json_response[1]["name"]).to eq 'Pousada Vineard'
       expect(json_response[1]["email"]).to eq 'pousadona@email.com'
       expect(json_response[0].keys).not_to include("created_at")

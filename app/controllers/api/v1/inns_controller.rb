@@ -14,8 +14,12 @@ class Api::V1::InnsController < ActionController::API
 
   def index
     query = params[:query]
-    render status:200, json: Inn.where("name LIKE ? AND active = ?", "%#{query}%", true)
-      .as_json(except: [:created_at, :updated_at])
+    inns = Inn.where("name LIKE ? AND active = ?", "%#{query}%", true)
+              .as_json(except: [:created_at, :updated_at, :user_id, :cnpj, :company_name])
+    inns.each do |inn|
+      inn[:address] = Address.find(inn["address_id"]).as_json(except: [:created_at, :updated_at])
+    end
+    render status:200, json: inns
   end
 
   private
@@ -23,5 +27,6 @@ class Api::V1::InnsController < ActionController::API
   def set_cors_header
     response.headers['Access-Control-Allow-Origin'] = "http://127.0.0.1:3001"
   end
+
 
 end

@@ -5,7 +5,7 @@ RSpec.describe Inn, type: :model do
     context 'presence' do
       it 'false when name is empty' do
         #Arrange
-        inn = Inn.new(name:'', company_name:'', cnpj:'', phone:'', email:'')
+        inn = Inn.new()
         #Act
         inn.valid?
         #Assert
@@ -13,7 +13,7 @@ RSpec.describe Inn, type: :model do
       end
       it 'false when company name is empty' do
         #Arrange
-        inn = Inn.new(name:'', company_name:'', cnpj:'', phone:'', email:'')
+        inn = Inn.new()
         #Act
         inn.valid?
         #Assert
@@ -21,7 +21,7 @@ RSpec.describe Inn, type: :model do
       end
       it 'false when cnpj is empty' do
         #Arrange
-        inn = Inn.new(name:'', company_name:'', cnpj:'', phone:'', email:'')
+        inn = Inn.new()
         #Act
         inn.valid?
         #Assert
@@ -29,7 +29,7 @@ RSpec.describe Inn, type: :model do
       end
       it 'false when phone is empty' do
         #Arrange
-        inn = Inn.new(name:'', company_name:'', cnpj:'', phone:'', email:'')
+        inn = Inn.new()
         #Act
         inn.valid?
         #Assert
@@ -37,7 +37,7 @@ RSpec.describe Inn, type: :model do
       end
       it 'false when email is empty' do
         #Arrange
-        inn = Inn.new(name:'', company_name:'', cnpj:'', phone:'', email:'')
+        inn = Inn.new()
         #Act
         inn.valid?
         #Assert

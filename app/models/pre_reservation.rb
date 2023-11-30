@@ -53,7 +53,7 @@ class PreReservation < ApplicationRecord
   end
 
   def valid_guests
-    if self.guests > self.room.capacity
+    if self.guests.present? && self.guests > self.room.capacity
       self.errors.add(:guests, " deve ser menor que a capacidade do quarto.")
     end
   end

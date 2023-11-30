@@ -7,25 +7,41 @@ RSpec.describe Room, type: :model do
         #Arrange
         inn = Inn.new(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123',
                            phone:'556618', email:'pousadinha@email.com')
-        room = inn.rooms.build(number:'', description:'Ótimo quarto com uma cama de casal, tv, varanda com vista para a praia',
-                        double_beds:1, single_beds:1, capacity:2, price:125.00,
-                        bathrooms:1, kitchen:false)
+        room = inn.rooms.build()
         #Act
-        result = room.valid?
+        room.valid?
         #Assert
-        expect(result).to eq false
+        expect(room.errors[:number]).to include 'não pode ficar em branco'
       end
       it 'false when description is empty' do
         #Arrange
         inn = Inn.new(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123',
                            phone:'556618', email:'pousadinha@email.com')
-        room = inn.rooms.build(number:'1', description:'',
-                        double_beds:1, single_beds:1, capacity:2, price:125.00,
-                        bathrooms:1, kitchen:false)
+        room = inn.rooms.build()
         #Act
-        result = room.valid?
+        room.valid?
         #Assert
-        expect(result).to eq false
+        expect(room.errors[:description]).to include 'não pode ficar em branco'
+      end
+      it 'false when capacity is empty' do
+        #Arrange
+        inn = Inn.new(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123',
+                           phone:'556618', email:'pousadinha@email.com')
+        room = inn.rooms.build()
+        #Act
+        room.valid?
+        #Assert
+        expect(room.errors[:capacity]).to include 'não pode ficar em branco'
+      end
+      it 'false when price is empty' do
+        #Arrange
+        inn = Inn.new(name:'Pousadinha', company_name:'Pousadinha SN', cnpj:'123',
+                           phone:'556618', email:'pousadinha@email.com')
+        room = inn.rooms.build()
+        #Act
+        room.valid?
+        #Assert
+        expect(room.errors[:price]).to include 'não pode ficar em branco'
       end
     end
   end

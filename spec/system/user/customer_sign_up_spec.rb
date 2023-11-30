@@ -40,10 +40,10 @@ describe 'Customer can create an account' do
   end
   it 'and logs-in' do
     #Arrange
-    user = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: false)
+    user = Customer.create!(name: 'Lucas', email:'test@email.com', password:'password')
     #Act
     visit root_path
-    click_on 'Área Dono de Pousada'
+    click_on 'Entrar'
     fill_in 'E-mail', with: user.email
     fill_in 'Senha', with: user.password
     within ('div form') do

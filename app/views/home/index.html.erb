@@ -1,25 +1,29 @@
 <h1>Pousadaria</h1>
 
-<h2> Destaques: </h2>
-<div>
-<% @last_inns.each do |inn| %>
+<% if @last_inns.empty? %>
+  Sem pousadas registradas
+<% else %>
+  <h2> Destaques: </h2>
   <div>
-    <%= link_to inn_path(inn) do%>
-      <p><%= inn.name %><br>
-      <%= inn.address.city %> - <%= inn.address.state %></p>
-    <% end %>
+  <% @last_inns.each do |inn| %>
+    <div>
+      <%= link_to inn_path(inn) do%>
+        <p><%= inn.name %><br>
+        <%= inn.address.city %> - <%= inn.address.state %></p>
+      <% end %>
+    </div>
+  <% end %>
   </div>
-<% end %>
-</div>
 
-<h2> Outras opções: </h2>
-<div>
-<% @inns.each do |inn| %>
+  <h2> Outras opções: </h2>
   <div>
-    <%= link_to inn_path(inn) do%>
-      <p><%= inn.name %><br>
-      <%= inn.address.city %> - <%= inn.address.state %></p>
-    <% end %>
+  <% @inns.each do |inn| %>
+    <div>
+      <%= link_to inn_path(inn) do%>
+        <p><%= inn.name %><br>
+        <%= inn.address.city %> - <%= inn.address.state %></p>
+      <% end %>
+    </div>
+  <% end %>
   </div>
 <% end %>
-</div>

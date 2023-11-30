@@ -1,6 +1,8 @@
 <h1>Minhas Reservas</h1>
 
-
+<% if @reservations.empty? %>
+  Sem reservas registradas
+<% end %>
 <% @reservations.each do |r| %>
   <div>
     <dt>Código:</dt>

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Guest searchs for a inn' do
-  it 'from home page' do
+  it 'and sees search field' do
     #Arrange
     #Act
     visit root_path
@@ -48,5 +48,18 @@ describe 'Guest searchs for a inn' do
     expect(page).to have_content 'Resultados encontrados: 1'
     expect(page).to have_content 'Pousada Vineard'
     expect(page).to have_content 'Centro, Vinhedo - SP'
+  end
+  it 'with no results' do
+    #Arrange
+
+    #Act
+    visit root_path
+    fill_in 'Buscar Pousada', with: 'Vineard'
+    click_on 'Buscar'
+
+    #Assert
+    expect(page).to have_content 'Resultados da busca por: Vineard'
+    expect(page).to have_content 'Resultados encontrados: 0'
+    expect(page).to have_content 'Nenhum resultado foi encontrado'
   end
 end

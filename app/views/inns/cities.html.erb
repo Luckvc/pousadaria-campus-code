@@ -1,5 +1,9 @@
 <h1> Cidades </h1>
 
+<% if @cities.empty? %>
+  Sem pousadas registradas
+<% end %>
+
 <% @cities.each do |c| %>
   <%= link_to c, search_cities_inns_path(query: c) %>
 <% end %>

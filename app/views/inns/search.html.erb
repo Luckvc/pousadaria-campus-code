@@ -1,6 +1,9 @@
 <h1> Resultados da busca por: <%= @query %></h1>
 <h3>Resultados encontrados: <%= @count %></h3>
 
+<% if @count == 0 %>
+  Nenhum resultado foi encontrado
+<% end %>
 <div>
 <% @inns.each do |inn| %>
   <div>

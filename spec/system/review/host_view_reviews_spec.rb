@@ -24,10 +24,29 @@ describe 'Host views reviews' do
     visit root_path
     click_on 'Avaliações'
 
+    expect(page).to have_content 'Avaliações da Pousada Safari'
     expect(page).to have_content 'Nota: 5'
     expect(page).to have_content 'Mensagem: Ótima estadia, adorei'
     expect(page).to have_content 'Nota: 3'
     expect(page).to have_content 'Mensagem: Bom'
+  end
+  it 'page with no reviews' do
+    host = User.create!(name: 'João', email:'joao@email.com', password:'password', host: true)
+    address = Address.create!(street: 'Rua das torres', number:'28', neighborhood:'centro',
+      city:'Campinas', state:'SP', cep:'15470-000')
+    inn = host.create_inn!(name:'Safari', company_name:'Pousada Safari SN', cnpj:'456', phone:'223345',
+      email:'pousadona@email.com', address:address, pix:true, credit:true, debit:true, cash:true)
+    room = inn.rooms.create!(number:'Elefante', description:'Ótimo quarto com uma cama de casal', 
+      double_beds:1, single_beds:0, capacity:2, price:100.00, bathrooms:1)
+
+    login_as(host, scope: :user)
+    visit root_path
+    click_on 'Avaliações'
+
+    expect(page).to have_content 'Sem Avaliações'
+    expect(page).not_to have_content 'Nota:'
+    expect(page).not_to have_content 'Mensagem:'
+    expect(page).not_to have_content 'Nota:'
   end
   it 'and answers' do
     host = User.create!(name: 'João', email:'joao@email.com', password:'password', host: true)

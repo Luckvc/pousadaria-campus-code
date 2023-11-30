@@ -91,4 +91,10 @@ describe 'Guest search inn by city' do
     expect(page).not_to have_content 'Pousada Beira-Mar'
     expect(page).not_to have_content 'Pousada Maresia'
   end
+  it 'and finds only active inns' do
+    visit root_path
+    click_on 'Cidades'
+
+    expect(page).to have_content 'Sem pousadas registradas'
+  end
 end

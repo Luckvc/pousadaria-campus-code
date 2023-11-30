@@ -62,4 +62,13 @@ describe 'Guest views inns' do
     expect(page).to have_content 'São Paulo - SP'
     expect(current_path).to eq root_path
   end
+  it 'with no inn registered' do
+    #Arrange
+    #Act
+    visit root_path
+    #Assert
+    expect(page).not_to have_content 'Destaques'
+    expect(page).not_to have_content 'Outras opções:'
+    expect(page).to have_content 'Sem pousadas registradas'
+  end
 end

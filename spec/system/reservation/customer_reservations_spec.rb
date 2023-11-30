@@ -24,6 +24,15 @@ describe 'Customer reservations' do
 
     expect(page).to have_content 'Minhas Reservas'
   end
+  it 'page with no reservation' do
+    customer = Customer.create!(name:'Roberto', cpf:'123', email:'roberto@email.com', password:'123456')
+
+    login_as(customer, scope: :customer)
+    visit root_path
+    click_on 'Minhas Reservas'
+
+    expect(page).to have_content 'Sem reservas registradas'
+  end
   it 'details' do
     host = User.create!(name: 'João', email:'joao@email.com', password:'password', host: true)
     address = Address.create!(street: 'Rua das torres', number:'28', neighborhood:'centro',

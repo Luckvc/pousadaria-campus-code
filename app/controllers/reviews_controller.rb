@@ -24,7 +24,8 @@ class ReviewsController < ApplicationController
   end
 
   def index
-    host = current_user.id
+    host = current_user
+    @inn = host.inn
     @reviews = Review.joins(reservation: {room: :inn}).where("user_id = ?", host)
   end
 

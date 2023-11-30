@@ -36,6 +36,25 @@ describe 'Host views reservation' do
     expect(page).to have_content "Check-in: #{I18n.l(res_two.check_in_date)}"
     expect(page).to have_content "Check-in: #{I18n.l(res_three.check_in_date)}"
   end
+  it 'with no reservation' do
+    host = User.create!(name: 'João', email:'joao@email.com', password:'password', host: true)
+    host_two = User.create!(name: 'Lucas', email:'lucas@email.com', password:'password', host: true)
+    address = Address.create!(street: 'Rua das torres', number:'28', neighborhood:'centro',
+      city:'Campinas', state:'SP', cep:'15470-000')
+    inn = host.create_inn!(name:'Safari', company_name:'Pousada Safari SN', cnpj:'456', phone:'223345',
+      email:'pousadona@email.com', address:address, pix:true)
+    room_one = inn.rooms.create!(number:'Elefante', description:'Ótimo quarto com uma cama de casal', 
+      double_beds:1, single_beds:0, capacity:2, price:100.00, bathrooms:1)
+    room_two = inn.rooms.create!(number:'Girafa', description:'Ótimo quarto com uma cama de solteiro', 
+      double_beds:0, single_beds:1, capacity:1, price:200.00, bathrooms:1)
+
+    login_as(host, scope: :user)
+    visit root_path
+    click_on 'Reservas'
+
+    expect(page).to have_content "Sem reservas registradas"
+    expect(page).not_to have_content "Código:"
+  end
   it 'details' do
     host = User.create!(name: 'João', email:'joao@email.com', password:'password', host: true)
     address = Address.create!(street: 'Rua das torres', number:'28', neighborhood:'centro',

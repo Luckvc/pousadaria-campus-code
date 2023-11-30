@@ -1,5 +1,8 @@
-<h1>Avaliações da Pousada</h1>
+<h1>Avaliações da Pousada <%= @inn.name %></h1>
 
+<% if @reviews.empty? %>
+  Sem Avaliações
+<% end %>
 <dl>
 <% @reviews.each do |review| %>
   <dt>Quarto:</dt>

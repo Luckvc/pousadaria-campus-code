@@ -1,4 +1,6 @@
 class ReviewsController < ApplicationController
+  before_action :authenticate_user!, only: [:answer, :index]
+  before_action :authenticate_customer!, only: [:new, :create]
   before_action :set_review_and_check_user, only: [:answer]
 
   def new

@@ -1,6 +1,9 @@
 class InnsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :edit, :my_inn]
-  before_action :set_inn, only: [:show, :edit, :update, :change_status, :deactivate, :activate, :reviews]
+  before_action :authenticate_user!, only: [:new, :create, :my_inn, :edit, :update, :change_status, 
+                                            :deactivate, :activate]
+
+  before_action :set_inn, only: [:show, :reviews]
+  before_action :set_inn_and_check_user, only: [:edit, :update, :change_status, :deactivate, :activate]
 
   def show
     @score = Review.joins(reservation: :room).where("inn_id = ?", @inn.id).average(:score)
@@ -82,7 +85,14 @@ class InnsController < ApplicationController
   end
 
   private
-  
+
+  def set_inn_and_check_user
+    @inn = Inn.find(params[:id])
+    if @inn.user.id != current_user.id
+      return redirect_to root_path, alert: 'Você não possui acesso a este quarto'
+    end
+  end
+
   def inn_params
     inn_params = params.require(:inn).permit(:name, :company_name, :cnpj, :phone, :email, :policies,
                                :check_in_time, :check_out_time, :pets, :pix, :credit, :debit, :cash,

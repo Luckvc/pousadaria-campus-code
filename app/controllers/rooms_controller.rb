@@ -1,5 +1,7 @@
 class RoomsController < ApplicationController
-  before_action :set_room, only: [:edit, :show, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_action :set_room_and_check_user, only: [:edit, :update]
+
   def new
     @room = Room.new
   end
@@ -25,7 +27,9 @@ class RoomsController < ApplicationController
       render 'edit', status: 422
     end
   end
-  def show; end
+  def show
+    @room = Room.find(params[:id])
+  end
   
   private
 
@@ -34,8 +38,12 @@ class RoomsController < ApplicationController
       :capacity, :price, :price, :bathrooms, :dimension, :kitchen, :balcony, :tv, :air, :wardrobe,
       :safe, :accessible)
   end
-  def set_room
+
+  def set_room_and_check_user
     @room = Room.find(params[:id])
+    if @room.inn.user.id != current_user.id
+      return redirect_to root_path, alert: 'Você não possui acesso a esta reserva'
+    end
   end
 
 end

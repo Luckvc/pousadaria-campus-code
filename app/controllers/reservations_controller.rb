@@ -1,7 +1,11 @@
 class ReservationsController < ApplicationController
-  before_action :authenticate_customer!, only: [:create]
+  before_action :authenticate_customer!, only: [:create, :show, :cancelled]
+  before_action :authenticate_user!, only: [:inn_reservations, :admin, :admin_cancelled, :check_in,
+                                            :check_out, :check_out_confirm]
+
   before_action :set_reservation_and_check_customer, only: [:show, :cancelled]
-  before_action :set_reservation_and_check_user, only: [:admin, :admin_cancelled, :check_in, :check_out, :check_out_confirm]
+  before_action :set_reservation_and_check_user, only: [:admin, :admin_cancelled, :check_in,
+                                                        :check_out, :check_out_confirm]
 
   def create
     @customer = current_customer
@@ -44,7 +48,7 @@ class ReservationsController < ApplicationController
   end
   
   def inn_reservations
-    host = current_user.id
+    host = current_user
     @reservations = Reservation.joins(room: :inn).where("user_id = ?", host)
   end
   

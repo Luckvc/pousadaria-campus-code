@@ -33,7 +33,8 @@
         <%= f.text_field :query %>
         <%= f.submit 'Buscar' %>
       <% end %>
-      <%= link_to 'Cidades', cities_inns_path %>
+      <br>
+      <%= link_to 'Cidades', cities_inns_path %> | <%= link_to 'Busca Avançada', advanced_search_inns_path %>
     </nav>
     <div>
       <p class="notice"><%= notice %></p>

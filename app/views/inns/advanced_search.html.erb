@@ -1,0 +1,44 @@
+<h1>Busca Avançada</h1>
+
+<div>
+<%= form_with(url: advanced_search_inns_path , method: :get) do |f|%>
+  <%= f.label :query, 'Buscar Pousada:' %>
+  <%= f.text_field :query %>
+  <%= f.label :capacity, 'Hóspedes:' %>
+  <%= f.number_field :capacity %>
+  <%= f.check_box :pets %>
+  <%= f.label :pets, 'Pets' %>
+  <%= f.check_box :accessible %>
+  <%= f.label :accessible, 'Acessível para PCD' %>
+  <%= f.check_box :air %>
+  <%= f.label :air, 'Ar Condicionado' %>
+  <%= f.check_box :tv %>
+  <%= f.label :tv, 'TV' %>
+  <%= f.check_box :wardrobe %>
+  <%= f.label :wardrobe, 'Guarda-Roupas' %>
+  <%= f.check_box :safe %>
+  <%= f.label :safe, 'Cofre' %>
+  <%= f.check_box :balcony %>
+  <%= f.label :balcony, 'Varanda' %>
+  <%= f.check_box :kitchen %>
+  <%= f.label :kitchen, 'Cozinha' %>
+  <%= f.submit 'Busca Avançada' %>
+<% end %>
+</div>
+
+
+<% if @count == 0 %>
+  Nenhum resultado foi encontrado
+<% else %>
+<h3>Resultados: <%= @count %></h3>
+<div>
+<% @inns.each do |inn| %>
+  <div>
+    <%= link_to inn_path(inn) do%>
+      <p><%= inn.name %><br>
+      <%= inn.address.neighborhood %>, <%= inn.address.city %> - <%= inn.address.state %></p>
+    <% end %>
+  </div>
+<% end %>
+</div>
+<% end %>

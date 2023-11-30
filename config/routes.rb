@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     resources :rooms, only: [:index, :new, :create]
     collection do
       get 'search'
+      get 'advanced_search'
+      get 'advanced_search_query'
       get 'cities'
       get 'search_cities'
     end

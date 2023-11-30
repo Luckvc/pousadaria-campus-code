@@ -40,7 +40,7 @@ describe 'Customer can create an account' do
   end
   it 'and logs-in' do
     #Arrange
-    user = Customer.create!(name: 'Lucas', email:'test@email.com', password:'password')
+    user = Customer.create!(name: 'Lucas', cpf:'26649984425', email:'test@email.com', password:'password')
     #Act
     visit root_path
     click_on 'Entrar'
@@ -50,7 +50,7 @@ describe 'Customer can create an account' do
       click_on 'Entrar'
     end
     #Assert
-    expect(User.last.email).to eq 'test@email.com'
+    expect(Customer.last.email).to eq 'test@email.com'
     expect(page).to have_content 'Login efetuado com sucesso.'
     expect(page).to have_content 'Sair'
     expect(current_path).to eq root_path 

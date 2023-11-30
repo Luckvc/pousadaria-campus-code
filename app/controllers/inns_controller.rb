@@ -49,7 +49,7 @@ class InnsController < ApplicationController
 
   def search
     @query = params["query"]
-    @inns = Inn.joins("INNER JOIN addresses ON addresses.id = inns.address_id").
+    @inns = Inn.joins(:address).
       where("name LIKE ? OR neighborhood LIKE ? OR city LIKE ? AND active = ?", "%#{@query}%", "%#{@query}%", "%#{@query}%", true).
       order(:name)
     @count = @inns.count
@@ -61,9 +61,29 @@ class InnsController < ApplicationController
   
   def search_cities
     @query = params["query"]
-    @inns = Inn.joins("INNER JOIN addresses ON addresses.id = inns.address_id").where("city = ? AND active = ?", "#{@query}", true)
+    @inns = Inn.joins(:address).where("city = ? AND active = ?", "#{@query}", true)
     @count = @inns.count
   end
+  
+  def advanced_search 
+    rooms = Room.joins(:inn).where("name LIKE ?", "%#{params["query"]}%")
+    #TODO
+    rooms = rooms.where("safe = 1") if params["safe"].to_i == 1
+    rooms = rooms.where("air = 1") if params["air"].to_i == 1
+    rooms = rooms.where("wardrobe = 1") if params["wardrobe"].to_i == 1
+    rooms = rooms.where("balcony = 1") if params["balcony"].to_i == 1
+    rooms = rooms.where("tv = 1") if params["tv"].to_i == 1
+    rooms = rooms.where("kitchen = 1") if params["kitchen"].to_i == 1
+    rooms = rooms.where("accessible = 1") if params["accessible"].to_i == 1
+    rooms = rooms.where("capacity >= ?", params["capacity"]) if params["capacity"].present?
+    
+    filtered_room_ids = rooms.pluck(:id) 
+    @inns = Inn.joins(:rooms).where(rooms: { id: filtered_room_ids }).distinct
+    
+    @inns = @inns.where("pets = 1") if params["pets"].to_i == 1
+    @count = @inns.count
+  end
+  
 
   def change_status
   end

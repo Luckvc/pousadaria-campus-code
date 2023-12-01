@@ -20,6 +20,10 @@ class Api::V1::InnsController < ActionController::API
     render status:200, json: inns
   end
 
+  def cities
+    render status:200, json: Address.distinct.pluck(:city)
+  end
+
   private
 
   def set_address(inn)
@@ -27,5 +31,4 @@ class Api::V1::InnsController < ActionController::API
     inn.delete("address_id")
     inn
   end
-
 end

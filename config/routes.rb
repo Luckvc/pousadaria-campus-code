@@ -56,6 +56,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :inns, only: [:show, :index] do
+        collection do
+          get 'cities'
+        end
         resources :rooms, only: [:index]
       end
       resources :rooms, only: [:show] do

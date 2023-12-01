@@ -79,7 +79,7 @@ class ReservationsController < ApplicationController
     if late_checkout?(@reservation)
       @check_out += 1.day
     end
-    @total = calculate_total(@reservation)
+    @total = calculate_total + calculate_consumables
   end
 
   def check_out_confirm
@@ -108,18 +108,26 @@ class ReservationsController < ApplicationController
     end
   end
 
-  def calculate_total(reservation)
+  def calculate_consumables()
+    total_consumables = 0
+    @reservation.consumables.each do |consumable|
+      total_consumables += consumable.price
+    end
+    total_consumables
+  end
+
+  def calculate_total()
     cd_matches = []
     total = 0
 
-    reservation.room.custom_dates.each do |cd|
-      if range_overlap(reservation.checked_in_datetime, @check_out , cd.begin, cd.end)
+    @reservation.room.custom_dates.each do |cd|
+      if range_overlap(@reservation.checked_in_datetime, @check_out , cd.begin, cd.end)
         cd_matches << cd
       end
     end
 
-    (reservation.checked_in_datetime.to_date...@check_out.to_date).each do |day|
-      price = reservation.room.price
+    (@reservation.checked_in_datetime.to_date...@check_out.to_date).each do |day|
+      price = @reservation.room.price
       cd_matches.each do |cd|
         (cd.begin..cd.end).each do |cd_day|
           price = cd.price if cd_day == day

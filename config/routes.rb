@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     member do
       get 'change_status'
       get 'reviews'
+      get 'new_image'
+      post 'create_image'
       post 'activate'
       post 'deactivate'
     end

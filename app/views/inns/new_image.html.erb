@@ -1,0 +1,10 @@
+<h1>Adicionar Imagens</h1>
+
+<div>
+  <%= form_with model: @inn, method: :post, url: create_image_inn_path(@inn) do |f|%>
+    <%= f.label :images%>
+    <%= f.file_field :images, multiple:true%>
+    <%= f.submit 'Adicionar'%>
+  <% end %>
+</div>
+

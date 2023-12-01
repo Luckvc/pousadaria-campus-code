@@ -43,7 +43,8 @@
     <dd><%= 'Dinheiro' if @inn.cash? %> </dd>
   </dl>
   <div>
-    <%= link_to 'Editar Pousada', edit_inn_path(@inn) %>
+    <%= link_to 'Adicionar Imagens', new_image_inn_path(@inn) %> | 
+    <%= link_to 'Editar Pousada', edit_inn_path(@inn) %> | 
     <%= link_to 'Mudar Status da Pousada', change_status_inn_path(@inn) %>
   </div>
 </div>

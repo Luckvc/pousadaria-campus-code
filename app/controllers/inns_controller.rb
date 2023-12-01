@@ -3,7 +3,8 @@ class InnsController < ApplicationController
                                             :deactivate, :activate]
 
   before_action :set_inn, only: [:show, :reviews]
-  before_action :set_inn_and_check_user, only: [:edit, :update, :change_status, :deactivate, :activate]
+  before_action :set_inn_and_check_user, only: [:edit, :update, :change_status, :deactivate,
+                                                :activate, :new_image, :create_image]
 
   def show
     @score = Review.joins(reservation: :room).where("inn_id = ?", @inn.id).average(:score)
@@ -104,6 +105,17 @@ class InnsController < ApplicationController
     @reviews = Review.joins(reservation: :room).where("inn_id = ?", @inn.id)
   end
 
+  def new_image; end
+
+  def create_image
+    if @inn.update(inn_params)
+      redirect_to my_inn_path, notice: 'Imagens adicionadas com sucesso'
+    else
+      flash.now[:notice] = 'Não foi possível adicionar as imagens'
+      render :my_inn, status: 422
+    end
+  end
+
   private
 
   def set_inn_and_check_user
@@ -116,6 +128,7 @@ class InnsController < ApplicationController
   def inn_params
     inn_params = params.require(:inn).permit(:name, :company_name, :cnpj, :phone, :email, :policies,
                                :check_in_time, :check_out_time, :pets, :pix, :credit, :debit, :cash,
+                               images: [],
       address_attributes: [:id, :street, :number, :neighborhood, :city, :state, :cep])
   end
 

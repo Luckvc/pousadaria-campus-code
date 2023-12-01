@@ -18,7 +18,7 @@ describe 'Guest advance searchs for a inn' do
     expect(page).to have_field 'Guarda-Roupas'
     expect(page).to have_field 'Cofre'
     expect(page).to have_field 'Pets'
-    within ('div form') do
+    within ('section div form') do
       expect(page).to have_button 'Busca Avançada'
     end
   end
@@ -71,7 +71,7 @@ describe 'Guest advance searchs for a inn' do
     fill_in 'Hóspedes:', with: '3'
     check 'Pets'
     check 'Ar Condicionado'
-    within('div form') do
+    within('section div form') do
       click_on 'Busca Avançada'
     end
 
@@ -126,7 +126,7 @@ describe 'Guest advance searchs for a inn' do
     #Act
     visit root_path
     click_on 'Busca Avançada'
-    within('div form') do
+    within('section div form') do
     fill_in 'Buscar Pousada:', with: 'Pousada Beira-Mar'
     check 'Pets'
     check 'Ar Condicionado'
@@ -145,7 +145,7 @@ describe 'Guest advance searchs for a inn' do
     visit root_path
     click_on 'Busca Avançada'
     fill_in 'Hóspedes:', with: "10"
-    within('div form') do
+    within('section div form') do
       click_on 'Busca Avançada'
     end
 

@@ -5,7 +5,7 @@ describe 'Customer can create an account' do
     #Arrange
     #Act
     visit root_path
-    click_on 'Entrar'
+    click_on 'Login Hóspede'
     click_on 'Criar Conta'
     fill_in 'Nome', with: 'João'
     fill_in 'CPF', with: '454288'
@@ -27,7 +27,7 @@ describe 'Customer can create an account' do
     #Arrange
     #Act
     visit root_path
-    click_on 'Entrar'
+    click_on 'Login Hóspede'
     click_on 'Criar Conta'
     fill_in 'Nome', with: ''
     fill_in 'E-mail', with: 'example@email.com'
@@ -43,12 +43,10 @@ describe 'Customer can create an account' do
     user = Customer.create!(name: 'Lucas', cpf:'26649984425', email:'test@email.com', password:'password')
     #Act
     visit root_path
-    click_on 'Entrar'
+    click_on 'Login Hóspede'
     fill_in 'E-mail', with: user.email
     fill_in 'Senha', with: user.password
-    within ('div form') do
-      click_on 'Entrar'
-    end
+    click_on 'Entrar'
     #Assert
     expect(Customer.last.email).to eq 'test@email.com'
     expect(page).to have_content 'Login efetuado com sucesso.'

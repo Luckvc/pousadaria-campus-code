@@ -30,8 +30,36 @@
     <%= form.number_field :bathrooms %>
   </div>
   <div>
+    <%= form.label :dimension %>
+    <%= form.number_field :dimension %>
+  </div>
+  <div>
     <%= form.check_box :kitchen %>
     <%= form.label :kitchen %>
+  </div>
+  <div>
+    <%= form.check_box :air %>
+    <%= form.label :air %>
+  </div>
+  <div>
+    <%= form.check_box :wardrobe %>
+    <%= form.label :wardrobe %>
+  </div>
+  <div>
+    <%= form.check_box :balcony %>
+    <%= form.label :balcony %>
+  </div>
+  <div>
+    <%= form.check_box :safe %>
+    <%= form.label :safe %>
+  </div>
+  <div>
+    <%= form.check_box :tv %>
+    <%= form.label :tv %>
+  </div>
+  <div>
+    <%= form.check_box :accessible %>
+    <%= form.label :accessible %>
   </div>
   <div>
     <%= form.submit 'Atualizar' %>

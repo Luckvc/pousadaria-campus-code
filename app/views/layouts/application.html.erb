@@ -11,9 +11,11 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <nav>
-      <%= link_to 'Pousadaria', root_path %> | 
+  <body class="container">
+    <nav class="navbar bg-light">
+      <%= link_to root_path do %>
+        <h2> Pousadaria </h2>
+      <% end %>
       <% if user_signed_in? || customer_signed_in? %>
         <% if current_user.is_a?(User) %>
           <%= link_to 'Minha Pousada', my_inn_path %> | 
@@ -26,24 +28,26 @@
         <% end %>
         <%= button_to 'Sair', destroy_user_session_path, method: :delete %>
       <% else %>
-        <%= link_to 'Entrar', new_customer_session_path %> |
-        <%= link_to 'Área Dono de Pousada', new_user_session_path %>
+        <%= link_to 'Login Hóspede', new_customer_session_path %> |
+        <%= link_to 'Login Dono de Pousada', new_user_session_path %>
       <% end %>
-      <%= form_with(url: search_inns_path , method: :get) do |f|%>
-        <%= f.label :query, 'Buscar Pousada' %>
-        <%= f.text_field :query %>
-        <%= f.submit 'Buscar' %>
-      <% end %>
-      <br>
-      <%= link_to 'Cidades', cities_inns_path %> | <%= link_to 'Busca Avançada', advanced_search_inns_path %>
+      <div>
+        <%= form_with(url: search_inns_path , method: :get) do |f|%>
+          <%= f.label :query, 'Buscar Pousada' %>
+          <%= f.text_field :query %>
+          <%= f.submit 'Buscar' %>
+        <% end %>
+        <br>
+        <%= link_to 'Cidades', cities_inns_path %> | <%= link_to 'Busca Avançada', advanced_search_inns_path %>
+      </div>
     </nav>
     <div>
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
     </div>
-    <div>
+    <section>
       <%= yield %>
-    </div>
+    </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   </body>
 </html>

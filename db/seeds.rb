@@ -180,13 +180,13 @@ bv305.reservations.create!(check_in_date: 35.days.from_now, check_out_date: 40.d
 bv305.reservations.create!(check_in_date: 25.days.from_now, check_out_date: 30.days.from_now, guests: 3, customer: cmaria)
 
 
-pj301.reservations.create!(check_out_date: 5.days.ago, check_in_date: 8.days.ago, guests: 2,
+r1 = pj301.reservations.create!(check_out_date: 5.days.ago, check_in_date: 8.days.ago, guests: 2,
                            customer: ccarlos, status:"completed")
-bv305.reservations.create!(check_out_date: 20.days.ago, check_in_date: 25.days.ago, guests: 2,
+r2 = bv305.reservations.create!(check_out_date: 20.days.ago, check_in_date: 25.days.ago, guests: 2,
                            customer: cpedro, status:"completed")
-rp203.reservations.create!(check_out_date: 18.days.ago, check_in_date: 22.days.ago, guests: 1,
+r3 = rp203.reservations.create!(check_out_date: 18.days.ago, check_in_date: 22.days.ago, guests: 1,
                            customer: ccarlos, status:"completed")
-ct304.reservations.create!(check_out_date: 25.days.ago, check_in_date: 30.days.ago, guests: 2,
+r4 = ct304.reservations.create!(check_out_date: 25.days.ago, check_in_date: 30.days.ago, guests: 2,
                            customer: ccamila, status:"completed")
                            
 rp103.reservations.create!(check_out_date: 28.days.ago, check_in_date: 32.days.ago, guests: 4,
@@ -207,3 +207,11 @@ ct304.reservations.create!(check_in_date: 10.days.ago, check_out_date: 1.days.fr
                            guests: 2, customer: ccamila, status:"ongoing")
 pj101.reservations.create!(check_in_date: 2.days.ago, check_out_date: 1.days.from_now,
                            guests: 2, customer: cmaria, status:"ongoing")
+
+#reviews
+r1.create_review!(message:'Ótima pousada', score:5, customer: ccarlos)
+r2.create_review!(message:'Lindo o lugar', score:4.5, customer: cpedro)
+r3.create_review!(message:'Não tinha café da manhã', score:3, answer:'Infelizmente não está incluso.', customer: ccarlos)
+r4.create_review!(message:'Adorei', score:5, answer:'Muito obrigado pela avaliação.', customer: ccamila)
+
+

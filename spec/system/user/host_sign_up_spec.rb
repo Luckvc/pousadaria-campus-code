@@ -5,7 +5,7 @@ describe 'User can create a host account' do
     #Arrange
     #Act
     visit root_path
-    click_on 'Área Dono de Pousada'
+    click_on 'Login Dono de Pousada'
     click_on 'Criar Conta'
     fill_in 'Nome', with: 'João'
     fill_in 'E-mail', with: 'example@email.com'
@@ -26,12 +26,10 @@ describe 'User can create a host account' do
     user = User.create!(name: 'Lucas', email:'test@email.com', password:'password', host: true)
     #Act
     visit root_path
-    click_on 'Área Dono de Pousada'
+    click_on 'Login Dono de Pousada'
     fill_in 'E-mail', with: user.email
     fill_in 'Senha', with: user.password
-    within ('div form') do
-      click_on 'Entrar'
-    end
+    click_on 'Entrar'
     #Assert
     expect(User.last.email).to eq 'test@email.com'
     expect(page).to have_content 'Cadastrar Pousada'

@@ -47,7 +47,7 @@
     </div>
   <% else %>
     <div>
-    <%= link_to('Reservar', new_room_pre_reservation_path(@room.id))%>
+    <%= link_to('Reservar', new_room_pre_reservation_path(@room.id))%> | 
     <%= link_to('Voltar', inn_path(@room.inn))%>
     </div>
   <% end %>

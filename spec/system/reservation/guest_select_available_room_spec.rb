@@ -25,9 +25,7 @@ describe 'Guest selects available room' do
     fill_in 'E-mail', with: 'roberto@email.com'
     fill_in 'Senha', with: 'password'
     fill_in 'Confirme sua senha', with: 'password'
-    within ('div form') do
-      click_on 'Criar Conta'
-    end
+    click_on 'Criar Conta'
     click_on 'Confirmar Reserva'
 
     expect(page).to have_content 'Reserva ABC12345'

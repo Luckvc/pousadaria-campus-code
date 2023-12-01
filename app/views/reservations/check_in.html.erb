@@ -1,5 +1,6 @@
 <h1> Check-in reserva <%= @reservation.code %></h1>
 
+<div>
 <dl>
   <%= link_to room_path(@reservation.room) do %>
     <dt>Quarto: </dt>
@@ -10,15 +11,18 @@
   <dt>Check-out: </dt>
   <dd><%= l(@reservation.check_out_date) %> - <%= @reservation.room.inn.check_out_time %></dd>
 </dl>
-
-<h2>Hóspedes:</h2>
-<% if @reservation.additional_guests.any? %>
-  <% @reservation.additional_guests.each do |guest| %>
-    Nome: <%= guest.name %>
-    Documento: <%= guest.document %>
+</div>
+<div>
+  <h2>Hóspedes:</h2>
+  <% if @reservation.additional_guests.any? %>
+    <% @reservation.additional_guests.each do |guest| %>
+      Nome: <%= guest.name %><br>
+      Documento: <%= guest.document %><br>
+      ---<br>
+    <% end %>
   <% end %>
-<% end %>
-
+<div>
+<div>
 <% if @reservation.additional_guests.count < @reservation.room.capacity %>
   <h3>Adicionar Hóspede</h3>
   <%= form_with model: @additional_guest, url: reservation_additional_guests_path(@reservation) do |f|%>
@@ -29,7 +33,8 @@
     <%= f.submit 'Cadastrar Hóspede'%>
   <% end %>
 <% end %>
-
+</div>
+<br>
 <% if @reservation.additional_guests.any? %>
   <%= button_to 'Confirmar Check-in', check_in_confirm_reservation_path(@reservation) %>
 <% end %>

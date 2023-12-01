@@ -12,12 +12,14 @@ describe 'Host checks-in guests' do
     customer = Customer.create!(name:'Roberto', cpf:'123', email:'roberto@email.com', password:'123456')
     res = room.reservations.create!(check_in_date: Time.zone.now, check_out_date: 12.days.from_now,
       guests:2, customer:customer)
+    res.additional_guests.create!(name:'Luisa Rocha', document:'45826315413')
     
     login_as(host, scope: :user)
     visit root_path
     click_on 'Reservas'
     click_on "#{res.code}"
     click_on 'Check-in'
+    click_on 'Confirmar Check-in'
 
     expect(page).to have_content "Reserva #{res.code}"
     expect(page).to have_link "Quarto: #{res.room.number}"
@@ -39,12 +41,14 @@ describe 'Host checks-in guests' do
     customer = Customer.create!(name:'Roberto', cpf:'123', email:'roberto@email.com', password:'123456')
     res = room.reservations.create!(check_in_date: 2.days.from_now, check_out_date: 12.days.from_now,
       guests:2, customer:customer)
+    res.additional_guests.create!(name:'Luisa Rocha', document:'45826315413')
     
     login_as(host, scope: :user)
     visit root_path
     click_on 'Reservas'
     click_on "#{res.code}"
     click_on 'Check-in'
+    click_on 'Confirmar Check-in'
 
     expect(page).to have_content "É cedo demais para fazer check-in"
     expect(page).to have_content "Reserva #{res.code}"

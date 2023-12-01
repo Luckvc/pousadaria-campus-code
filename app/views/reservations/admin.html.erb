@@ -30,7 +30,7 @@
 </dl>
 
 <% if @reservation.confirmed? %>
-  <%= button_to 'Realizar Check-in', check_in_reservation_path(@reservation) %>
+  <%= link_to 'Realizar Check-in', check_in_reservation_path(@reservation) %>
   <%= button_to 'Cancelar Reserva', admin_cancelled_reservation_path(@reservation) %> 
 <% end %>
 <% if @reservation.ongoing? %>
@@ -38,11 +38,22 @@
   <%= link_to 'Realizar Check-out', check_out_reservation_path(@reservation) %> 
 <% end %>
 <% if @reservation.ongoing? || @reservation.completed? %>
+  <div>
   Consumo:
   <% if @reservation.consumables.any? %>
     <% @reservation.consumables.each do |consumable| %>
       <%= consumable.description %> - <%= number_to_currency(consumable.price) %>
     <% end %>
   <% end %>
+  </div>
+  <div>
+  Hóspedes:
+  <% if @reservation.additional_guests.any? %>
+    <% @reservation.additional_guests.each do |guest| %>
+      Nome: <%= guest.name %>
+      Documento: <%= guest.document %>
+    <% end %>
+  <% end %>
+  </div>
   
 <% end %>

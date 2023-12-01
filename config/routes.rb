@@ -31,18 +31,20 @@ Rails.application.routes.draw do
   end
   resources :reservations, only: [:index, :show] do
     resources :consumables, only: [:new, :create]
+    resources :additional_guests, only: [:create]
     resources :reviews, only: [:new, :create]
     collection do
       get 'inn', to: 'reservations#inn_reservations'
       get 'ongoing'
     end
     member do
-      post 'cancelled'
-      post 'admin_cancelled'
-      post 'check_in'
-      post 'check_out_confirm'
+      get 'check_in'
       get 'check_out'
       get 'admin'
+      post 'cancelled'
+      post 'admin_cancelled'
+      post 'check_in_confirm'
+      post 'check_out_confirm'
     end 
   end
   resources :reviews, only: [:index]  do

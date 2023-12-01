@@ -5,7 +5,7 @@ class ReservationsController < ApplicationController
 
   before_action :set_reservation_and_check_customer, only: [:show, :cancelled]
   before_action :set_reservation_and_check_user, only: [:admin, :admin_cancelled, :check_in,
-                                                        :check_out, :check_out_confirm]
+                                                        :check_in_confirm, :check_out, :check_out_confirm]
 
   def create
     @customer = current_customer
@@ -60,6 +60,10 @@ class ReservationsController < ApplicationController
   def admin; end
   
   def check_in
+    @additional_guest = AdditionalGuest.new()
+  end
+
+  def check_in_confirm
     if (Time.zone.now.to_date - @reservation.check_in_date).to_i < 0
       return redirect_to admin_reservation_path(@reservation), notice: 'É cedo demais para fazer check-in'
     end

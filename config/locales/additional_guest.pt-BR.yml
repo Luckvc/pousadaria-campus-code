@@ -1,0 +1,8 @@
+pt-BR:
+  activerecord:
+    models:
+      additional_guest: 'Hóspedes'
+    attributes:
+      additional_guest:
+        name: "Nome"
+        document: "Documento"

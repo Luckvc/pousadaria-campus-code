@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_30_233642) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_01_010042) do
+  create_table "additional_guests", force: :cascade do |t|
+    t.string "name"
+    t.string "document"
+    t.integer "reservation_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["reservation_id"], name: "index_additional_guests_on_reservation_id"
+  end
+
   create_table "addresses", force: :cascade do |t|
     t.string "street"
     t.string "number"
@@ -157,6 +166,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_233642) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "additional_guests", "reservations"
   add_foreign_key "consumables", "reservations"
   add_foreign_key "custom_dates", "rooms"
   add_foreign_key "inns", "addresses"

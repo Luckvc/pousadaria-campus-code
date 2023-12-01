@@ -14,7 +14,8 @@ class Api::V1::InnsController < ActionController::API
 
   def index
     query = params[:query]
-    inns = Inn.where("name LIKE ? AND active = ?", "%#{query}%", true)
+    inns = Inn.joins(:address).
+               where("name LIKE ? OR city LIKE ? AND active = ?", "%#{query}%", "%#{query}%", true)
               .as_json(except: [:created_at, :updated_at, :user_id, :cnpj, :company_name])
     inns.each { |inn| inn = set_address(inn)}
     render status:200, json: inns

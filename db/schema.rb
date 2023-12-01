@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_27_143143) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_30_233642) do
   create_table "addresses", force: :cascade do |t|
     t.string "street"
     t.string "number"
@@ -20,6 +20,15 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_27_143143) do
     t.string "cep"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "consumables", force: :cascade do |t|
+    t.string "description"
+    t.decimal "price", precision: 8, scale: 10
+    t.integer "reservation_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["reservation_id"], name: "index_consumables_on_reservation_id"
   end
 
   create_table "custom_dates", force: :cascade do |t|
@@ -148,6 +157,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_27_143143) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "consumables", "reservations"
   add_foreign_key "custom_dates", "rooms"
   add_foreign_key "inns", "addresses"
   add_foreign_key "inns", "users"

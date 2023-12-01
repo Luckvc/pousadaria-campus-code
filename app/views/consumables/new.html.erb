@@ -1,0 +1,9 @@
+<h1>Novo Consumível</h1>
+
+<%= form_with model: @consumable, url: reservation_consumables_path do |f|%>
+  <%= f.label :description%>
+  <%= f.text_field :description%>
+  <%= f.label :price%>
+  <%= f.number_field :price%>
+  <%= f.submit 'Cadastrar Consumível'%>
+<% end %>

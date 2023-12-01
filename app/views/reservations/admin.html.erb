@@ -34,5 +34,15 @@
   <%= button_to 'Cancelar Reserva', admin_cancelled_reservation_path(@reservation) %> 
 <% end %>
 <% if @reservation.ongoing? %>
+  <%= link_to 'Adicionar Consumível', new_reservation_consumable_path(@reservation) %> 
   <%= link_to 'Realizar Check-out', check_out_reservation_path(@reservation) %> 
+<% end %>
+<% if @reservation.ongoing? || @reservation.completed? %>
+  Consumo:
+  <% if @reservation.consumables.any? %>
+    <% @reservation.consumables.each do |consumable| %>
+      <%= consumable.description %> - <%= number_to_currency(consumable.price) %>
+    <% end %>
+  <% end %>
+  
 <% end %>

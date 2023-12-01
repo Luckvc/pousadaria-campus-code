@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     get 'confirmation'
   end
   resources :reservations, only: [:index, :show] do
+    resources :consumables, only: [:new, :create]
     resources :reviews, only: [:new, :create]
     collection do
       get 'inn', to: 'reservations#inn_reservations'

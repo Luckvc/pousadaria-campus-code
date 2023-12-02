@@ -27,6 +27,10 @@ Rails.application.routes.draw do
     resources :custom_dates, only: [:index, :new, :create]
     resources :pre_reservations, only: [:new, :create]
     resources :reservations, only: [:create]
+    member do
+      get 'new_image'
+      post 'create_image'
+    end
   end
   resources :pre_reservations, only: [:index] do
     get 'confirmation'

@@ -52,7 +52,7 @@
   <% if @inn.images.any? %>
     <h3>Fotos:</h3>
     <% @inn.images.each do |image| %>
-      <% image_tag image %>
+      <%= link_to image_tag(@inn.image_as_thumbnail(image)), image %>
     <% end %>
   <% end %>
 </div>

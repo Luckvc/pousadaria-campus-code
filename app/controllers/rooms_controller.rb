@@ -1,6 +1,6 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
-  before_action :set_room_and_check_user, only: [:edit, :update]
+  before_action :set_room_and_check_user, only: [:edit, :update, :new_image, :create_image]
 
   def new
     @room = Room.new
@@ -31,12 +31,23 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
   end
   
+  def new_image; end
+
+  def create_image
+    if @room.update(room_params)
+      redirect_to room_path, notice: 'Imagens adicionadas com sucesso'
+    else
+      flash.now[:notice] = 'Não foi possível adicionar as imagens'
+      render :show, status: 422
+    end
+  end
+
   private
 
   def room_params
     room_params = params.require(:room).permit(:number, :description, :double_beds, :single_beds, 
       :capacity, :price, :price, :bathrooms, :dimension, :kitchen, :balcony, :tv, :air, :wardrobe,
-      :safe, :accessible)
+      :safe, :accessible, images: [])
   end
 
   def set_room_and_check_user

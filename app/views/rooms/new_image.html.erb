@@ -1,0 +1,10 @@
+<h1>Adicionar Imagens ao Quarto <%= @room.number %></h1>
+
+<div>
+  <%= form_with model: @room, method: :post, url: create_image_room_path(@room) do |f|%>
+    <%= f.label :images%>
+    <%= f.file_field :images, multiple:true %>
+    <%= f.submit 'Adicionar'%>
+  <% end %>
+</div>
+

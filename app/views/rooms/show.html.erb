@@ -40,7 +40,16 @@
 
     <%= link_to 'Adicionar preço sazonal', new_room_custom_date_path(@room.id) %>
     <div>
-      <%= link_to "Editar Quarto #{@room.number}", edit_room_path(@room.id)%>
+      <%= link_to "Editar Quarto #{@room.number}", edit_room_path(@room.id)%><br>
+      <%= link_to 'Adicionar Imagens', new_image_room_path(@room) %>
+    </div>
+    <div>
+      <% if @room.images.any? %>
+        <h3>Fotos:</h3>
+        <% @room.images.each do |image| %>
+          <%= link_to image_tag(@room.image_as_thumbnail(image)), image %>
+        <% end %>
+      <% end %>
     </div>
     <div>
     <%= link_to('Voltar', my_inn_path)%>

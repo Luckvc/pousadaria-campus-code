@@ -108,6 +108,11 @@ class InnsController < ApplicationController
   def new_image; end
 
   def create_image
+    unless inn_params["images"][1].present?
+      flash.now[:notice] = 'Insira uma imagem'
+      return render :new_image, status: 422
+    end
+
     if @inn.update(inn_params)
       redirect_to my_inn_path, notice: 'Imagens adicionadas com sucesso'
     else

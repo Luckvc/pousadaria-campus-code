@@ -37,6 +37,14 @@
   </dl>
 </div>
 <div>
+  <% if @inn.images.any? %>
+    <h3>Fotos:</h3>
+    <% @inn.images.each do |image| %>
+        <%= link_to image_tag(@inn.image_as_thumbnail(image)), image %>
+    <% end %>
+  <% end %>
+</div>
+<div>
     <h3> Avaliações: <%= @score %> </h3>
 </div>
 <div>
@@ -59,9 +67,9 @@
   <% end %>
 </div>
 <div>
+  <h3> Quartos: </h3>
   <% if @inn.rooms.any? %>
     <div>
-      <h3> Quartos </h3>
       <% @inn.rooms.each do |room| %>
       <dl>
         <%= link_to room_path(room.id) do %>
